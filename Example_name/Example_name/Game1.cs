@@ -93,7 +93,7 @@ namespace Example_name
             {
                 for (int j = 0; j < 80; j++)
                 {
-                    if (i < 4 || i > 17 || j < 4 || j > 77)
+                    if (i < 4 || i > 15 || j < 4 || j > 75)
                     {
                         data_to_convert[i, j] = Color.White;
                         //Debug.WriteLine("white");
@@ -105,10 +105,9 @@ namespace Example_name
                 }
             }
 
-            int width = data_to_convert.GetLength(0)-1;
-            int height = data_to_convert.GetLength(1)-1;
-
-
+            int width = data_to_convert.GetLength(0);
+            int height = data_to_convert.GetLength(1);
+            
             Color[] data = new Color[20 * 80];
 
             for (int i = 0; i < width; i++) {
@@ -116,7 +115,7 @@ namespace Example_name
                 {
                     Color thing = data_to_convert[i, j];
                     //Debug.WriteLine(thing);
-                    data[j * width + i] = thing;
+                    data[j*width + i] = thing;
                 }
             }
 
