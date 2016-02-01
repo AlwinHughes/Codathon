@@ -92,16 +92,22 @@ namespace Example_name
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            Texture2D rect = new Texture2D(graphics.GraphicsDevice, 40, 80);
+            Texture2D rect_1 = new Texture2D(graphics.GraphicsDevice, 20, 80);
+            Texture2D rect_2 = new Texture2D(graphics.GraphicsDevice, 40, 80);
+            //Texture2D other_rect = new Texture2D(graphics.GraphicsDevice);
 
-            Color[] data = new Color[80 * 80];
-            for (int i = 0; i < data.Length; i++)
+
+            Color[] data_2 = new Color[80 * 80];
+            for (int i = 0; i < data_2.Length; i++)
             {
                 if (i % 13 == 0 || i % 2 == 0)
                 {
-                    data[i] = Color.Red;
+                    data_2[i] = Color.Red;
                 }
             }
+
+            Color[] data_1 = new Color[20 * 80];
+
             Color[,] data_to_convert = new Color[20, 80];
             for (int i = 0; i < 20; i++)
             {
@@ -128,17 +134,19 @@ namespace Example_name
                 {
                     Color thing = data_to_convert[i, j];
                     //Debug.WriteLine(thing);
-                    data[j*width + i] = thing;
+                    data_1[j*width + i] = thing;
                 }
             }
 
             
 
-            rect.SetData(data);
-
-            Vector2 coor = new Vector2(20, 20);
-            var origin = new Vector2(rect.Width / 2f, rect.Height / 2f);
-            spriteBatch.Draw(rect, new Rectangle(x, y, rect.Width, rect.Height),null, Color.White, rotation, origin, SpriteEffects.None, 0f);
+            rect_1.SetData(data_1);
+            rect_2.SetData(data_2);
+            Vector2 coor_2 = new Vector2(500, 500);
+            Vector2 coor_1 = new Vector2(20, 20);
+            var origin = new Vector2(rect_1.Width / 2, rect_1.Height / 2);
+            spriteBatch.Draw(rect_1, new Rectangle(x, y, rect_1.Width, rect_1.Height),null, Color.White, rotation, origin, SpriteEffects.None, 0f);
+            spriteBatch.Draw(rect_2, new Rectangle(x+40, y-40, rect_2.Width, rect_2.Height), null, Color.White, rotation, origin, SpriteEffects.None, 0f);
             spriteBatch.End();
             base.Draw(gameTime);
 
