@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace Example_name
 {
@@ -86,26 +87,55 @@ namespace Example_name
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime)
-        {
+        protected override void Draw(GameTime gameTime) {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             Texture2D rect = new Texture2D(graphics.GraphicsDevice, 40, 80);
 
+<<<<<<< HEAD
             Color[] data = new Color[80 * 80];
             for (int i = 0; i < data.Length; i ++)
             {
                 if (i % 13 == 0 || i % 2 == 0)
                 {
                     data[i] = Color.Red;
-                }
-                else
+=======
+            Color[,] data_to_convert = new Color[20, 80];
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 0; j < 80; j++)
                 {
-                    data[i] = Color.Blue;
+                    if (i < 4 || i > 15 || j < 4 || j > 75)
+                    {
+                        data_to_convert[i, j] = Color.White;
+                        //Debug.WriteLine("white");
+                    }
+                    else {
+                        data_to_convert[i, j] = Color.Blue;
+                        //Debug.WriteLine("blue");
+                    }
+>>>>>>> eaba2d2ddd5e030fd265ed7fe789424d4137e973
                 }
             }
+
+            int width = data_to_convert.GetLength(0);
+            int height = data_to_convert.GetLength(1);
+            
+            Color[] data = new Color[20 * 80];
+
+            for (int i = 0; i < width; i++) {
+                for (int j = 0; j < height; j++)
+                {
+                    Color thing = data_to_convert[i, j];
+                    //Debug.WriteLine(thing);
+                    data[j*width + i] = thing;
+                }
+            }
+
+            
+
             rect.SetData(data);
 
             Vector2 coor = new Vector2(20, 20);
@@ -113,6 +143,17 @@ namespace Example_name
             spriteBatch.Draw(rect, new Rectangle(x, y, rect.Width, rect.Height),null, Color.White, rotation, origin, SpriteEffects.None, 0f);
             spriteBatch.End();
             base.Draw(gameTime);
+
+
+
         }
-    }
-}
+               
+            //
+            //data[i] = Color.White;
+        
+
+            
+
+        }
+        }
+ 
