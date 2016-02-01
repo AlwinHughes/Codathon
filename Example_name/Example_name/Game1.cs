@@ -11,8 +11,9 @@ namespace Example_name
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        float x = 6;
-        float y = 7;
+        int x = 6;
+        int y = 7;
+        float rotation = 0;
 
         public Game1()
         {
@@ -71,9 +72,14 @@ namespace Example_name
                 x--;
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
                 x++;
-            // TODO: Add your update logic here
+            if (Keyboard.GetState().IsKeyDown(Keys.Q))
+                rotation--;
+            if (Keyboard.GetState().IsKeyDown(Keys.E))
+                rotation++;
 
-            base.Update(gameTime);
+                    // TODO: Add your update logic here
+
+                    base.Update(gameTime);
         }
 
         /// <summary>
@@ -86,14 +92,14 @@ namespace Example_name
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            Texture2D rect = new Texture2D(graphics.GraphicsDevice, 20, 80);
+            Texture2D rect = new Texture2D(graphics.GraphicsDevice, 40, 80);
 
-            Color[] data = new Color[20 * 80];
-            for (int i = 0; i < data.Length; ++i)
+            Color[] data = new Color[80 * 80];
+            for (int i = 0; i < data.Length; i ++)
             {
-                if (i < 10 * 80)
+                if (i % 13 == 0 || i % 2 == 0)
                 {
-                    data[i] = Color.White;
+                    data[i] = Color.Red;
                 }
                 else
                 {
@@ -102,8 +108,9 @@ namespace Example_name
             }
             rect.SetData(data);
 
-            Vector2 coor = new Vector2(10, 20);
-            spriteBatch.Draw(rect, new Vector2(x, y), Color.White);
+            Vector2 coor = new Vector2(20, 20);
+            var origin = new Vector2(rect.Width / 2f, rect.Height / 2f);
+            spriteBatch.Draw(rect, new Rectangle(x, y, rect.Width, rect.Height),null, Color.White, rotation, origin, SpriteEffects.None, 0f);
             spriteBatch.End();
             base.Draw(gameTime);
         }
