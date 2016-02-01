@@ -94,14 +94,14 @@ namespace Example_name
             spriteBatch.Begin();
             Texture2D rect = new Texture2D(graphics.GraphicsDevice, 40, 80);
 
-<<<<<<< HEAD
             Color[] data = new Color[80 * 80];
-            for (int i = 0; i < data.Length; i ++)
+            for (int i = 0; i < data.Length; i++)
             {
                 if (i % 13 == 0 || i % 2 == 0)
                 {
                     data[i] = Color.Red;
-=======
+                }
+            }
             Color[,] data_to_convert = new Color[20, 80];
             for (int i = 0; i < 20; i++)
             {
@@ -116,15 +116,13 @@ namespace Example_name
                         data_to_convert[i, j] = Color.Blue;
                         //Debug.WriteLine("blue");
                     }
->>>>>>> eaba2d2ddd5e030fd265ed7fe789424d4137e973
+
                 }
             }
 
             int width = data_to_convert.GetLength(0);
             int height = data_to_convert.GetLength(1);
             
-            Color[] data = new Color[20 * 80];
-
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++)
                 {
