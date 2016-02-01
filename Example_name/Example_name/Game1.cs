@@ -12,7 +12,7 @@ namespace Example_name
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         float x = 6;
-        float y = 5;
+        float y = 7;
 
         public Game1()
         {
