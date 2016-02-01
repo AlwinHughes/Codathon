@@ -11,6 +11,8 @@ namespace Example_name
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        float x = 6;
+        float y = 5;
 
         public Game1()
         {
@@ -61,7 +63,14 @@ namespace Example_name
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                y--;
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                y++;
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                x--;
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                x++;
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -76,7 +85,26 @@ namespace Example_name
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            Texture2D rect = new Texture2D(graphics.GraphicsDevice, 20, 80);
 
+            Color[] data = new Color[20 * 80];
+            for (int i = 0; i < data.Length; ++i)
+            {
+                if (i < 10 * 80)
+                {
+                    data[i] = Color.White;
+                }
+                else
+                {
+                    data[i] = Color.Blue;
+                }
+            }
+            rect.SetData(data);
+
+            Vector2 coor = new Vector2(10, 20);
+            spriteBatch.Draw(rect, new Vector2(x, y), Color.White);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
