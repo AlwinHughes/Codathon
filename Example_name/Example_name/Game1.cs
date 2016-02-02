@@ -77,11 +77,11 @@ namespace Example_name
 
         protected override void LoadContent()
         {
-<<<<<<< HEAD
+//<<<<<<< HEAD
             Debug.WriteLine("load content called");
             // Create a new SpriteBatch, which can be used to draw textures.
-=======
->>>>>>> 25d3d960de5b4ce411105b6368e1a389d61c4ef4
+//=======
+//>>>>>>> 25d3d960de5b4ce411105b6368e1a389d61c4ef4
             spriteBatch = new SpriteBatch(GraphicsDevice);
             data_1 = new Color[20 * 80];
 
@@ -141,15 +141,15 @@ namespace Example_name
             if (Keyboard.GetState().IsKeyDown(Keys.D))
                 rect1.x++;
             if (Keyboard.GetState().IsKeyDown(Keys.Q))
-<<<<<<< HEAD
+//<<<<<<< HEAD
                 rotation = rotation+ 0.1f;
             if (Keyboard.GetState().IsKeyDown(Keys.E))
                 rotation = rotation -0.1f;
 
                     // TODO: Add your update logic here
 
-                    base.Update(gameTime);
-=======
+                    
+//=======
                 rect1.rotation--;
             if (Keyboard.GetState().IsKeyDown(Keys.E))
                 rect1.rotation++;
@@ -168,7 +168,7 @@ namespace Example_name
                 rect2.rotation++;
 
             base.Update(gameTime);
->>>>>>> 25d3d960de5b4ce411105b6368e1a389d61c4ef4
+//>>>>>>> 25d3d960de5b4ce411105b6368e1a389d61c4ef4
         }
 
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
@@ -178,7 +178,7 @@ namespace Example_name
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-<<<<<<< HEAD
+//<<<<<<< HEAD
             Texture2D rect_1 = new Texture2D(graphics.GraphicsDevice, 20, 80);
             Texture2D rect_2 = new Texture2D(graphics.GraphicsDevice, 40, 80);
             //Texture2D other_rect = new Texture2D(graphics.GraphicsDevice);
@@ -203,38 +203,15 @@ namespace Example_name
             var origin = new Vector2(rect_1.Width / 2, rect_1.Height / 2);
             spriteBatch.Draw(rect_1, new Rectangle(x, y, rect_1.Width, rect_1.Height),null, Color.White, rotation, origin, SpriteEffects.None, 0f);
             spriteBatch.Draw(rect_2, new Rectangle(x+40, y-40, rect_2.Width, rect_2.Height), null, Color.White, rotation, origin, SpriteEffects.None, 0f);
-=======
+//=======
             rect1.draw();
             rect2.draw();
->>>>>>> 25d3d960de5b4ce411105b6368e1a389d61c4ef4
+//>>>>>>> 25d3d960de5b4ce411105b6368e1a389d61c4ef4
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
     }
 
-    class Shape
-    {
-        Texture2D texture;
-       public int x;
-       public int y;
-       public int rotation;
-        public Shape(int x, int y, int rotation, Texture2D texture)
-        {
-            this.x = x;
-            this.y = y;
-            this.rotation = rotation;
-            this.texture = texture;
-        }
-
-        public void draw()
-        {
-            Game1.spriteBatch.Draw(texture, new Rectangle(x, y, texture.Width, texture.Height), null, Color.White, rotation, new Vector2(texture.Width / 2, texture.Height / 2), SpriteEffects.None, 0f);
-        }
-
-        public void setData(Color[] data)
-        {
-            texture.SetData(data);
-        }
-    }
+   
 }
