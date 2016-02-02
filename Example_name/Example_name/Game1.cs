@@ -22,13 +22,16 @@ namespace Example_name
         Random r;
 
         Shape rect1;
+
         Shape rect2;
+
+        AnimShape coin;
+
         int window_height;
         int window_width;
         bool color_fit = false;
         GameState state;
 
-        Texture2D image;
 
         public Game1()
         {
@@ -48,10 +51,6 @@ namespace Example_name
 
             r = new Random();
             rect2 = new Shape(graphics.GraphicsDevice, r.Next(0, window_width), r.Next(0, window_height), 20, 80);
-
-            Random random = new Random();
-            rect1 = new Shape(image,random.Next(0, window_width), random.Next(0, window_height), 80, 80);
-            rect2 = new Shape(graphics.GraphicsDevice,random.Next(0, window_width), random.Next(0, window_height), 20, 80);
 
             Color[] data = new Color[rect2.getWidth() * rect2.getHeight()];
             Color[,] dataTemp = new Color[20, 80];
@@ -88,19 +87,22 @@ namespace Example_name
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("font/arial-36");
 
-            image = Content.Load<Texture2D>("img/thing");
-            rect1 = new Shape(image, r.Next(0, window_width), r.Next(0, window_height), 80, 80);
+            Texture2D rect1Image = Content.Load<Texture2D>("img/thing");
+            rect1 = new Shape(rect1Image, r.Next(0, window_width), r.Next(0, window_height), 80, 80);
 
+            Texture2D coinImage = Content.Load<Texture2D>("img/images");
+            coin = new AnimShape(coinImage, 1,8,new Vector2(100,100));
         }
 
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+
         }
 
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
@@ -110,49 +112,47 @@ namespace Example_name
             {
 
                 if (Keyboard.GetState().IsKeyDown(Keys.W))
-                    rect1.y--;
+                    rect1.location.Y--;
                 if (Keyboard.GetState().IsKeyDown(Keys.S))
-                    rect1.y++;
+                    rect1.location.Y++;
                 if (Keyboard.GetState().IsKeyDown(Keys.A))
-                    rect1.x--;
+                    rect1.location.X--;
                 if (Keyboard.GetState().IsKeyDown(Keys.D))
-                    rect1.x++;
+                    rect1.location.X++;
                 if (Keyboard.GetState().IsKeyDown(Keys.Q))
                     rect1.rotation = rect1.rotation + 0.1f;
                 if (Keyboard.GetState().IsKeyDown(Keys.E))
                     rect1.rotation = rect1.rotation - 0.1f;
 
                 if (Keyboard.GetState().IsKeyDown(Keys.I))
-                    rect2.y--;
+                    rect2.location.Y--;
                 if (Keyboard.GetState().IsKeyDown(Keys.K))
-                    rect2.y++;
+                    rect2.location.Y++;
                 if (Keyboard.GetState().IsKeyDown(Keys.J))
-                    rect2.x--;
+                    rect2.location.X--;
                 if (Keyboard.GetState().IsKeyDown(Keys.L))
-                    rect2.x++;
+                    rect2.location.X++;
                 if (Keyboard.GetState().IsKeyDown(Keys.U))
                     rect2.rotation = rect2.rotation - 0.1f;
                 if (Keyboard.GetState().IsKeyDown(Keys.O))
                     rect2.rotation = rect2.rotation + 0.1f;
 
-                base.Update(gameTime);
-
-                if (rect2.x > window_width || rect2.x < 0)
+                if (rect2.location.X > window_width || rect2.location.X < 0)
                 {
-                    rect2.x = window_width / 2;
+                    rect2.location.X = window_width / 2;
                 }
-                if (rect2.y > window_height || rect2.y < 0)
+                if (rect2.location.Y > window_height || rect2.location.Y < 0)
                 {
-                    rect2.y = window_height / 2;
+                    rect2.location.Y = window_height / 2;
                 }
 
-                if (rect1.x > window_width || rect1.x < 0)
+                if (rect1.location.X > window_width || rect1.location.X < 0)
                 {
-                    rect1.x = window_width / 2;
+                    rect1.location.X = window_width / 2;
                 }
-                if (rect1.y > window_height || rect1.y < 0)
+                if (rect1.location.Y > window_height || rect1.location.Y < 0)
                 {
-                    rect1.y = window_height / 2;
+                    rect1.location.Y = window_height / 2;
                 }
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Space))
@@ -167,6 +167,10 @@ namespace Example_name
                     state = GameState.GAMEPLAY;
                 }
             }
+
+            fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+            coin.Update();
+            base.Update(gameTime);
         }
 
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
@@ -178,12 +182,13 @@ namespace Example_name
 
                 spriteBatch.Begin();
 
-                fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+                //fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
                 spriteBatch.DrawString(font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond), new Vector2(1, 1), Color.Black);
 
-                rect1.draw();
-                rect2.draw();
+                rect1.Draw();
+                rect2.Draw();
+                coin.Draw();
                 spriteBatch.End();
 
                 base.Draw(gameTime);
