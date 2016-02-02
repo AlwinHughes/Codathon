@@ -21,7 +21,6 @@ namespace Example_name
         SpriteFont title_font;
         public static GraphicsDeviceManager graphics;
 
-        SpriteFont font;
         
         public static SpriteBatch spriteBatch;
         Random r;
@@ -96,7 +95,6 @@ namespace Example_name
             title_font = Content.Load<SpriteFont>("font/title");
             //use this.Content to load your game content here
 
-            font = Content.Load<SpriteFont>("font/arial-36");
 
             //image = Content.Load<Texture2D>("img/thing");
             rect1 = new Shape(image, r.Next(0, window_width), r.Next(0, window_height), 80, 80);
@@ -188,9 +186,7 @@ namespace Example_name
 
                 
                 GraphicsDevice.Clear(Color.CornflowerBlue);
-                
-
-                GraphicsDevice.Clear(Color.CornflowerBlue);
+               
 
 
                 spriteBatch.Begin();
