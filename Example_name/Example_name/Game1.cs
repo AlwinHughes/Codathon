@@ -22,8 +22,7 @@ namespace Example_name
         public static GraphicsDeviceManager graphics;
 
         SpriteFont font;
-        //GraphicsDeviceManager graphics;
-
+        
         public static SpriteBatch spriteBatch;
         Random r;
 
@@ -99,7 +98,7 @@ namespace Example_name
 
             font = Content.Load<SpriteFont>("font/arial-36");
 
-            image = Content.Load<Texture2D>("img/thing");
+            //image = Content.Load<Texture2D>("img/thing");
             rect1 = new Shape(image, r.Next(0, window_width), r.Next(0, window_height), 80, 80);
 
 
@@ -202,8 +201,7 @@ namespace Example_name
                 spriteBatch.DrawString(fps_font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond) , new Vector2(1, 1), Color.Black);
                
 
-                spriteBatch.DrawString(font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond), new Vector2(1, 1), Color.Black);
-
+               
 
                 rect1.draw();
                 rect2.draw();
@@ -216,7 +214,7 @@ namespace Example_name
                 GraphicsDevice.Clear(Color.CornflowerBlue);
                 spriteBatch.Begin();
 
-                spriteBatch.DrawString(title_font, "Title screen", new Vector2(window_width / 2, window_height / 2), Color.Black);
+                spriteBatch.DrawString(title_font, "Title screen", new Vector2((window_width / 2)-  title_font.MeasureString("Title screeen").X, window_height / 2), Color.Black);
 
                 spriteBatch.End();
             }
