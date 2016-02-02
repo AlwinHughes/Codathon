@@ -16,8 +16,13 @@ namespace Example_name
     {
         FrameCounter fps = new FrameCounter();
 
+
+        SpriteFont fps_font;
+        SpriteFont title_font;
+        public static GraphicsDeviceManager graphics;
+
         SpriteFont font;
-        GraphicsDeviceManager graphics;
+        
         public static SpriteBatch spriteBatch;
         Random r;
 
@@ -85,13 +90,25 @@ namespace Example_name
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            fps_font = Content.Load<SpriteFont>("font/arial-36");
+            title_font = Content.Load<SpriteFont>("font/title");
+            //use this.Content to load your game content here
+
             font = Content.Load<SpriteFont>("font/arial-36");
 
+<<<<<<< HEAD
             Texture2D rect1Image = Content.Load<Texture2D>("img/thing");
             rect1 = new Shape(rect1Image, r.Next(0, window_width), r.Next(0, window_height), 80, 80);
 
             Texture2D coinImage = Content.Load<Texture2D>("img/images");
             coin = new AnimShape(coinImage, 1,8,new Vector2(100,100));
+=======
+            //image = Content.Load<Texture2D>("img/thing");
+            rect1 = new Shape(image, r.Next(0, window_width), r.Next(0, window_height), 80, 80);
+
+
+>>>>>>> 6c68e0b3dbfc306212b4ed29372df22c2494e9c8
         }
 
         protected override void UnloadContent()
@@ -178,13 +195,23 @@ namespace Example_name
         {
             if (state == GameState.GAMEPLAY)
             {
+
+                
                 GraphicsDevice.Clear(Color.CornflowerBlue);
+                
+
+                GraphicsDevice.Clear(Color.CornflowerBlue);
+
 
                 spriteBatch.Begin();
 
                 //fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
-                spriteBatch.DrawString(font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond), new Vector2(1, 1), Color.Black);
+
+                spriteBatch.DrawString(fps_font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond) , new Vector2(1, 1), Color.Black);
+               
+
+               
 
                 rect1.Draw();
                 rect2.Draw();
@@ -198,7 +225,7 @@ namespace Example_name
                 GraphicsDevice.Clear(Color.CornflowerBlue);
                 spriteBatch.Begin();
 
-                spriteBatch.DrawString(font, "Title screen", new Vector2(window_width / 2, window_height / 2), Color.Black);
+                spriteBatch.DrawString(title_font, "Title screen", new Vector2((window_width / 2)-  title_font.MeasureString("Title screeen").X, window_height / 2), Color.Black);
 
                 spriteBatch.End();
             }
