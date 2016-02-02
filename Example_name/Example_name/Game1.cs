@@ -22,7 +22,7 @@ namespace Example_name
         public static GraphicsDeviceManager graphics;
 
         SpriteFont font;
-        GraphicsDeviceManager graphics;
+        //GraphicsDeviceManager graphics;
 
         public static SpriteBatch spriteBatch;
         Random r;
