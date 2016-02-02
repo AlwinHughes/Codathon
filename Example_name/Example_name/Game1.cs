@@ -6,8 +6,6 @@ using System;
 
 namespace Example_name
 {
-    //Alwin is bad
-    //Important Fix
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -16,12 +14,16 @@ namespace Example_name
         FrameCounter fps = new FrameCounter();
 
         SpriteFont font;
-        public static GraphicsDeviceManager graphics;
+        GraphicsDeviceManager graphics;
         public static SpriteBatch spriteBatch;
+        Random random;
+
         Shape rect1;
         Shape rect2;
         int window_height;
         int window_width;
+
+        Texture2D image;
 
         public Game1()
         {
@@ -37,26 +39,10 @@ namespace Example_name
             graphics.PreferredBackBufferWidth = window_width;
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
-            Random random = new Random();
-            rect1 = new Shape(random.Next(0,window_width), random.Next(0, window_height), 80, 80);
-            rect2 = new Shape(random.Next(0, window_width), random.Next(0, window_height), 20, 80);
+            random = new Random();
+            rect2 = new Shape(graphics.GraphicsDevice,random.Next(0, window_width), random.Next(0, window_height), 20, 80);
 
-            Color[] data = new Color[rect1.getWidth() * rect1.getHeight()];
-            
-            for (int i = 0; i < data.Length; i++)
-            {
-                if (i % 13 == 0 || i % 2 == 0)
-                {
-                    data[i] = Color.Red;
-                }
-                else
-                {
-                    data[i] = Color.Green;
-                }
-            }
-            rect1.setData(data);
-
-            data = new Color[rect2.getWidth() * rect2.getHeight()];
+            Color[] data = new Color[rect2.getWidth() * rect2.getHeight()];
             Color[,] dataTemp = new Color[20, 80];
 
             for (int i = 0; i < 20; i++)
@@ -90,9 +76,12 @@ namespace Example_name
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("font/arial-36");
-            //use this.Content to load your game content here
+
+            image = Content.Load<Texture2D>("img/thing");
+            rect1 = new Shape(image, random.Next(0, window_width), random.Next(0, window_height), 80, 80);
+
         }
-        
+
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here

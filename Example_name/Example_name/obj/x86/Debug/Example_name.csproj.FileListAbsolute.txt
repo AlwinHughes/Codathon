@@ -79,3 +79,5 @@ C:\Users\Mohammed\Documents\Repositories\Codathon\Example_name\Example_name\bin\
 C:\Users\Mohammed\Documents\Repositories\Codathon\Example_name\Example_name\bin\Windows\Debug\SharpDX.XInput.xml
 C:\Users\Mohammed\Documents\Repositories\Codathon\Example_name\Example_name\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\Mohammed\Documents\Repositories\Codathon\Example_name\Example_name\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\Tom\Documents\Codathon\Example_name\Example_name\bin\Windows\Debug\Example_name.exe.config
+C:\Users\Tom\Documents\Codathon\Example_name\Example_name\bin\Windows\Debug\Content\img\thing.xnb
