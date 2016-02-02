@@ -11,7 +11,7 @@ namespace Example_name
         Texture2D texture;
         public int x;
         public int y;
-        public int rotation;
+        public float rotation;
 
         int width;
         int height;

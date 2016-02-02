@@ -109,9 +109,9 @@ namespace Example_name
             if (Keyboard.GetState().IsKeyDown(Keys.D))
                 rect1.x++;
             if (Keyboard.GetState().IsKeyDown(Keys.Q))
-                rect1.rotation--;
+                rect1.rotation = rect1.rotation + 0.1f;
             if (Keyboard.GetState().IsKeyDown(Keys.E))
-                rect1.rotation++;
+                rect1.rotation = rect1.rotation -0.1f;
 
             if (Keyboard.GetState().IsKeyDown(Keys.I))
                 rect2.y--;
@@ -122,9 +122,9 @@ namespace Example_name
             if (Keyboard.GetState().IsKeyDown(Keys.L))
                 rect2.x++;
             if (Keyboard.GetState().IsKeyDown(Keys.U))
-                rect2.rotation--;
+                rect2.rotation = rect2.rotation-0.1f;
             if (Keyboard.GetState().IsKeyDown(Keys.O))
-                rect2.rotation++;
+                rect2.rotation = rect2.rotation +0.1f;
 
             base.Update(gameTime);
         }
