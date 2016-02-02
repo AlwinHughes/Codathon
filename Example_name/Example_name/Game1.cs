@@ -28,8 +28,8 @@ namespace Example_name
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
-            rect1 = new Shape(40, 40, 0, new Texture2D(graphics.GraphicsDevice, 80, 80));
-            rect2 = new Shape(40, 40, 0, new Texture2D(graphics.GraphicsDevice, 20, 80));
+            rect1 = new Shape(80, 80, 0, new Texture2D(graphics.GraphicsDevice, 80, 80));
+            rect2 = new Shape(20, 80, 0, new Texture2D(graphics.GraphicsDevice, 20, 80));
 
             Color[] data = new Color[80 * 80];
             for (int i = 0; i < data.Length; i++)
