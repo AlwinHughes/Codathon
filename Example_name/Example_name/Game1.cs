@@ -65,7 +65,7 @@ namespace Example_name
                 {
                     if (i < 4 || i > 15 || j < 4 || j > 75)
                     {
-                        dataTemp[i, j] = Color.White;
+                        dataTemp[i, j] = Color.Green;
                     }
                     else
                     {
