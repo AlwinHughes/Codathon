@@ -16,11 +16,30 @@ namespace Example_name
         Shape rect1;
         Shape rect2;
 
+
+
+
+
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         protected override void Initialize()
         {
@@ -77,6 +96,22 @@ namespace Example_name
             base.Initialize();
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -84,10 +119,40 @@ namespace Example_name
             //use this.Content to load your game content here
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
@@ -125,6 +190,24 @@ namespace Example_name
 
             base.Update(gameTime);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
