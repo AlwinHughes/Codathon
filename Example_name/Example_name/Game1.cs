@@ -26,6 +26,7 @@ namespace Example_name
         int window_height;
         int window_width;
         bool color_fit = false;
+        GameState state;
 
         public Game1()
         {
@@ -35,6 +36,7 @@ namespace Example_name
 
         protected override void Initialize()
         {
+            state = GameState.TITLESCREEN;
             window_height = graphics.GraphicsDevice.DisplayMode.Height;
             window_width = graphics.GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = window_height;
@@ -42,11 +44,11 @@ namespace Example_name
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             Random random = new Random();
-            rect1 = new Shape(random.Next(0,window_width), random.Next(0, window_height), 80, 80);
+            rect1 = new Shape(random.Next(0, window_width), random.Next(0, window_height), 80, 80);
             rect2 = new Shape(random.Next(0, window_width), random.Next(0, window_height), 20, 80);
 
             Color[] data = new Color[rect1.getWidth() * rect1.getHeight()];
-            
+
             for (int i = 0; i < data.Length; i++)
             {
                 if (i % 13 == 0 || i % 2 == 0)
@@ -89,108 +91,128 @@ namespace Example_name
 
             base.Initialize();
         }
-        
+
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("font/arial-36");
             //use this.Content to load your game content here
         }
-        
+
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
         }
-        
+
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 Exit();
             }
-
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
-                rect1.y--;
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
-                rect1.y++;
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
-                rect1.x--;
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
-                rect1.x++;
-            if (Keyboard.GetState().IsKeyDown(Keys.Q))
-                rect1.rotation = rect1.rotation + 0.1f;
-            if (Keyboard.GetState().IsKeyDown(Keys.E))
-                rect1.rotation = rect1.rotation -0.1f;
-
-            if (Keyboard.GetState().IsKeyDown(Keys.I))
-                rect2.y--;
-            if (Keyboard.GetState().IsKeyDown(Keys.K))
-                rect2.y++;
-            if (Keyboard.GetState().IsKeyDown(Keys.J))
-                rect2.x--;
-            if (Keyboard.GetState().IsKeyDown(Keys.L))
-                rect2.x++;
-            if (Keyboard.GetState().IsKeyDown(Keys.U))
-                rect2.rotation = rect2.rotation-0.1f;
-            if (Keyboard.GetState().IsKeyDown(Keys.O))
-                rect2.rotation = rect2.rotation +0.1f;
-
-            base.Update(gameTime);
-
-            if (rect2.x>window_width|| rect2.x < 0)
+            if (state == GameState.GAMEPLAY)
             {
-                rect2.x = window_width / 2;
-            }
-            if(rect2.y > window_height||rect2.y<0)
-            {
-                rect2.y = window_height / 2;
-            }
 
-            if (rect1.x > window_width || rect1.x < 0)
-            {
-                rect1.x = window_width / 2;
-            }
-            if (rect1.y > window_height || rect1.y < 0)
-            {
-                rect1.y = window_height / 2;
-            }
+                if (Keyboard.GetState().IsKeyDown(Keys.W))
+                    rect1.y--;
+                if (Keyboard.GetState().IsKeyDown(Keys.S))
+                    rect1.y++;
+                if (Keyboard.GetState().IsKeyDown(Keys.A))
+                    rect1.x--;
+                if (Keyboard.GetState().IsKeyDown(Keys.D))
+                    rect1.x++;
+                if (Keyboard.GetState().IsKeyDown(Keys.Q))
+                    rect1.rotation = rect1.rotation + 0.1f;
+                if (Keyboard.GetState().IsKeyDown(Keys.E))
+                    rect1.rotation = rect1.rotation - 0.1f;
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
-            {
-                color_fit = true;
-            }
-        }
-        
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime)
-        {
-            if (color_fit)
-            {
-                
-                Random random = new Random();
-                //GraphicsDevice.Clear(Color.)
+                if (Keyboard.GetState().IsKeyDown(Keys.I))
+                    rect2.y--;
+                if (Keyboard.GetState().IsKeyDown(Keys.K))
+                    rect2.y++;
+                if (Keyboard.GetState().IsKeyDown(Keys.J))
+                    rect2.x--;
+                if (Keyboard.GetState().IsKeyDown(Keys.L))
+                    rect2.x++;
+                if (Keyboard.GetState().IsKeyDown(Keys.U))
+                    rect2.rotation = rect2.rotation - 0.1f;
+                if (Keyboard.GetState().IsKeyDown(Keys.O))
+                    rect2.rotation = rect2.rotation + 0.1f;
+
+                base.Update(gameTime);
+
+                if (rect2.x > window_width || rect2.x < 0)
+                {
+                    rect2.x = window_width / 2;
+                }
+                if (rect2.y > window_height || rect2.y < 0)
+                {
+                    rect2.y = window_height / 2;
+                }
+
+                if (rect1.x > window_width || rect1.x < 0)
+                {
+                    rect1.x = window_width / 2;
+                }
+                if (rect1.y > window_height || rect1.y < 0)
+                {
+                    rect1.y = window_height / 2;
+                }
+
+                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                {
+                    color_fit = true;
+                }
             }
             else
             {
-                GraphicsDevice.Clear(Color.CornflowerBlue);
+                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                {
+                    state = GameState.GAMEPLAY;
+                }
             }
-            
-
-            spriteBatch.Begin();
-
-            fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-
-            string s = string.Format("FPS: {0}",(int)fps.AverageFramesPerSecond);
-
-            spriteBatch.DrawString(font, s, new Vector2(1, 1), Color.Black);
-            Debug.WriteLine(s);
-            
-            rect1.draw();
-            rect2.draw();
-            spriteBatch.End();
-
-            base.Draw(gameTime);
         }
+
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        protected override void Draw(GameTime gameTime)
+        {
+            if (state == GameState.GAMEPLAY)
+            {
+                
+                    
+                    
+                
+                    GraphicsDevice.Clear(Color.CornflowerBlue);
+                
+
+
+                spriteBatch.Begin();
+
+                fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+
+                spriteBatch.DrawString(font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond) , new Vector2(1, 1), Color.Black);
+               
+                rect1.draw();
+                rect2.draw();
+                spriteBatch.End();
+
+                base.Draw(gameTime);
+            }
+            else {
+                GraphicsDevice.Clear(Color.CornflowerBlue);
+                spriteBatch.Begin();
+
+                spriteBatch.DrawString(font, "Title screen", new Vector2(window_width / 2, window_height / 2), Color.Black);
+
+                spriteBatch.End();
+            }
+        }
+    }
+
+    public enum GameState
+    {
+        GAMEPLAY,TITLESCREEN//todo add more states here
     }
 }
