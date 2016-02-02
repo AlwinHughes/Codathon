@@ -9,8 +9,7 @@ namespace Example_name
     class Shape
     {
         Texture2D texture;
-        public int x;
-        public int y;
+        public Vector2 location;
         public float rotation;
 
         int width;
@@ -18,8 +17,7 @@ namespace Example_name
 
         public Shape(Texture2D texture,int x, int y, int width, int height)
         {
-            this.x = x;
-            this.y = y;
+            location = new Vector2(x, y);
             this.texture = texture;
             this.width = width;
             this.height = height;
@@ -27,22 +25,21 @@ namespace Example_name
 
         public Shape(GraphicsDevice d, int x, int y, int width, int height)
         {
-            this.x = x;
-            this.y = y;
+            location = new Vector2(x, y);
             texture = new Texture2D(d, width, height);
             this.width = width;
             this.height = height;
         }
 
-        public void draw()
+        public void Draw()
         {
             if (rotation != 0)
             {
-                Game1.spriteBatch.Draw(texture, new Rectangle(x, y, texture.Width, texture.Height), null, Color.White, rotation, new Vector2(texture.Width / 2, texture.Height / 2), SpriteEffects.None, 0f);
+                Game1.spriteBatch.Draw(texture, new Rectangle((int)location.X, (int)location.Y, texture.Width, texture.Height), null, Color.White, rotation, new Vector2(texture.Width / 2, texture.Height / 2), SpriteEffects.None, 0f);
             }
             else
             {
-                Game1.spriteBatch.Draw(texture, new Rectangle(x, y, texture.Width, texture.Height), Color.White);
+                Game1.spriteBatch.Draw(texture, new Rectangle((int)location.X, (int)location.Y, texture.Width, texture.Height), Color.White);
             }
         }
 
