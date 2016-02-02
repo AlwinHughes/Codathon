@@ -15,7 +15,7 @@ namespace Example_name
         int x = 6;
         int y = 7;
         float rotation = 0;
-
+        Color[] data_1;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -41,8 +41,41 @@ namespace Example_name
         /// </summary>
         protected override void LoadContent()
         {
+            Debug.WriteLine("load content called");
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            data_1 = new Color[20 * 80];
+
+            Color[,] data_to_convert = new Color[20, 80];
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 0; j < 80; j++)
+                {
+                    if (i < 4 || i > 15 || j < 4 || j > 75)
+                    {
+                        data_to_convert[i, j] = Color.White;
+                        //Debug.WriteLine("white");
+                    }
+                    else {
+                        data_to_convert[i, j] = Color.Blue;
+                        //Debug.WriteLine("blue");
+                    }
+
+                }
+            }
+
+            int width = data_to_convert.GetLength(0);
+            int height = data_to_convert.GetLength(1);
+
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    Color thing = data_to_convert[i, j];
+                    //Debug.WriteLine(thing);
+                    data_1[j * width + i] = thing;
+                }
+            }
 
             // TODO: use this.Content to load your game content here
         }
@@ -74,9 +107,9 @@ namespace Example_name
             if (Keyboard.GetState().IsKeyDown(Keys.D))
                 x++;
             if (Keyboard.GetState().IsKeyDown(Keys.Q))
-                rotation--;
+                rotation = rotation+ 0.1f;
             if (Keyboard.GetState().IsKeyDown(Keys.E))
-                rotation++;
+                rotation = rotation -0.1f;
 
                     // TODO: Add your update logic here
 
@@ -105,38 +138,7 @@ namespace Example_name
                     data_2[i] = Color.Red;
                 }
             }
-
-            Color[] data_1 = new Color[20 * 80];
-
-            Color[,] data_to_convert = new Color[20, 80];
-            for (int i = 0; i < 20; i++)
-            {
-                for (int j = 0; j < 80; j++)
-                {
-                    if (i < 4 || i > 15 || j < 4 || j > 75)
-                    {
-                        data_to_convert[i, j] = Color.White;
-                        //Debug.WriteLine("white");
-                    }
-                    else {
-                        data_to_convert[i, j] = Color.Blue;
-                        //Debug.WriteLine("blue");
-                    }
-
-                }
-            }
-
-            int width = data_to_convert.GetLength(0);
-            int height = data_to_convert.GetLength(1);
             
-            for (int i = 0; i < width; i++) {
-                for (int j = 0; j < height; j++)
-                {
-                    Color thing = data_to_convert[i, j];
-                    //Debug.WriteLine(thing);
-                    data_1[j*width + i] = thing;
-                }
-            }
 
             
 
