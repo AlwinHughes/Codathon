@@ -18,7 +18,8 @@ namespace Example_name
     {
         FrameCounter fps = new FrameCounter();
 
-        SpriteFont font;
+        SpriteFont fps_font;
+        SpriteFont title_font;
         public static GraphicsDeviceManager graphics;
         public static SpriteBatch spriteBatch;
         Shape rect1;
@@ -95,7 +96,8 @@ namespace Example_name
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            font = Content.Load<SpriteFont>("font/arial-36");
+            fps_font = Content.Load<SpriteFont>("font/arial-36");
+            title_font = Content.Load<SpriteFont>("font/title");
             //use this.Content to load your game content here
         }
 
@@ -181,18 +183,13 @@ namespace Example_name
             if (state == GameState.GAMEPLAY)
             {
                 
-                    
-                    
+                GraphicsDevice.Clear(Color.CornflowerBlue);
                 
-                    GraphicsDevice.Clear(Color.CornflowerBlue);
-                
-
-
                 spriteBatch.Begin();
 
                 fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
-                spriteBatch.DrawString(font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond) , new Vector2(1, 1), Color.Black);
+                spriteBatch.DrawString(fps_font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond) , new Vector2(1, 1), Color.Black);
                
                 rect1.draw();
                 rect2.draw();
@@ -204,7 +201,7 @@ namespace Example_name
                 GraphicsDevice.Clear(Color.CornflowerBlue);
                 spriteBatch.Begin();
 
-                spriteBatch.DrawString(font, "Title screen", new Vector2(window_width / 2, window_height / 2), Color.Black);
+                spriteBatch.DrawString(title_font, "Title screen", new Vector2(window_width / 2, window_height / 2), Color.Black);
 
                 spriteBatch.End();
             }
