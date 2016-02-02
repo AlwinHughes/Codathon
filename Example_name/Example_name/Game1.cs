@@ -19,30 +19,11 @@ namespace Example_name
         Shape rect1;
         Shape rect2;
 
-
-
-
-
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         protected override void Initialize()
         {
