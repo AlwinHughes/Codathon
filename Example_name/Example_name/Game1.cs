@@ -50,7 +50,7 @@ namespace Example_name
             window_width = graphics.GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = window_height;
             graphics.PreferredBackBufferWidth = window_width;
-            graphics.IsFullScreen = true;
+            //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
             r = new Random();
@@ -116,26 +116,26 @@ namespace Example_name
             if (state == GameState.GAMEPLAY)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.W))
-                    rect1.location.Y--;
+                    rect1.location.Y -=5;
                 if (Keyboard.GetState().IsKeyDown(Keys.S))
-                    rect1.location.Y++;
+                    rect1.location.Y += 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.A))
-                    rect1.location.X--;
+                    rect1.location.X-=5;
                 if (Keyboard.GetState().IsKeyDown(Keys.D))
-                    rect1.location.X++;
+                    rect1.location.X += 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.Q))
                     rect1.rotation = rect1.rotation + 0.1f;
                 if (Keyboard.GetState().IsKeyDown(Keys.E))
                     rect1.rotation = rect1.rotation - 0.1f;
 
                 if (Keyboard.GetState().IsKeyDown(Keys.I))
-                    rect2.location.Y--;
+                    rect2.location.Y-=5;
                 if (Keyboard.GetState().IsKeyDown(Keys.K))
-                    rect2.location.Y++;
+                    rect2.location.Y += 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.J))
-                    rect2.location.X--;
+                    rect2.location.X-=5;
                 if (Keyboard.GetState().IsKeyDown(Keys.L))
-                    rect2.location.X++;
+                    rect2.location.X += 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.U))
                     rect2.rotation = rect2.rotation - 0.1f;
                 if (Keyboard.GetState().IsKeyDown(Keys.O))
@@ -149,6 +149,17 @@ namespace Example_name
                 rect1.checkEdge();
                 rect2.checkEdge();
                 coin.checkEdge();
+                Random r = new Random();
+
+                if (coin.checkEdgeCircle(rect1.location.X, rect1.location.Y))
+                {
+                    rect1.location = new Vector2(r.Next(0, window_width), r.Next(0, window_height));
+                }
+                if (coin.checkEdgeCircle(rect2.location.X, rect2.location.Y))
+                {
+                    rect2.location = new Vector2(r.Next(0, window_width), r.Next(0, window_height));
+                }
+                
                 //todo use struture to group objects
             }
             else

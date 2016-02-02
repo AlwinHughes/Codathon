@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
@@ -68,6 +69,15 @@ namespace Example_name
             {
                 location.Y = 0;
             }
+        }
+        public bool checkEdgeCircle(float x, float y)
+        {
+            if(Math.Pow(x-location.X,2) + Math.Pow(y-location.Y,2)< texture.Width)
+            {
+                Debug.WriteLine("collided");
+                return true;
+            }
+            return false;
         }
     }
 }
