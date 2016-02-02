@@ -132,6 +132,24 @@ namespace Example_name
                 rect2.rotation = rect2.rotation +0.1f;
 
             base.Update(gameTime);
+
+            if (rect2.x>window_width|| rect2.x < 0)
+            {
+                rect2.x = window_width / 2;
+            }
+            if(rect2.y > window_height||rect2.y<0)
+            {
+                rect2.y = window_width / 2;
+            }
+
+            if (rect1.x > window_width || rect1.x < 0)
+            {
+                rect1.x = window_width / 2;
+            }
+            if (rect1.y > window_height || rect1.y < 0)
+            {
+                rect1.y = window_width / 2;
+            }
         }
         
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
