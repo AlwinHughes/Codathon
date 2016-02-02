@@ -130,7 +130,6 @@ namespace Example_name
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
             spriteBatch.Begin();
             rect1.draw();
             rect2.draw();
