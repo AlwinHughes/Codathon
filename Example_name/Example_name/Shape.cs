@@ -12,12 +12,12 @@ namespace Example_name
         public int x;
         public int y;
         public int rotation;
-        public Shape(int x, int y, int rotation, Texture2D texture)
+        public Shape(int x, int y, int rotation)
         {
             this.x = x;
             this.y = y;
             this.rotation = rotation;
-            this.texture = texture;
+            this.texture = new Texture2D(Game1.graphics.GraphicsDevice, x, y);
         }
 
         public void draw()
