@@ -28,10 +28,11 @@ namespace Example_name
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
-            rect1 = new Shape(80, 80, 0);
-            rect2 = new Shape(20, 80, 0);
+            rect1 = new Shape(0, 0, 80, 80);
+            rect2 = new Shape(0, 0, 20, 80);
 
-            Color[] data = new Color[80 * 80];
+            Color[] data = new Color[rect1.getWidth() * rect1.getHeight()];
+            
             for (int i = 0; i < data.Length; i++)
             {
                 if (i % 13 == 0 || i % 2 == 0)
@@ -45,7 +46,7 @@ namespace Example_name
             }
             rect1.setData(data);
 
-            data = new Color[20 * 80];
+            data = new Color[rect2.getWidth() * rect2.getHeight()];
             Color[,] dataTemp = new Color[20, 80];
 
             for (int i = 0; i < 20; i++)
@@ -62,15 +63,12 @@ namespace Example_name
                     }
                 }
             }
-          
-            int width = dataTemp.GetLength(0);
-            int height = dataTemp.GetLength(1);
 
-            for (int i = 0; i < width; i++)
+            for (int i = 0; i < rect2.getWidth(); i++)
             {
-                for (int j = 0; j < height; j++)
+                for (int j = 0; j < rect2.getHeight(); j++)
                 {
-                    data[j * width + i] = dataTemp[i, j];
+                    data[j * rect2.getWidth() + i] = dataTemp[i, j];
                 }
             }
             rect2.setData(data);

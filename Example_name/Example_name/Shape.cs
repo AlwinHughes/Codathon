@@ -12,12 +12,17 @@ namespace Example_name
         public int x;
         public int y;
         public int rotation;
-        public Shape(int x, int y, int rotation)
+
+        int width;
+        int height;
+
+        public Shape(int x, int y, int width, int height)
         {
             this.x = x;
             this.y = y;
-            this.rotation = rotation;
-            texture = new Texture2D(Game1.graphics.GraphicsDevice, x, y);
+            texture = new Texture2D(Game1.graphics.GraphicsDevice, width, height);
+            this.width = width;
+            this.height = height;
         }
 
         public void draw()
@@ -28,6 +33,16 @@ namespace Example_name
         public void setData(Color[] data)
         {
             texture.SetData(data);
+        }
+
+        public int getHeight()
+        {
+            return height;
+        }
+
+        public int getWidth()
+        {
+            return width;
         }
     }
 }
