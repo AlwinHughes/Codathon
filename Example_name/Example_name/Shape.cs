@@ -17,7 +17,7 @@ namespace Example_name
             this.x = x;
             this.y = y;
             this.rotation = rotation;
-            this.texture = new Texture2D(Game1.graphics.GraphicsDevice, x, y);
+            texture = new Texture2D(Game1.graphics.GraphicsDevice, x, y);
         }
 
         public void draw()
