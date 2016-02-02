@@ -54,6 +54,7 @@ namespace Example_name
             graphics.ApplyChanges();
 
             r = new Random();
+
             rect2 = new Shape(graphics.GraphicsDevice, r.Next(0, window_width), r.Next(0, window_height), 20, 80);
 
             Color[] data = new Color[rect2.getWidth() * rect2.getHeight()];
@@ -93,17 +94,11 @@ namespace Example_name
             fps_font = Content.Load<SpriteFont>("font/arial-36");
             title_font = Content.Load<SpriteFont>("font/title");
 
-
             Texture2D rect1Image = Content.Load<Texture2D>("img/thing");
             rect1 = new Shape(rect1Image, r.Next(0, window_width), r.Next(0, window_height), 80, 80);
 
             Texture2D coinImage = Content.Load<Texture2D>("img/images");
             coin = new AnimShape(coinImage, 1,8,new Vector2(100,100));
-
-            Texture2D image = Content.Load<Texture2D>("img/thing");
-            rect1 = new Shape(image, r.Next(0, window_width), r.Next(0, window_height), 80, 80);
-
-
         }
 
         protected override void UnloadContent()
@@ -114,15 +109,12 @@ namespace Example_name
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-
-
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 Exit();
             }
             if (state == GameState.GAMEPLAY)
             {
-
                 if (Keyboard.GetState().IsKeyDown(Keys.W))
                     rect1.location.Y--;
                 if (Keyboard.GetState().IsKeyDown(Keys.S))
@@ -190,25 +182,15 @@ namespace Example_name
         {
             if (state == GameState.GAMEPLAY)
             {
-
-                
                 GraphicsDevice.Clear(Color.CornflowerBlue);
                
-
-
                 spriteBatch.Begin();
 
-                //fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-
-
                 spriteBatch.DrawString(fps_font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond) , new Vector2(1, 1), Color.Black);
-               
-
-               
-
                 rect1.Draw();
                 rect2.Draw();
                 coin.Draw();
+
                 spriteBatch.End();
 
                 base.Draw(gameTime);

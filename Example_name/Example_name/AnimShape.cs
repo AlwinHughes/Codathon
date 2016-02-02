@@ -20,7 +20,7 @@ namespace Example_name
         private int currentFrame;
         private int totalFrames;
 
-        public AnimShape(Texture2D texture, int rows, int columns,Vector2 location)
+        public AnimShape(Texture2D texture, int rows, int columns, Vector2 location)
         {
             this.location = location;
             this.texture = texture;
@@ -46,7 +46,7 @@ namespace Example_name
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width, height);
-            
+
             Game1.spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
         }
     }
