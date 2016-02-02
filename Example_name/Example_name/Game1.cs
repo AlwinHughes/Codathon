@@ -79,65 +79,19 @@ namespace Example_name
 
             base.Initialize();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("font/arial-36");
             //use this.Content to load your game content here
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
@@ -174,25 +128,7 @@ namespace Example_name
 
             base.Update(gameTime);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
