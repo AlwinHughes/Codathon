@@ -16,9 +16,9 @@ namespace Example_name
     {
         FrameCounter fps = new FrameCounter();
 
-
         SpriteFont fps_font;
         SpriteFont title_font;
+
         public static GraphicsDeviceManager graphics;
 
         SpriteFont font;
@@ -93,22 +93,19 @@ namespace Example_name
 
             fps_font = Content.Load<SpriteFont>("font/arial-36");
             title_font = Content.Load<SpriteFont>("font/title");
-            //use this.Content to load your game content here
 
             font = Content.Load<SpriteFont>("font/arial-36");
 
-<<<<<<< HEAD
             Texture2D rect1Image = Content.Load<Texture2D>("img/thing");
             rect1 = new Shape(rect1Image, r.Next(0, window_width), r.Next(0, window_height), 80, 80);
 
             Texture2D coinImage = Content.Load<Texture2D>("img/images");
             coin = new AnimShape(coinImage, 1,8,new Vector2(100,100));
-=======
-            //image = Content.Load<Texture2D>("img/thing");
+
+            Texture2D image = Content.Load<Texture2D>("img/thing");
             rect1 = new Shape(image, r.Next(0, window_width), r.Next(0, window_height), 80, 80);
 
 
->>>>>>> 6c68e0b3dbfc306212b4ed29372df22c2494e9c8
         }
 
         protected override void UnloadContent()
