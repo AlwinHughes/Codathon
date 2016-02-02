@@ -19,7 +19,7 @@ namespace Example_name
         SpriteFont font;
         GraphicsDeviceManager graphics;
         public static SpriteBatch spriteBatch;
-        Random random;
+        Random r;
 
         Shape rect1;
         Shape rect2;
@@ -45,29 +45,13 @@ namespace Example_name
             graphics.PreferredBackBufferWidth = window_width;
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
-<<<<<<< HEAD
-            random = new Random();
-            rect2 = new Shape(graphics.GraphicsDevice,random.Next(0, window_width), random.Next(0, window_height), 20, 80);
-=======
+
+            r = new Random();
+            rect2 = new Shape(graphics.GraphicsDevice, r.Next(0, window_width), r.Next(0, window_height), 20, 80);
+
             Random random = new Random();
-            rect1 = new Shape(random.Next(0, window_width), random.Next(0, window_height), 80, 80);
-            rect2 = new Shape(random.Next(0, window_width), random.Next(0, window_height), 20, 80);
-
-            Color[] data = new Color[rect1.getWidth() * rect1.getHeight()];
-
-            for (int i = 0; i < data.Length; i++)
-            {
-                if (i % 13 == 0 || i % 2 == 0)
-                {
-                    data[i] = Color.Red;
-                }
-                else
-                {
-                    data[i] = Color.Green;
-                }
-            }
-            rect1.setData(data);
->>>>>>> 1bf717dff7ba46feb163958c11128d6e0e08f5f1
+            rect1 = new Shape(image,random.Next(0, window_width), random.Next(0, window_height), 80, 80);
+            rect2 = new Shape(graphics.GraphicsDevice,random.Next(0, window_width), random.Next(0, window_height), 20, 80);
 
             Color[] data = new Color[rect2.getWidth() * rect2.getHeight()];
             Color[,] dataTemp = new Color[20, 80];
@@ -105,7 +89,7 @@ namespace Example_name
             font = Content.Load<SpriteFont>("font/arial-36");
 
             image = Content.Load<Texture2D>("img/thing");
-            rect1 = new Shape(image, random.Next(0, window_width), random.Next(0, window_height), 80, 80);
+            rect1 = new Shape(image, r.Next(0, window_width), r.Next(0, window_height), 80, 80);
 
         }
 
@@ -117,7 +101,7 @@ namespace Example_name
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 Exit();
@@ -190,27 +174,22 @@ namespace Example_name
         {
             if (state == GameState.GAMEPLAY)
             {
-                
-                    
-                    
-                
-                    GraphicsDevice.Clear(Color.CornflowerBlue);
-                
-
+                GraphicsDevice.Clear(Color.CornflowerBlue);
 
                 spriteBatch.Begin();
 
                 fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
-                spriteBatch.DrawString(font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond) , new Vector2(1, 1), Color.Black);
-               
+                spriteBatch.DrawString(font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond), new Vector2(1, 1), Color.Black);
+
                 rect1.draw();
                 rect2.draw();
                 spriteBatch.End();
 
                 base.Draw(gameTime);
             }
-            else {
+            else
+            {
                 GraphicsDevice.Clear(Color.CornflowerBlue);
                 spriteBatch.Begin();
 
@@ -223,6 +202,6 @@ namespace Example_name
 
     public enum GameState
     {
-        GAMEPLAY,TITLESCREEN//todo add more states here
+        GAMEPLAY, TITLESCREEN//todo add more states here
     }
 }
