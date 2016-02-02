@@ -7,6 +7,7 @@ using System;
 namespace Example_name
 {
     //Alwin is bad
+    //Important Fix
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -64,7 +65,7 @@ namespace Example_name
                 {
                     if (i < 4 || i > 15 || j < 4 || j > 75)
                     {
-                        dataTemp[i, j] = Color.White;
+                        dataTemp[i, j] = Color.Green;
                     }
                     else
                     {
