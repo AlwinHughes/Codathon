@@ -21,7 +21,7 @@ namespace Example_name
 
         public static GraphicsDeviceManager graphics;
 
-        
+
         public static SpriteBatch spriteBatch;
         Random r;
 
@@ -31,8 +31,8 @@ namespace Example_name
 
         AnimShape coin;
 
-        int window_height;
-        int window_width;
+        public static int window_height;
+        public static int window_width;
         bool color_fit = false;
         GameState state;
 
@@ -98,7 +98,7 @@ namespace Example_name
             rect1 = new Shape(rect1Image, r.Next(0, window_width), r.Next(0, window_height), 80, 80);
 
             Texture2D coinImage = Content.Load<Texture2D>("img/images");
-            coin = new AnimShape(coinImage, 1,8,new Vector2(100,100));
+            coin = new AnimShape(coinImage, 1, 8, new Vector2(100, 100));
         }
 
         protected override void UnloadContent()
@@ -141,28 +141,15 @@ namespace Example_name
                 if (Keyboard.GetState().IsKeyDown(Keys.O))
                     rect2.rotation = rect2.rotation + 0.1f;
 
-                if (rect2.location.X > window_width || rect2.location.X < 0)
-                {
-                    rect2.location.X = window_width / 2;
-                }
-                if (rect2.location.Y > window_height || rect2.location.Y < 0)
-                {
-                    rect2.location.Y = window_height / 2;
-                }
-
-                if (rect1.location.X > window_width || rect1.location.X < 0)
-                {
-                    rect1.location.X = window_width / 2;
-                }
-                if (rect1.location.Y > window_height || rect1.location.Y < 0)
-                {
-                    rect1.location.Y = window_height / 2;
-                }
-
                 if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 {
                     color_fit = true;
                 }
+
+                rect1.checkEdge();
+                rect2.checkEdge();
+                coin.checkEdge();
+                //todo use struture to group objects
             }
             else
             {
@@ -183,10 +170,10 @@ namespace Example_name
             if (state == GameState.GAMEPLAY)
             {
                 GraphicsDevice.Clear(Color.CornflowerBlue);
-               
+
                 spriteBatch.Begin();
 
-                spriteBatch.DrawString(fps_font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond) , new Vector2(1, 1), Color.Black);
+                spriteBatch.DrawString(fps_font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond), new Vector2(1, 1), Color.Black);
                 rect1.Draw();
                 rect2.Draw();
                 coin.Draw();
@@ -200,7 +187,7 @@ namespace Example_name
                 GraphicsDevice.Clear(Color.CornflowerBlue);
                 spriteBatch.Begin();
 
-                spriteBatch.DrawString(title_font, "Title screen", new Vector2((window_width / 2)-  title_font.MeasureString("Title screeen").X/2, window_height / 2), Color.Black);
+                spriteBatch.DrawString(title_font, "Title screen", new Vector2((window_width / 2) - title_font.MeasureString("Title screeen").X / 2, window_height / 2), Color.Black);
 
                 spriteBatch.End();
             }

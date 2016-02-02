@@ -15,7 +15,7 @@ namespace Example_name
         int width;
         int height;
 
-        public Shape(Texture2D texture,int x, int y, int width, int height)
+        public Shape(Texture2D texture, int x, int y, int width, int height)
         {
             location = new Vector2(x, y);
             this.texture = texture;
@@ -56,6 +56,26 @@ namespace Example_name
         public int getWidth()
         {
             return width;
+        }
+
+        public void checkEdge()
+        {
+            if (location.X + width > Game1.window_width)
+            {
+                location.X = Game1.window_width;
+            }
+            if (location.X < 0)
+            {
+                location.X = 0;
+            }
+            if (location.Y + height > Game1.window_height)
+            {
+                location.Y = Game1.window_height - height;
+            }
+            if (location.Y < 0)
+            {
+                location.Y = 0;
+            }
         }
     }
 }
