@@ -16,14 +16,14 @@ namespace Example_name
     {
         FrameCounter fps = new FrameCounter();
 
-<<<<<<< HEAD
+
         SpriteFont fps_font;
         SpriteFont title_font;
         public static GraphicsDeviceManager graphics;
-=======
+
         SpriteFont font;
         GraphicsDeviceManager graphics;
->>>>>>> cd34f7b135cc2f2495e68478c646d836737f3d3d
+
         public static SpriteBatch spriteBatch;
         Random r;
 
@@ -92,17 +92,17 @@ namespace Example_name
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-<<<<<<< HEAD
+
             fps_font = Content.Load<SpriteFont>("font/arial-36");
             title_font = Content.Load<SpriteFont>("font/title");
             //use this.Content to load your game content here
-=======
+
             font = Content.Load<SpriteFont>("font/arial-36");
 
             image = Content.Load<Texture2D>("img/thing");
             rect1 = new Shape(image, r.Next(0, window_width), r.Next(0, window_height), 80, 80);
 
->>>>>>> cd34f7b135cc2f2495e68478c646d836737f3d3d
+
         }
 
         protected override void UnloadContent()
@@ -186,25 +186,25 @@ namespace Example_name
         {
             if (state == GameState.GAMEPLAY)
             {
-<<<<<<< HEAD
+
                 
                 GraphicsDevice.Clear(Color.CornflowerBlue);
                 
-=======
+
                 GraphicsDevice.Clear(Color.CornflowerBlue);
 
->>>>>>> cd34f7b135cc2f2495e68478c646d836737f3d3d
+
                 spriteBatch.Begin();
 
                 fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
-<<<<<<< HEAD
+
                 spriteBatch.DrawString(fps_font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond) , new Vector2(1, 1), Color.Black);
                
-=======
+
                 spriteBatch.DrawString(font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond), new Vector2(1, 1), Color.Black);
 
->>>>>>> cd34f7b135cc2f2495e68478c646d836737f3d3d
+
                 rect1.draw();
                 rect2.draw();
                 spriteBatch.End();
