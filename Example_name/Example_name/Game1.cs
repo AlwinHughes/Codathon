@@ -14,9 +14,6 @@ namespace Example_name
         public static SpriteBatch spriteBatch;
         Shape rect1;
         Shape rect2;
-        int x = 6;
-        int y = 7;
-        float rotation = 0;
 
         public Game1()
         {
@@ -26,8 +23,13 @@ namespace Example_name
 
         protected override void Initialize()
         {
-            rect1 = new Shape(40, 40, 0, new Texture2D(graphics.GraphicsDevice, 40, 40));
-            rect2 = new Shape(40, 40, 0, new Texture2D(graphics.GraphicsDevice, 40, 40));
+            graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
+            graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
+
+            rect1 = new Shape(40, 40, 0, new Texture2D(graphics.GraphicsDevice, 80, 80));
+            rect2 = new Shape(40, 40, 0, new Texture2D(graphics.GraphicsDevice, 20, 80));
 
             Color[] data = new Color[80 * 80];
             for (int i = 0; i < data.Length; i++)
@@ -142,9 +144,9 @@ namespace Example_name
     class Shape
     {
         Texture2D texture;
-       public int x;
-       public int y;
-       public int rotation;
+        public int x;
+        public int y;
+        public int rotation;
         public Shape(int x, int y, int rotation, Texture2D texture)
         {
             this.x = x;
