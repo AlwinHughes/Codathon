@@ -11,6 +11,9 @@ namespace Example_name
     /// </summary>
     public class Game1 : Game
     {
+        FrameCounter fps = new FrameCounter();
+
+        SpriteFont font;
         public static GraphicsDeviceManager graphics;
         public static SpriteBatch spriteBatch;
         Shape rect1;
@@ -115,7 +118,7 @@ namespace Example_name
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            font = Content.Load<SpriteFont>("font/arial-36");
             //use this.Content to load your game content here
         }
 
@@ -215,6 +218,14 @@ namespace Example_name
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
+
+            fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+
+            string s = string.Format("FPS: {0}",(int)fps.AverageFramesPerSecond);
+
+            spriteBatch.DrawString(font, s, new Vector2(1, 1), Color.Black);
+            Debug.WriteLine(s);
+            
             rect1.draw();
             rect2.draw();
             spriteBatch.End();
