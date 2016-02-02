@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
+using System;
 
 namespace Example_name
 {
@@ -30,9 +31,9 @@ namespace Example_name
             graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
-
-            rect1 = new Shape(0, 0, 80, 80);
-            rect2 = new Shape(0, 0, 20, 80);
+            Random random = new Random();
+            rect1 = new Shape(random.Next(0,500), random.Next(0, 500), 80, 80);//todo makes this generate random number based on screen size
+            rect2 = new Shape(random.Next(0, 500), random.Next(0, 500), 20, 80);
 
             Color[] data = new Color[rect1.getWidth() * rect1.getHeight()];
             
