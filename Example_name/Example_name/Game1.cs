@@ -36,7 +36,7 @@ namespace Example_name
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             Random random = new Random();
-            rect1 = new Shape(random.Next(0,window_width), random.Next(0, window_height), 80, 80);//todo makes this generate random number based on screen size
+            rect1 = new Shape(random.Next(0,window_width), random.Next(0, window_height), 80, 80);
             rect2 = new Shape(random.Next(0, window_width), random.Next(0, window_height), 20, 80);
 
             Color[] data = new Color[rect1.getWidth() * rect1.getHeight()];
