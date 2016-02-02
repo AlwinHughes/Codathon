@@ -4,7 +4,11 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+<<<<<<< HEAD
     <File>C:/Users/Tom/Documents/Codathon/Example_name/Example_name/Content/font/arial-36.spritefont</File>
     <File>C:/Users/Tom/Documents/Codathon/Example_name/Example_name/Content/img/thing.png</File>
+=======
+    <File>C:/Users/Alwin/Documents/Codathon/Example_name/Example_name/Content/font/arial-36.spritefont</File>
+>>>>>>> 1bf717dff7ba46feb163958c11128d6e0e08f5f1
   </SourceFiles>
 </SourceFileCollection>

@@ -1,4 +1,3 @@
-C:\Users\Alwin\Documents\Codathon\Example_name\Example_name\obj\x86\Debug\Example_name.csprojResolveAssemblyReference.cache
 C:\Users\Alwin\Documents\Codathon\Example_name\Example_name\bin\Windows\Debug\Example_name.exe
 C:\Users\Alwin\Documents\Codathon\Example_name\Example_name\bin\Windows\Debug\Example_name.pdb
 C:\Users\Alwin\Documents\Codathon\Example_name\Example_name\bin\Windows\Debug\MonoGame.Framework.dll
@@ -79,5 +78,9 @@ C:\Users\Mohammed\Documents\Repositories\Codathon\Example_name\Example_name\bin\
 C:\Users\Mohammed\Documents\Repositories\Codathon\Example_name\Example_name\bin\Windows\Debug\SharpDX.XInput.xml
 C:\Users\Mohammed\Documents\Repositories\Codathon\Example_name\Example_name\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\Mohammed\Documents\Repositories\Codathon\Example_name\Example_name\bin\Windows\Debug\SharpDX.Direct3D9.xml
+<<<<<<< HEAD
 C:\Users\Tom\Documents\Codathon\Example_name\Example_name\bin\Windows\Debug\Example_name.exe.config
 C:\Users\Tom\Documents\Codathon\Example_name\Example_name\bin\Windows\Debug\Content\img\thing.xnb
+=======
+C:\Users\Alwin\Documents\Codathon\Example_name\Example_name\bin\Windows\Debug\Example_name.exe.config
+>>>>>>> 1bf717dff7ba46feb163958c11128d6e0e08f5f1
