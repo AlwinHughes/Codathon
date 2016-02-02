@@ -1,8 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Storage;
 using System.Diagnostics;
-using System;
 
 namespace Example_name
 {
@@ -22,6 +25,7 @@ namespace Example_name
         Shape rect2;
         int window_height;
         int window_width;
+        bool color_fit = false;
 
         public Game1()
         {
@@ -65,7 +69,7 @@ namespace Example_name
                 {
                     if (i < 4 || i > 15 || j < 4 || j > 75)
                     {
-                        dataTemp[i, j] = Color.Green;
+                        dataTemp[i, j] = Color.White;
                     }
                     else
                     {
@@ -151,12 +155,27 @@ namespace Example_name
             {
                 rect1.y = window_height / 2;
             }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                color_fit = true;
+            }
         }
         
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            if (color_fit)
+            {
+                
+                Random random = new Random();
+                //GraphicsDevice.Clear(Color.)
+            }
+            else
+            {
+                GraphicsDevice.Clear(Color.CornflowerBlue);
+            }
+            
 
             spriteBatch.Begin();
 
