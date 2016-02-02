@@ -9,8 +9,6 @@ using System.Diagnostics;
 
 namespace Example_name
 {
-    //Alwin is bad
-    //Important Fix
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -18,16 +16,25 @@ namespace Example_name
     {
         FrameCounter fps = new FrameCounter();
 
+<<<<<<< HEAD
         SpriteFont fps_font;
         SpriteFont title_font;
         public static GraphicsDeviceManager graphics;
+=======
+        SpriteFont font;
+        GraphicsDeviceManager graphics;
+>>>>>>> cd34f7b135cc2f2495e68478c646d836737f3d3d
         public static SpriteBatch spriteBatch;
+        Random r;
+
         Shape rect1;
         Shape rect2;
         int window_height;
         int window_width;
         bool color_fit = false;
         GameState state;
+
+        Texture2D image;
 
         public Game1()
         {
@@ -44,26 +51,15 @@ namespace Example_name
             graphics.PreferredBackBufferWidth = window_width;
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
+
+            r = new Random();
+            rect2 = new Shape(graphics.GraphicsDevice, r.Next(0, window_width), r.Next(0, window_height), 20, 80);
+
             Random random = new Random();
-            rect1 = new Shape(random.Next(0, window_width), random.Next(0, window_height), 80, 80);
-            rect2 = new Shape(random.Next(0, window_width), random.Next(0, window_height), 20, 80);
+            rect1 = new Shape(image,random.Next(0, window_width), random.Next(0, window_height), 80, 80);
+            rect2 = new Shape(graphics.GraphicsDevice,random.Next(0, window_width), random.Next(0, window_height), 20, 80);
 
-            Color[] data = new Color[rect1.getWidth() * rect1.getHeight()];
-
-            for (int i = 0; i < data.Length; i++)
-            {
-                if (i % 13 == 0 || i % 2 == 0)
-                {
-                    data[i] = Color.Red;
-                }
-                else
-                {
-                    data[i] = Color.Green;
-                }
-            }
-            rect1.setData(data);
-
-            data = new Color[rect2.getWidth() * rect2.getHeight()];
+            Color[] data = new Color[rect2.getWidth() * rect2.getHeight()];
             Color[,] dataTemp = new Color[20, 80];
 
             for (int i = 0; i < 20; i++)
@@ -96,9 +92,17 @@ namespace Example_name
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+<<<<<<< HEAD
             fps_font = Content.Load<SpriteFont>("font/arial-36");
             title_font = Content.Load<SpriteFont>("font/title");
             //use this.Content to load your game content here
+=======
+            font = Content.Load<SpriteFont>("font/arial-36");
+
+            image = Content.Load<Texture2D>("img/thing");
+            rect1 = new Shape(image, r.Next(0, window_width), r.Next(0, window_height), 80, 80);
+
+>>>>>>> cd34f7b135cc2f2495e68478c646d836737f3d3d
         }
 
         protected override void UnloadContent()
@@ -109,7 +113,7 @@ namespace Example_name
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 Exit();
@@ -182,22 +186,33 @@ namespace Example_name
         {
             if (state == GameState.GAMEPLAY)
             {
+<<<<<<< HEAD
                 
                 GraphicsDevice.Clear(Color.CornflowerBlue);
                 
+=======
+                GraphicsDevice.Clear(Color.CornflowerBlue);
+
+>>>>>>> cd34f7b135cc2f2495e68478c646d836737f3d3d
                 spriteBatch.Begin();
 
                 fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
+<<<<<<< HEAD
                 spriteBatch.DrawString(fps_font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond) , new Vector2(1, 1), Color.Black);
                
+=======
+                spriteBatch.DrawString(font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond), new Vector2(1, 1), Color.Black);
+
+>>>>>>> cd34f7b135cc2f2495e68478c646d836737f3d3d
                 rect1.draw();
                 rect2.draw();
                 spriteBatch.End();
 
                 base.Draw(gameTime);
             }
-            else {
+            else
+            {
                 GraphicsDevice.Clear(Color.CornflowerBlue);
                 spriteBatch.Begin();
 
@@ -210,6 +225,6 @@ namespace Example_name
 
     public enum GameState
     {
-        GAMEPLAY,TITLESCREEN//todo add more states here
+        GAMEPLAY, TITLESCREEN//todo add more states here
     }
 }

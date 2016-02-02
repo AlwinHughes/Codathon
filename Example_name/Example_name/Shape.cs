@@ -16,18 +16,34 @@ namespace Example_name
         int width;
         int height;
 
-        public Shape(int x, int y, int width, int height)
+        public Shape(Texture2D texture,int x, int y, int width, int height)
         {
             this.x = x;
             this.y = y;
-            texture = new Texture2D(Game1.graphics.GraphicsDevice, width, height);
+            this.texture = texture;
+            this.width = width;
+            this.height = height;
+        }
+
+        public Shape(GraphicsDevice d, int x, int y, int width, int height)
+        {
+            this.x = x;
+            this.y = y;
+            texture = new Texture2D(d, width, height);
             this.width = width;
             this.height = height;
         }
 
         public void draw()
         {
-            Game1.spriteBatch.Draw(texture, new Rectangle(x, y, texture.Width, texture.Height), null, Color.White, rotation, new Vector2(texture.Width / 2, texture.Height / 2), SpriteEffects.None, 0f);
+            if (rotation != 0)
+            {
+                Game1.spriteBatch.Draw(texture, new Rectangle(x, y, texture.Width, texture.Height), null, Color.White, rotation, new Vector2(texture.Width / 2, texture.Height / 2), SpriteEffects.None, 0f);
+            }
+            else
+            {
+                Game1.spriteBatch.Draw(texture, new Rectangle(x, y, texture.Width, texture.Height), Color.White);
+            }
         }
 
         public void setData(Color[] data)
