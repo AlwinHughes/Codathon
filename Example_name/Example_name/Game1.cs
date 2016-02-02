@@ -28,8 +28,8 @@ namespace Example_name
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
-            rect1 = new Shape(0, 0, 80, 80);
-            rect2 = new Shape(0, 0, 20, 80);
+            rect1 = new Shape(100, 100, 80, 80);
+            rect2 = new Shape(200, 200, 20, 80);
 
             Color[] data = new Color[rect1.getWidth() * rect1.getHeight()];
             
