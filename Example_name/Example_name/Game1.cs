@@ -11,7 +11,9 @@ namespace Example_name
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public static SpriteBatch spriteBatch;
+        Shape rect1;
+        Shape rect2;
         int x = 6;
         int y = 7;
         float rotation = 0;
@@ -22,144 +24,143 @@ namespace Example_name
             Content.RootDirectory = "Content";
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            rect1 = new Shape(40, 40, 0, new Texture2D(graphics.GraphicsDevice, 40, 40));
+            rect2 = new Shape(40, 40, 0, new Texture2D(graphics.GraphicsDevice, 40, 40));
 
-            base.Initialize();
-        }
-
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
-        protected override void LoadContent()
-        {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
-        }
-
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
-
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime)
-        {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
-                y--;
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
-                y++;
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
-                x--;
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
-                x++;
-            if (Keyboard.GetState().IsKeyDown(Keys.Q))
-                rotation--;
-            if (Keyboard.GetState().IsKeyDown(Keys.E))
-                rotation++;
-
-                    // TODO: Add your update logic here
-
-                    base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime) {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            Texture2D rect_1 = new Texture2D(graphics.GraphicsDevice, 20, 80);
-            Texture2D rect_2 = new Texture2D(graphics.GraphicsDevice, 40, 80);
-            //Texture2D other_rect = new Texture2D(graphics.GraphicsDevice);
-
-
-            Color[] data_2 = new Color[80 * 80];
-            for (int i = 0; i < data_2.Length; i++)
+            Color[] data = new Color[80 * 80];
+            for (int i = 0; i < data.Length; i++)
             {
                 if (i % 13 == 0 || i % 2 == 0)
                 {
-                    data_2[i] = Color.Red;
+                    data[i] = Color.Red;
+                }
+                else
+                {
+                    data[i] = Color.Green;
                 }
             }
+            rect1.setData(data);
 
-            Color[] data_1 = new Color[20 * 80];
+            data = new Color[20 * 80];
+            Color[,] dataTemp = new Color[20, 80];
 
-            Color[,] data_to_convert = new Color[20, 80];
             for (int i = 0; i < 20; i++)
             {
                 for (int j = 0; j < 80; j++)
                 {
                     if (i < 4 || i > 15 || j < 4 || j > 75)
                     {
-                        data_to_convert[i, j] = Color.White;
-                        //Debug.WriteLine("white");
+                        dataTemp[i, j] = Color.White;
                     }
-                    else {
-                        data_to_convert[i, j] = Color.Blue;
-                        //Debug.WriteLine("blue");
+                    else
+                    {
+                        dataTemp[i, j] = Color.Blue;
                     }
-
                 }
             }
+            int width = dataTemp.GetLength(0);
+            int height = dataTemp.GetLength(1);
 
-            int width = data_to_convert.GetLength(0);
-            int height = data_to_convert.GetLength(1);
-            
-            for (int i = 0; i < width; i++) {
+            for (int i = 0; i < width; i++)
+            {
                 for (int j = 0; j < height; j++)
                 {
-                    Color thing = data_to_convert[i, j];
-                    //Debug.WriteLine(thing);
-                    data_1[j*width + i] = thing;
+                    data[j * width + i] = dataTemp[i, j];
                 }
             }
+            rect2.setData(data);
 
-            
+            base.Initialize();
+        }
 
-            rect_1.SetData(data_1);
-            rect_2.SetData(data_2);
-            Vector2 coor_2 = new Vector2(500, 500);
-            Vector2 coor_1 = new Vector2(20, 20);
-            var origin = new Vector2(rect_1.Width / 2, rect_1.Height / 2);
-            spriteBatch.Draw(rect_1, new Rectangle(x, y, rect_1.Width, rect_1.Height),null, Color.White, rotation, origin, SpriteEffects.None, 0f);
-            spriteBatch.Draw(rect_2, new Rectangle(x+40, y-40, rect_2.Width, rect_2.Height), null, Color.White, rotation, origin, SpriteEffects.None, 0f);
+        protected override void LoadContent()
+        {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            //use this.Content to load your game content here
+        }
+
+        protected override void UnloadContent()
+        {
+            // TODO: Unload any non ContentManager content here
+        }
+
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        protected override void Update(GameTime gameTime)
+        {
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                Exit();
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.W))
+                rect1.y--;
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
+                rect1.y++;
+            if (Keyboard.GetState().IsKeyDown(Keys.A))
+                rect1.x--;
+            if (Keyboard.GetState().IsKeyDown(Keys.D))
+                rect1.x++;
+            if (Keyboard.GetState().IsKeyDown(Keys.Q))
+                rect1.rotation--;
+            if (Keyboard.GetState().IsKeyDown(Keys.E))
+                rect1.rotation++;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.I))
+                rect2.y--;
+            if (Keyboard.GetState().IsKeyDown(Keys.K))
+                rect2.y++;
+            if (Keyboard.GetState().IsKeyDown(Keys.J))
+                rect2.x--;
+            if (Keyboard.GetState().IsKeyDown(Keys.L))
+                rect2.x++;
+            if (Keyboard.GetState().IsKeyDown(Keys.U))
+                rect2.rotation--;
+            if (Keyboard.GetState().IsKeyDown(Keys.O))
+                rect2.rotation++;
+
+            base.Update(gameTime);
+        }
+
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            rect1.draw();
+            rect2.draw();
             spriteBatch.End();
+
             base.Draw(gameTime);
-
-
-
         }
-               
-            //
-            //data[i] = Color.White;
-        
+    }
 
-            
+    class Shape
+    {
+        Texture2D texture;
+       public int x;
+       public int y;
+       public int rotation;
+        public Shape(int x, int y, int rotation, Texture2D texture)
+        {
+            this.x = x;
+            this.y = y;
+            this.rotation = rotation;
+            this.texture = texture;
+        }
 
+        public void draw()
+        {
+            Game1.spriteBatch.Draw(texture, new Rectangle(x, y, texture.Width, texture.Height), null, Color.White, rotation, new Vector2(texture.Width / 2, texture.Height / 2), SpriteEffects.None, 0f);
         }
+
+        public void setData(Color[] data)
+        {
+            texture.SetData(data);
         }
- 
+    }
+}
