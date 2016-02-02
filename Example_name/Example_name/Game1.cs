@@ -140,29 +140,4 @@ namespace Example_name
             base.Draw(gameTime);
         }
     }
-
-    class Shape
-    {
-        Texture2D texture;
-        public int x;
-        public int y;
-        public int rotation;
-        public Shape(int x, int y, int rotation, Texture2D texture)
-        {
-            this.x = x;
-            this.y = y;
-            this.rotation = rotation;
-            this.texture = texture;
-        }
-
-        public void draw()
-        {
-            Game1.spriteBatch.Draw(texture, new Rectangle(x, y, texture.Width, texture.Height), null, Color.White, rotation, new Vector2(texture.Width / 2, texture.Height / 2), SpriteEffects.None, 0f);
-        }
-
-        public void setData(Color[] data)
-        {
-            texture.SetData(data);
-        }
-    }
 }
