@@ -18,6 +18,8 @@ namespace Example_name
         public static SpriteBatch spriteBatch;
         Shape rect1;
         Shape rect2;
+        int window_height;
+        int window_width;
 
         public Game1()
         {
@@ -27,13 +29,15 @@ namespace Example_name
 
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
-            graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
+            window_height = graphics.GraphicsDevice.DisplayMode.Height;
+            window_width = graphics.GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferHeight = window_height;
+            graphics.PreferredBackBufferWidth = window_width;
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             Random random = new Random();
-            rect1 = new Shape(random.Next(0,500), random.Next(0, 500), 80, 80);//todo makes this generate random number based on screen size
-            rect2 = new Shape(random.Next(0, 500), random.Next(0, 500), 20, 80);
+            rect1 = new Shape(random.Next(0,window_width), random.Next(0, window_height), 80, 80);//todo makes this generate random number based on screen size
+            rect2 = new Shape(random.Next(0, window_width), random.Next(0, window_height), 20, 80);
 
             Color[] data = new Color[rect1.getWidth() * rect1.getHeight()];
             
