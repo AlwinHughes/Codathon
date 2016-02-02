@@ -222,7 +222,7 @@ namespace Example_name
                 GraphicsDevice.Clear(Color.CornflowerBlue);
                 spriteBatch.Begin();
 
-                spriteBatch.DrawString(title_font, "Title screen", new Vector2((window_width / 2)-  title_font.MeasureString("Title screeen").X, window_height / 2), Color.Black);
+                spriteBatch.DrawString(title_font, "Title screen", new Vector2((window_width / 2)-  title_font.MeasureString("Title screeen").X/2, window_height / 2), Color.Black);
 
                 spriteBatch.End();
             }
