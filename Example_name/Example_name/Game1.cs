@@ -140,7 +140,7 @@ namespace Example_name
             }
             if(rect2.y > window_height||rect2.y<0)
             {
-                rect2.y = window_width / 2;
+                rect2.y = window_height / 2;
             }
 
             if (rect1.x > window_width || rect1.x < 0)
@@ -149,7 +149,7 @@ namespace Example_name
             }
             if (rect1.y > window_height || rect1.y < 0)
             {
-                rect1.y = window_width / 2;
+                rect1.y = window_height / 2;
             }
         }
         
