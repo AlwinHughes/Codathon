@@ -31,6 +31,10 @@ namespace Example_name
             rect1 = new Shape(80, 80, 0);
             rect2 = new Shape(20, 80, 0);
 
+
+
+
+
             Color[] data = new Color[80 * 80];
             for (int i = 0; i < data.Length; i++)
             {
@@ -44,6 +48,10 @@ namespace Example_name
                 }
             }
             rect1.setData(data);
+
+
+
+
 
             data = new Color[20 * 80];
             Color[,] dataTemp = new Color[20, 80];
@@ -62,6 +70,10 @@ namespace Example_name
                     }
                 }
             }
+
+
+
+
             int width = dataTemp.GetLength(0);
             int height = dataTemp.GetLength(1);
 
