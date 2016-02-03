@@ -44,11 +44,6 @@ namespace Example_name
 
         }
 
-        public virtual Point[] getCorners()// only works if the shape has rotation 0
-        {
-            return new Point[] { new Point((int)location.X,(int)location.Y),new Point((int)location.X+width,(int)location.Y+height)};// contains top left and botom right
-        }
-
         virtual public void Draw()
         {
             if (rotation != 0)

@@ -27,6 +27,7 @@ namespace Example_name
         public static GraphicsDeviceManager graphics;
 
         public static SpriteBatch spriteBatch;
+
         Random r;
 
         Dictionary<string, ObjectToDrawBase>[] shapes = new Dictionary<string, ObjectToDrawBase>[]
@@ -117,8 +118,6 @@ namespace Example_name
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("is", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "Is", Color.Yellow,true));
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("very", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "Very", Color.Yellow,true));
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("bad", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "Bad", Color.Yellow,true));
-
-
         }
 
         protected override void UnloadContent()
@@ -148,17 +147,13 @@ namespace Example_name
             mouse.Update();
             previous = current;
 
-
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 Exit();
             }
-            Point mouse_pos = Mouse.GetState().Position;
+
             if (state == GameState.GAMEPLAY_VIEW)
             {
-
-                
-
                 if (Keyboard.GetState().IsKeyDown(Keys.W))
                     shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].location.Y -= 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.S))
@@ -212,21 +207,6 @@ namespace Example_name
                 if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 {
                     state = GameState.GAMEPLAY_VIEW;
-                }
-            }
-            Point[] temp;
-            if(Mouse.GetState().LeftButton == ButtonState.Pressed)
-            {
-                foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes[(int)GameState.GAMEPLAY_VIEW])
-                {
-                    if (shape.Value.can_be_draged)
-                    {
-                        temp = shape.Value.getCorners();
-                        if (mouse_pos.X < temp[0].X && Mouse.GetState().X>temp[1].X && mouse_pos.Y>temp[0].Y&&mouse_pos.Y<temp[1].Y)
-                        {
-                            shape.Value.location = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
-                        }
-                    }
                 }
             }
             
