@@ -48,7 +48,7 @@ namespace Example_name
             window_width = graphics.GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = window_height;
             graphics.PreferredBackBufferWidth = window_width;
-            //graphics.IsFullScreen = false;
+            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
             r = new Random();
@@ -99,7 +99,7 @@ namespace Example_name
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("coin", new AnimShape(coinImage, 1, 8, new Vector2(400, 400)));
 
             title_font = Content.Load<SpriteFont>("font/title");
-            shapes[(int)GameState.TITLESCREEN].Add("testimage", new TextShow(new Vector2(300, 300), 4, Color.White, Color.Black, title_font, "test", Color.Yellow));
+            shapes[(int)GameState.TITLESCREEN].Add("testimage", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "test", Color.Yellow));
         }
 
         protected override void UnloadContent()
@@ -180,33 +180,25 @@ namespace Example_name
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            spriteBatch.Begin();
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes[(int)state])
+            {
+                shape.Value.Draw();
+            }
+
             if (state == GameState.GAMEPLAY_VIEW)
             {
-                GraphicsDevice.Clear(Color.CornflowerBlue);
-
-                spriteBatch.Begin();
-
                 spriteBatch.DrawString(fps_font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond), new Vector2(1, 1), Color.Black);
-
-
-                foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes[(int)state])
-                {
-                    shape.Value.Draw();
-                }
-
-                spriteBatch.End();
-
-                base.Draw(gameTime);
             }
             else
             {
                 GraphicsDevice.Clear(Color.CornflowerBlue);
-                spriteBatch.Begin();
-
                 spriteBatch.DrawString(title_font, "Title screen", new Vector2((window_width / 2) - title_font.MeasureString("Title screeen").X / 2, window_height / 2), Color.Black);
-
-                spriteBatch.End();
             }
+            base.Draw(gameTime);
+            spriteBatch.End();
         }
     }
 
