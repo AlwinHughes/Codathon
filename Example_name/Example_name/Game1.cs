@@ -21,15 +21,12 @@ namespace Example_name
 
         public static GraphicsDeviceManager graphics;
 
-
         public static SpriteBatch spriteBatch;
         Random r;
 
-        Shape rect1;
+       // List<ObjectToDrawBase> shapes = new List<ObjectToDrawBase>(3);
 
-        Shape rect2;
-
-        AnimShape coin;
+        Dictionary<string, ObjectToDrawBase> shapes = new Dictionary<string, ObjectToDrawBase>();
 
         public static int window_height;
         public static int window_width;
@@ -50,14 +47,14 @@ namespace Example_name
             window_width = graphics.GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = window_height;
             graphics.PreferredBackBufferWidth = window_width;
-            graphics.IsFullScreen = true;
+            //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
             r = new Random();
 
-            rect2 = new Shape(graphics.GraphicsDevice, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 20, 80);
+            shapes.Add("rect1", new Shape(graphics.GraphicsDevice, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 20, 80));
 
-            Color[] data = new Color[rect2.width * rect2.height];
+            Color[] data = new Color[shapes["rect1"].width * shapes["rect1"].height];
             Color[,] dataTemp = new Color[20, 80];
 
             for (int i = 0; i < 20; i++)
@@ -75,14 +72,14 @@ namespace Example_name
                 }
             }
 
-            for (int i = 0; i < rect2.width; i++)
+            for (int i = 0; i < shapes["rect1"].width; i++)
             {
-                for (int j = 0; j < rect2.height; j++)
+                for (int j = 0; j < shapes["rect1"].height; j++)
                 {
-                    data[j * rect2.width + i] = dataTemp[i, j];
+                    data[j * shapes["rect1"].width + i] = dataTemp[i, j];
                 }
             }
-            rect2.setData(data);
+            shapes["rect1"].setData(data);
 
             base.Initialize();
         }
@@ -95,10 +92,10 @@ namespace Example_name
             title_font = Content.Load<SpriteFont>("font/title");
 
             Texture2D rect1Image = Content.Load<Texture2D>("img/thing");
-            rect1 = new Shape(rect1Image, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 80, 80);
+            shapes.Add("rect2",  new Shape(rect1Image, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 80, 80));
 
             Texture2D coinImage = Content.Load<Texture2D>("img/images");
-            coin = new AnimShape(coinImage, 1, 8, new Vector2(100, 100));
+            shapes.Add("coin",  new AnimShape(coinImage, 1, 8, new Vector2(100, 100)));
         }
 
         protected override void UnloadContent()
@@ -116,42 +113,44 @@ namespace Example_name
             if (state == GameState.GAMEPLAY)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.W))
-                    rect1.location.Y -=5;
+                    shapes["rect1"].location.Y -=5;
                 if (Keyboard.GetState().IsKeyDown(Keys.S))
-                    rect1.location.Y += 5;
+                    shapes["rect1"].location.Y += 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.A))
-                    rect1.location.X-=5;
+                    shapes["rect1"].location.X-=5;
                 if (Keyboard.GetState().IsKeyDown(Keys.D))
-                    rect1.location.X += 5;
+                    shapes["rect1"].location.X += 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.Q))
-                    rect1.rotation = rect1.rotation + 0.1f;
+                    shapes["rect1"].rotation += 0.1f;
                 if (Keyboard.GetState().IsKeyDown(Keys.E))
-                    rect1.rotation = rect1.rotation - 0.1f;
+                    shapes["rect1"].rotation -= 0.1f;
 
                 if (Keyboard.GetState().IsKeyDown(Keys.I))
-                    rect2.location.Y-=5;
+                    shapes["rect2"].location.Y-=5;
                 if (Keyboard.GetState().IsKeyDown(Keys.K))
-                    rect2.location.Y += 5;
+                    shapes["rect2"].location.Y += 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.J))
-                    rect2.location.X-=5;
+                    shapes["rect2"].location.X-=5;
                 if (Keyboard.GetState().IsKeyDown(Keys.L))
-                    rect2.location.X += 5;
+                    shapes["rect2"].location.X += 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.U))
-                    rect2.rotation = rect2.rotation - 0.1f;
+                    shapes["rect2"].rotation += 0.1f;
                 if (Keyboard.GetState().IsKeyDown(Keys.O))
-                    rect2.rotation = rect2.rotation + 0.1f;
+                    shapes["rect2"].rotation -= 0.1f;
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 {
                     color_fit = true;
                 }
 
-                rect1.checkEdge();
-                rect2.checkEdge();
-                coin.checkEdge();
-                Random r = new Random();
+                foreach (KeyValuePair<string,ObjectToDrawBase> shape in shapes)
+                {
+                    shape.Value.checkEdge();
+                }
 
-                if (coin.checkEdgeCircle(rect1.location.X, rect1.location.Y))
+                Random r = new Random();
+                /*
+                if (shapes[2].checkEdgeCircle(rect1.location.X, rect1.location.Y))
                 {
                     rect1.location = new Vector2(r.Next(0, window_width), r.Next(0, window_height));
                 }
@@ -159,7 +158,7 @@ namespace Example_name
                 {
                     rect2.location = new Vector2(r.Next(0, window_width), r.Next(0, window_height));
                 }
-                
+                */
                 //todo use struture to group objects
             }
             else
@@ -171,7 +170,7 @@ namespace Example_name
             }
 
             fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-            coin.Update();
+            shapes["coin"].Update();
             base.Update(gameTime);
         }
 
@@ -185,9 +184,12 @@ namespace Example_name
                 spriteBatch.Begin();
 
                 spriteBatch.DrawString(fps_font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond), new Vector2(1, 1), Color.Black);
-                rect1.Draw();
-                rect2.Draw();
-                coin.Draw();
+
+
+                foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes)
+                {
+                    shape.Value.Draw();
+                }
 
                 spriteBatch.End();
 

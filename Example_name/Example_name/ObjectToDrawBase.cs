@@ -45,6 +45,31 @@ namespace Example_name
             }
         }
 
+        virtual public void Update()
+        {
+            //eh eh
+        }
+
+        public void checkEdge()
+        {
+            if (location.X + width > Game1.window_width)
+            {
+                location.X = Game1.window_width;
+            }
+            if (location.X < 0)
+            {
+                location.X = 0;
+            }
+            if (location.Y + height > Game1.window_height)
+            {
+                location.Y = Game1.window_height - height;
+            }
+            if (location.Y < 0)
+            {
+                location.Y = 0;
+            }
+        }
+
         public void setData(Color[] data)
         {
             texture.SetData(data);

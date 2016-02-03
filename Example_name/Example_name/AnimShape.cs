@@ -22,7 +22,7 @@ namespace Example_name
             totalFrames = this.width * this.height;
         }
 
-        public void Update()
+        public override void Update()
         {
             currentFrame++;
             if (currentFrame == totalFrames)
