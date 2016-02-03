@@ -14,6 +14,7 @@ namespace Example_name
     class MouseDrag
     {
         public ObjectToDrawBase draggedObject;
+        Vector2 offset;
 
         public void CheckClick(Dictionary<string, ObjectToDrawBase> shapes)
         {
@@ -27,6 +28,7 @@ namespace Example_name
                         if (Game1.current.Y > shape.location.Y && Game1.current.Y < shape.location.Y + shape.height)
                         {
                             draggedObject = shape;
+                            offset = new Vector2(Game1.current.X - shape.location.X, Game1.current.Y - shape.location.Y);
                             return;
                         }
                     }
@@ -38,7 +40,7 @@ namespace Example_name
         {
             if (draggedObject != null)
             {
-                draggedObject.location = Game1.current.Position.ToVector2();
+                draggedObject.location = Game1.current.Position.ToVector2() - offset;
             }
         }
 
