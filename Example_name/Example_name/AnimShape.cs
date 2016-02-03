@@ -10,25 +10,18 @@ using Microsoft.Xna.Framework;
 
 namespace Example_name
 {
-    class AnimShape
+    class AnimShape : ObjectToDrawBase
     {
-        Texture2D texture;
-        public Vector2 location;
-
-        public int rows;
-        public int columns;
+        
 
         private int currentFrame;
         private int totalFrames;
 
-        public AnimShape(Texture2D texture, int rows, int columns, Vector2 location)
+        public AnimShape(Texture2D texture, int width, int height, Vector2 location)
+            :base(texture,(int)location.X,(int)location.Y,width,height)
         {
-            this.location = location;
-            this.texture = texture;
-            this.rows = rows;
-            this.columns = columns;
             currentFrame = 0;
-            totalFrames = this.rows * this.columns;
+            totalFrames = this.width * this.height;
         }
 
         public void Update()
@@ -38,12 +31,12 @@ namespace Example_name
                 currentFrame = 0;
         }
 
-        public void Draw()
+        override public void Draw()
         {
-            int width = texture.Width / columns;
-            int height = texture.Height / rows;
-            int row = (int)((float)currentFrame / (float)columns);
-            int column = currentFrame % columns;
+            int width = texture.Width / this.height;
+            int height = texture.Height / this.width;
+            int row = (int)((float)currentFrame / (float)this.height);
+            int column = currentFrame % this.height;
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width, height);
@@ -77,7 +70,10 @@ namespace Example_name
                 Debug.WriteLine("collided");
                 return true;
             }
+            
             return false;
+            
         }
+      
     }
 }
