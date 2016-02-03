@@ -50,7 +50,7 @@ namespace Example_name
             //eh eh
         }
 
-        public void checkEdge()
+        virtual public void checkEdge()
         {
             if (location.X + width > Game1.window_width)
             {

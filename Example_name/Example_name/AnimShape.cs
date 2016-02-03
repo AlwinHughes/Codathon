@@ -42,7 +42,7 @@ namespace Example_name
             Game1.spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
         }
 
-        public void checkEdge()
+        override public void checkEdge()
         {
             if (location.X + texture.Width > Game1.window_width)
             {
@@ -63,7 +63,7 @@ namespace Example_name
         }
         public bool checkEdgeCircle(float x, float y)
         {
-            if(Math.Pow(x-location.X,2) + Math.Pow(y-location.Y,2)< texture.Width)
+            if(Math.Pow(x-location.X-width/2,2) + Math.Pow(y-location.Y-height/2,2)< Math.Pow(texture.Width-location.X,2))
             {
                 Debug.WriteLine("collided");
                 return true;

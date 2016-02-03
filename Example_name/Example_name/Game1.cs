@@ -92,7 +92,7 @@ namespace Example_name
             shapes.Add("rect2",  new Shape(rect1Image, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 80, 80));
 
             Texture2D coinImage = Content.Load<Texture2D>("img/images");
-            shapes.Add("coin",  new AnimShape(coinImage, 1, 8, new Vector2(100, 100)));
+            shapes.Add("coin",  new AnimShape(coinImage, 1, 8, new Vector2(400,400)));
         }
 
         protected override void UnloadContent()
