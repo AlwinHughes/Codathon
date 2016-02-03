@@ -44,7 +44,7 @@ namespace Example_name
 
         public bool checkEdgeCircle(float x, float y)
         {
-            if(Math.Pow(x-location.X-width/2,2) + Math.Pow(y-location.Y-height/2,2)< Math.Pow(texture.Width-location.X,2))
+            if(Math.Pow(x-location.X,2) + Math.Pow(y-location.Y-height/2,2)< Math.Pow(texture.Width-location.X,2))
             {
                 Debug.WriteLine("collided");
                 return true;
