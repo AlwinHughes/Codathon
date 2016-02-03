@@ -67,5 +67,10 @@ namespace Example_name
             Game1.spriteBatch.Draw(texture, new Rectangle((int)location.X, (int)location.Y, texture.Width, texture.Height), Color.White);
             Game1.spriteBatch.DrawString(font, text, new Vector2(location.X + border_size , location.Y + border_size), text_color);
         }
+
+        public Vector2 getOffset()
+        {
+            return new Vector2(4 + border_size + sprite_length / 2, 4 + border_size + sprite_height / 2);
+        }
     }
 }
