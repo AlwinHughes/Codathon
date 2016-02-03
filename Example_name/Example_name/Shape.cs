@@ -19,6 +19,5 @@ namespace Example_name
         {
             
         }
-  
     }
 }

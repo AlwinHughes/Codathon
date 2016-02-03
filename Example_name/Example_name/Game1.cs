@@ -55,12 +55,8 @@ namespace Example_name
 
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("rect1", new Shape(graphics.GraphicsDevice, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 20, 80));
 
-<<<<<<< HEAD
-
-            Color[] data = new Color[shapes["rect1"].width * shapes["rect1"].height];
-=======
             Color[] data = new Color[shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].width * shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].height];
->>>>>>> f8fbbd1862d8a7e0eb815c3b4589bf7f3948c4e3
+
             Color[,] dataTemp = new Color[20, 80];
 
             for (int i = 0; i < 20; i++)

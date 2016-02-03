@@ -32,12 +32,14 @@ namespace Example_name
             this.width = width;
             this.height = height;
         }
+
         public ObjectToDrawBase(Vector2 location, int width, int height)
         {
             this.location = location;
             this.width = width;
             this.height = height;
         }
+
         virtual public void Draw()
         {
             if (rotation != 0)
