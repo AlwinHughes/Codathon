@@ -42,25 +42,6 @@ namespace Example_name
             Game1.spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
         }
 
-        override public void checkEdge()
-        {
-            if (location.X + texture.Width > Game1.window_width)
-            {
-                location.X = Game1.window_width;
-            }
-            if (location.X < 0)
-            {
-                location.X = 0;
-            }
-            if (location.Y + texture.Height > Game1.window_height)
-            {
-                location.Y = Game1.window_height - texture.Height;
-            }
-            if (location.Y < 0)
-            {
-                location.Y = 0;
-            }
-        }
         public bool checkEdgeCircle(float x, float y)
         {
             if(Math.Pow(x-location.X-width/2,2) + Math.Pow(y-location.Y-height/2,2)< Math.Pow(texture.Width-location.X,2))
