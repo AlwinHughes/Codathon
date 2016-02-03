@@ -107,7 +107,7 @@ namespace Example_name
             {
                 Exit();
             }
-            if (state == GameState.GAMEPLAY)
+            if (state == GameState.GAMEPLAY_VIEW)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.W))
                     shapes["rect1"].location.Y -=5;
@@ -161,7 +161,7 @@ namespace Example_name
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 {
-                    state = GameState.GAMEPLAY;
+                    state = GameState.GAMEPLAY_VIEW;
                 }
             }
 
@@ -173,7 +173,7 @@ namespace Example_name
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            if (state == GameState.GAMEPLAY)
+            if (state == GameState.GAMEPLAY_VIEW)
             {
                 GraphicsDevice.Clear(Color.CornflowerBlue);
 
@@ -205,6 +205,6 @@ namespace Example_name
 
     public enum GameState
     {
-        GAMEPLAY, TITLESCREEN//todo add more states here
+        TITLESCREEN, GAMEPLAY_VIEW, GAMEPLAY_CODE,LEVEL_SELECT//todo add more states here
     }
 }
