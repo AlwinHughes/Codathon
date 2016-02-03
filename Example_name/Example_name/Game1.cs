@@ -48,7 +48,7 @@ namespace Example_name
             window_width = graphics.GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = window_height;
             graphics.PreferredBackBufferWidth = window_width;
-            graphics.IsFullScreen = false;
+            //graphics.IsFullScreen = false;
             graphics.ApplyChanges();
 
             r = new Random();
@@ -91,13 +91,14 @@ namespace Example_name
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             fps_font = Content.Load<SpriteFont>("font/arial-36");
-            title_font = Content.Load<SpriteFont>("font/title");
 
             Texture2D rect1Image = Content.Load<Texture2D>("img/thing");
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("rect2", new Shape(rect1Image, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 80, 80));
 
             Texture2D coinImage = Content.Load<Texture2D>("img/images");
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("coin", new AnimShape(coinImage, 1, 8, new Vector2(400, 400)));
+
+            title_font = Content.Load<SpriteFont>("font/title");
             shapes[(int)GameState.TITLESCREEN].Add("testimage", new TextShow(new Vector2(300, 300), 4, Color.White, Color.Black, title_font, "test", Color.Yellow));
         }
 
