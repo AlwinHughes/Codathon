@@ -48,15 +48,15 @@ namespace Example_name
             window_width = graphics.GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = window_height;
             graphics.PreferredBackBufferWidth = window_width;
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             graphics.ApplyChanges();
 
             r = new Random();
 
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("rect1", new Shape(graphics.GraphicsDevice, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 20, 80));
-
+            
             Color[] data = new Color[shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].width * shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].height];
-
+            
             Color[,] dataTemp = new Color[20, 80];
 
             for (int i = 0; i < 20; i++)
@@ -98,6 +98,7 @@ namespace Example_name
 
             Texture2D coinImage = Content.Load<Texture2D>("img/images");
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("coin", new AnimShape(coinImage, 1, 8, new Vector2(400, 400)));
+            shapes[(int)GameState.TITLESCREEN].Add("testimage", new TextShow(new Vector2(300, 300), 4, Color.White, Color.Black, title_font, "test", Color.Yellow));
         }
 
         protected override void UnloadContent()

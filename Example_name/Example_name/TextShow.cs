@@ -22,6 +22,7 @@ namespace Example_name
         public TextShow(Vector2 location,int border_size, Color inside, Color border,SpriteFont font, string text,Color text_color)
             :base(location, (int)font.MeasureString(text).X+8+border_size ,(int) font.MeasureString(text).Y + 8 + border_size)
         {
+            texture = new Texture2D();
             this.font = font;
             this.inside = inside;
             this.border = border;
@@ -31,9 +32,9 @@ namespace Example_name
             Color[] data = new Color[width*height];
             Color[,] data_to_convert = new Color[width, height];
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < width; i++)
             {
-                for (int j = 0; j < 80; j++)
+                for (int j = 0; j < height; j++)
                 {
                     if (i < border_size || i > width-border_size || j < border_size || j > height-border_size)
                     {
