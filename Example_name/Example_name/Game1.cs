@@ -51,6 +51,7 @@ namespace Example_name
 
             shapes.Add("rect1", new Shape(graphics.GraphicsDevice, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 20, 80));
 
+
             Color[] data = new Color[shapes["rect1"].width * shapes["rect1"].height];
             Color[,] dataTemp = new Color[20, 80];
 

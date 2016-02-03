@@ -16,15 +16,17 @@ namespace Example_name
         int border_size;
         Color inside;
         Color border;
+        Color text_color;
         
 
-        public TextShow(Vector2 location,int border_size, Color inside, Color border,SpriteFont font, string text)
+        public TextShow(Vector2 location,int border_size, Color inside, Color border,SpriteFont font, string text,Color text_color)
             :base(location, (int)font.MeasureString(text).X+8+border_size ,(int) font.MeasureString(text).Y + 8 + border_size)
         {
             this.font = font;
             this.inside = inside;
             this.border = border;
             this.border_size = border_size;
+            this.text_color = text_color;
    
             Color[] data = new Color[width*height];
             Color[,] data_to_convert = new Color[width, height];
@@ -56,7 +58,8 @@ namespace Example_name
 
         public override void Draw()
         {
-            
+            Game1.spriteBatch.Draw(texture, new Rectangle((int)location.X,(int)location.Y,texture.Width,texture.Height),Color.White);
+            Game1.spriteBatch.DrawString(font, text, new Vector2(location.X + 8, location.Y), text_color);
         }
 
 
