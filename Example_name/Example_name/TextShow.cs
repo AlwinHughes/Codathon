@@ -20,7 +20,7 @@ namespace Example_name
         int sprite_length;
         int sprite_height;
 
-        public TextShow(Vector2 location, int border_size, Color inside, Color border, SpriteFont font, string text, Color text_color)
+        public TextShow(Vector2 location, int border_size, Color inside, Color border, SpriteFont font, string text, Color text_color, bool can_be_draged)
             : base(location, (int)font.MeasureString(text).X + 8 + border_size, (int)font.MeasureString(text).Y + 8 + border_size)
         {
             this.font = font;
@@ -29,6 +29,7 @@ namespace Example_name
             this.border_size = border_size;
             this.text_color = text_color;
             this.text = text;
+            this.can_be_draged = can_be_draged;
             sprite_height = (int)font.MeasureString(text).Y;
             sprite_length = (int)font.MeasureString(text).X;
 

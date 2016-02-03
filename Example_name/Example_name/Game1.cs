@@ -106,6 +106,15 @@ namespace Example_name
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("coin", new AnimShape(coinImage, 1, 8, new Vector2(400, 400)));
 
             
+<<<<<<< HEAD
+            shapes[(int)GameState.TITLESCREEN].Add("subtitle", new TextShow(new Vector2((window_width / 2) , window_height / 2),0,Color.Transparent,Color.Transparent,subtitle_font,"Press Space",Color.Black,false));
+            shapes[(int)GameState.TITLESCREEN]["subtitle"].location = new Vector2(shapes[(int)GameState.TITLESCREEN]["subtitle"].location.X - ((TextShow)shapes[(int)GameState.TITLESCREEN]["subtitle"]).calculateOffset().X, shapes[(int)GameState.TITLESCREEN]["subtitle"].location.Y + ((TextShow)shapes[(int)GameState.TITLESCREEN]["subtitle"]).calculateOffset().Y+50);// please god someone find a way to center things that is less fucking terible
+
+            shapes[(int)GameState.TITLESCREEN].Add("title", new TextShow(new Vector2((window_width / 2), window_height / 2), 0, Color.Transparent, Color.Transparent, title_font, "Title Screen", Color.Black,false));
+            shapes[(int)GameState.TITLESCREEN]["title"].location = new Vector2(shapes[(int)GameState.TITLESCREEN]["title"].location.X - ((TextShow)shapes[(int)GameState.TITLESCREEN]["title"]).calculateOffset().X, shapes[(int)GameState.TITLESCREEN]["title"].location.Y + ((TextShow)shapes[(int)GameState.TITLESCREEN]["title"]).calculateOffset().Y-50);// please god someone find a way to center things that is less fucking terible
+
+            shapes[(int)GameState.TITLESCREEN].Add("testimage", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "test", Color.Yellow,false));
+=======
             shapes[(int)GameState.TITLESCREEN].Add("subtitle", new TextShow(new Vector2((window_width / 2) , window_height / 2),0,Color.Transparent,Color.Transparent,subtitle_font,"Press Space",Color.Black));
             shapes[(int)GameState.TITLESCREEN]["subtitle"].center(new Vector2(0, 30)); 
 
@@ -121,6 +130,7 @@ namespace Example_name
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("bad", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "Bad", Color.Yellow));
 
 
+>>>>>>> 358bdf305b79ac3cda05813c8f38a7a82642c150
         }
 
         protected override void UnloadContent()
@@ -148,8 +158,12 @@ namespace Example_name
             {
                 Exit();
             }
+            Point mouse_pos = Mouse.GetState().Position;
             if (state == GameState.GAMEPLAY_VIEW)
             {
+
+                
+
                 if (Keyboard.GetState().IsKeyDown(Keys.W))
                     shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].location.Y -= 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.S))
@@ -205,7 +219,22 @@ namespace Example_name
                     state = GameState.GAMEPLAY_VIEW;
                 }
             }
-
+            Point[] temp;
+            if(Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes[(int)GameState.GAMEPLAY_VIEW])
+                {
+                    if (shape.Value.can_be_draged)
+                    {
+                        temp = shape.Value.getCorners();
+                        if (mouse_pos.X < temp[0].X && Mouse.GetState().X>temp[1].X && mouse_pos.Y>temp[0].Y&&mouse_pos.Y<temp[1].Y)
+                        {
+                            shape.Value.location = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+                        }
+                    }
+                }
+            }
+            
             fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             shapes[(int)GameState.GAMEPLAY_VIEW]["coin"].Update();
             base.Update(gameTime);
