@@ -14,8 +14,8 @@ namespace Example_name
         public Texture2D texture;
         public Vector2 location;
         public float rotation;
-        public int width;
-        public int height;
+        public int width { get; private set; }
+        public int height { get; private set; }
 
         public ObjectToDrawBase(Texture2D texture, Vector2 location, int width, int height)
         {
@@ -48,16 +48,6 @@ namespace Example_name
         public void setData(Color[] data)
         {
             texture.SetData(data);
-        }
-
-        public int getHeight()
-        {
-            return height;
-        }
-
-        public int getWidth()
-        {
-            return width;
         }
     }
 }

@@ -36,7 +36,7 @@ namespace Example_name
         bool color_fit = false;
         GameState state;
 
-
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -50,14 +50,14 @@ namespace Example_name
             window_width = graphics.GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = window_height;
             graphics.PreferredBackBufferWidth = window_width;
-            //graphics.IsFullScreen = true;
+            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
             r = new Random();
 
             rect2 = new Shape(graphics.GraphicsDevice, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 20, 80);
 
-            Color[] data = new Color[rect2.getWidth() * rect2.getHeight()];
+            Color[] data = new Color[rect2.width * rect2.height];
             Color[,] dataTemp = new Color[20, 80];
 
             for (int i = 0; i < 20; i++)
@@ -75,11 +75,11 @@ namespace Example_name
                 }
             }
 
-            for (int i = 0; i < rect2.getWidth(); i++)
+            for (int i = 0; i < rect2.width; i++)
             {
-                for (int j = 0; j < rect2.getHeight(); j++)
+                for (int j = 0; j < rect2.height; j++)
                 {
-                    data[j * rect2.getWidth() + i] = dataTemp[i, j];
+                    data[j * rect2.width + i] = dataTemp[i, j];
                 }
             }
             rect2.setData(data);

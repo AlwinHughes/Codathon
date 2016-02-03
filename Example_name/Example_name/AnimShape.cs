@@ -12,8 +12,6 @@ namespace Example_name
 {
     class AnimShape : ObjectToDrawBase
     {
-        
-
         private int currentFrame;
         private int totalFrames;
 
@@ -33,13 +31,13 @@ namespace Example_name
 
         override public void Draw()
         {
-            int width = texture.Width / this.height;
-            int height = texture.Height / this.width;
-            int row = (int)((float)currentFrame / (float)this.height);
-            int column = currentFrame % this.height;
+            int cutWidth = texture.Width / height;
+            int cutHeight = texture.Height / width;
+            int row = currentFrame / height;
+            int column = currentFrame % height;
 
-            Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-            Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Rectangle sourceRectangle = new Rectangle(cutWidth * column, cutHeight * row, cutWidth, cutHeight);
+            Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, cutWidth, cutHeight);
 
             Game1.spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
         }
@@ -70,9 +68,7 @@ namespace Example_name
                 Debug.WriteLine("collided");
                 return true;
             }
-            
             return false;
-            
         }
       
     }
