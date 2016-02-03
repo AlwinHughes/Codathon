@@ -110,7 +110,12 @@ namespace Example_name
 
 
             shapes[(int)GameState.TITLESCREEN].Add("testimage", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "Alwin is bad", Color.Yellow));
-            
+
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("alwin", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "Alwin", Color.Yellow));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("is", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "Is", Color.Yellow));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("very", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "Very", Color.Yellow));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("bad", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "Bad", Color.Yellow));
+
 
         }
 
