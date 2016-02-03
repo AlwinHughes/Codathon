@@ -139,7 +139,11 @@ namespace Example_name
             }
             else
             {
-                mouse.draggedObject = null;
+                if (mouse.draggedObject != null)
+                {
+                    mouse.draggedObject.Dock();
+                    mouse.draggedObject = null;
+                }
             }
             mouse.Update();
             previous = current;
