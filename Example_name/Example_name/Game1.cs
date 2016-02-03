@@ -51,6 +51,7 @@ namespace Example_name
             graphics.PreferredBackBufferWidth = window_width;
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
+            IsMouseVisible = true;
 
             r = new Random();
 
@@ -108,7 +109,7 @@ namespace Example_name
 
         protected override void UnloadContent()
         {
-
+            
         }
 
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
