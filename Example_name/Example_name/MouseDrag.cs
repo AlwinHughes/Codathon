@@ -17,15 +17,18 @@ namespace Example_name
 
         public void CheckClick(Dictionary<string, ObjectToDrawBase> shapes)
         {
-            foreach (KeyValuePair<string,ObjectToDrawBase> pair in shapes)
+            foreach (KeyValuePair<string, ObjectToDrawBase> pair in shapes)
             {
                 ObjectToDrawBase shape = pair.Value;
-                if (Game1.current.X > shape.location.X && Game1.current.X < shape.location.X + shape.width)
+                if (shape.can_be_draged)
                 {
-                    if (Game1.current.Y > shape.location.Y && Game1.current.Y < shape.location.Y + shape.height)
+                    if (Game1.current.X > shape.location.X && Game1.current.X < shape.location.X + shape.width)
                     {
-                        draggedObject = shape;
-                        return;
+                        if (Game1.current.Y > shape.location.Y && Game1.current.Y < shape.location.Y + shape.height)
+                        {
+                            draggedObject = shape;
+                            return;
+                        }
                     }
                 }
             }

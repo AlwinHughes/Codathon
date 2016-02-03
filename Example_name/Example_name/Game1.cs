@@ -53,7 +53,7 @@ namespace Example_name
             window_width = graphics.GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = window_height;
             graphics.PreferredBackBufferWidth = window_width;
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             graphics.ApplyChanges();
             IsMouseVisible = true;
 
@@ -107,19 +107,16 @@ namespace Example_name
 
             shapes[(int)GameState.TITLESCREEN].Add("testimage", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "test", Color.Yellow,false));
 
-            shapes[(int)GameState.TITLESCREEN].Add("subtitle", new TextShow(new Vector2((window_width / 2) , window_height / 2),0,Color.Transparent,Color.Transparent,subtitle_font,"Press Space",Color.Black));
+            shapes[(int)GameState.TITLESCREEN].Add("subtitle", new TextShow(new Vector2((window_width / 2) , window_height / 2),0,Color.Transparent,Color.Transparent,subtitle_font,"Press Space",Color.Black,false));
             shapes[(int)GameState.TITLESCREEN]["subtitle"].center(new Vector2(0, 30)); 
 
-            shapes[(int)GameState.TITLESCREEN].Add("title", new TextShow(new Vector2((window_width / 2), window_height / 2), 0, Color.Transparent, Color.Transparent, title_font, "Title Screen", Color.Black));
+            shapes[(int)GameState.TITLESCREEN].Add("title", new TextShow(new Vector2((window_width / 2), window_height / 2), 0, Color.Transparent, Color.Transparent, title_font, "Title Screen", Color.Black,false));
             shapes[(int)GameState.TITLESCREEN]["title"].center(new Vector2(0, -30));
 
-
-            shapes[(int)GameState.TITLESCREEN].Add("testimage", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "Alwin is bad", Color.Yellow));
-
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("alwin", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "Alwin", Color.Yellow));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("is", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "Is", Color.Yellow));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("very", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "Very", Color.Yellow));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("bad", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "Bad", Color.Yellow));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("alwin", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "Alwin", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("is", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "Is", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("very", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "Very", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("bad", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "Bad", Color.Yellow,true));
 
 
         }
@@ -144,7 +141,10 @@ namespace Example_name
             {
                 mouse.draggedObject = null;
             }
+            mouse.Update();
             previous = current;
+
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 Exit();
