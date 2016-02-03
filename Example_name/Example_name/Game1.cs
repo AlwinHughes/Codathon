@@ -104,7 +104,14 @@ namespace Example_name
             
             shapes[(int)GameState.TITLESCREEN].Add("subtitle", new TextShow(new Vector2((window_width / 2) , window_height / 2),0,Color.Transparent,Color.Transparent,subtitle_font,"Press Space",Color.Black));
             shapes[(int)GameState.TITLESCREEN]["subtitle"].location = new Vector2(shapes[(int)GameState.TITLESCREEN]["subtitle"].location.X - ((TextShow)shapes[(int)GameState.TITLESCREEN]["subtitle"]).calculateOffset().X, shapes[(int)GameState.TITLESCREEN]["subtitle"].location.Y + ((TextShow)shapes[(int)GameState.TITLESCREEN]["subtitle"]).calculateOffset().Y+50);// please god someone find a way to center things that is less fucking terible
+
+            shapes[(int)GameState.TITLESCREEN].Add("title", new TextShow(new Vector2((window_width / 2), window_height / 2), 0, Color.Transparent, Color.Transparent, title_font, "Title Screen", Color.Black));
+            shapes[(int)GameState.TITLESCREEN]["title"].location = new Vector2(shapes[(int)GameState.TITLESCREEN]["title"].location.X - ((TextShow)shapes[(int)GameState.TITLESCREEN]["title"]).calculateOffset().X, shapes[(int)GameState.TITLESCREEN]["title"].location.Y + ((TextShow)shapes[(int)GameState.TITLESCREEN]["title"]).calculateOffset().Y-50);// please god someone find a way to center things that is less fucking terible
+
+
             shapes[(int)GameState.TITLESCREEN].Add("testimage", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "test", Color.Yellow));
+            
+
         }
 
         protected override void UnloadContent()
@@ -197,11 +204,7 @@ namespace Example_name
             {
                 spriteBatch.DrawString(fps_font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond), new Vector2(1, 1), Color.Black);
             }
-            else
-            {
-                GraphicsDevice.Clear(Color.CornflowerBlue);
-                spriteBatch.DrawString(title_font, "Title screen", new Vector2((window_width / 2) - title_font.MeasureString("Title screeen").X / 2, window_height / 2), Color.Black);
-            }
+            
             base.Draw(gameTime);
             spriteBatch.End();
         }
