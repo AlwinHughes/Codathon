@@ -15,6 +15,10 @@ namespace Example_name
     public class Game1 : Game
     {
         FrameCounter fps = new FrameCounter();
+        MouseDrag mouse = new MouseDrag();
+
+        public static MouseState current;
+        MouseState previous;
 
         SpriteFont fps_font;
         SpriteFont title_font;
@@ -127,6 +131,19 @@ namespace Example_name
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            current = Mouse.GetState();
+            if (current.LeftButton == ButtonState.Pressed)
+            {
+                if (previous.LeftButton != ButtonState.Pressed)
+                {
+                    mouse.CheckClick(shapes[(int)state]);
+                }
+            }
+            else
+            {
+                mouse.draggedObject = null;
+            }
+            previous = current;
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 Exit();

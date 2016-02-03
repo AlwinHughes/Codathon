@@ -60,6 +60,7 @@
     <Compile Include="AnimShape.cs" />
     <Compile Include="FrameCounter.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="MouseDrag.cs" />
     <Compile Include="ObjectToDrawBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
