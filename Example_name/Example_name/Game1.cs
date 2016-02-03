@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Example_name
 {
@@ -39,7 +40,7 @@ namespace Example_name
         public static int window_height;
         public static int window_width;
         bool color_fit = false;
-        GameState state;
+        public static GameState state;
 
         public Game1()
         {
@@ -114,10 +115,10 @@ namespace Example_name
             shapes[(int)GameState.TITLESCREEN].Add("title", new TextShow(new Vector2((window_width / 2), window_height / 2), 0, Color.Transparent, Color.Transparent, title_font, "Title Screen", Color.Black,false));
             shapes[(int)GameState.TITLESCREEN]["title"].center(new Vector2(0, -30));
 
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("alwin", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "Alwin", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("tom", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "Tom", Color.Yellow,true));
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("is", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "Is", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("very", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "Very", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("bad", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "Bad", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("a", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "A", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("cunt", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "Cunt", Color.Yellow,true));
         }
 
         protected override void UnloadContent()
@@ -140,7 +141,7 @@ namespace Example_name
             {
                 if (mouse.draggedObject != null)
                 {
-                    mouse.draggedObject.Dock();
+                    ((TextShow)mouse.draggedObject).dock(shapes[(int)GameState.GAMEPLAY_VIEW]);
                     mouse.draggedObject = null;
                 }
             }
@@ -221,7 +222,7 @@ namespace Example_name
             spriteBatch.Begin();
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes[(int)state])
+            foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes[(int)state].Reverse())
             {
                 shape.Value.Draw();
             }

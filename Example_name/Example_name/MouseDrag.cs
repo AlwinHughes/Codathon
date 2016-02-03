@@ -23,14 +23,13 @@ namespace Example_name
                 ObjectToDrawBase shape = pair.Value;
                 if (shape.can_be_draged)
                 {
-                    if (Game1.current.X > shape.location.X && Game1.current.X < shape.location.X + shape.width)
+                    if (Game1.current.X > shape.location.X && Game1.current.X < shape.location.X + shape.width && Game1.current.Y > shape.location.Y && Game1.current.Y < shape.location.Y + shape.height)
                     {
-                        if (Game1.current.Y > shape.location.Y && Game1.current.Y < shape.location.Y + shape.height)
-                        {
-                            draggedObject = shape;
-                            offset = new Vector2(Game1.current.X - shape.location.X, Game1.current.Y - shape.location.Y);
-                            return;
-                        }
+                        draggedObject = shape;
+                        offset = new Vector2(Game1.current.X - shape.location.X, Game1.current.Y - shape.location.Y);
+                        shapes.Remove(pair.Key);
+                        shapes.Add(pair.Key, pair.Value);
+                        return;
                     }
                 }
             }

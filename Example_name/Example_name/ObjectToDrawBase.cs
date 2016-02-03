@@ -17,7 +17,14 @@ namespace Example_name
         public int width { get; private set; }
         public int height { get; private set; }
         public bool can_be_draged = false;
-        
+        public bool can_be_docked_to = false;
+
+        public string dock_top;// thing to control what each thing can dock to
+        public string dock_left;
+        public string dock_right;
+        public string dock_down;
+
+
 
         public ObjectToDrawBase(Texture2D texture, Vector2 location, int width, int height)
         {

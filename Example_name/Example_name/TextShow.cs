@@ -65,12 +65,31 @@ namespace Example_name
         public override void Draw()
         {
             Game1.spriteBatch.Draw(texture, new Rectangle((int)location.X, (int)location.Y, texture.Width, texture.Height), Color.White);
-            Game1.spriteBatch.DrawString(font, text, new Vector2(location.X + border_size , location.Y + border_size), text_color);
+            Game1.spriteBatch.DrawString(font, text, new Vector2(location.X + border_size, location.Y + border_size), text_color);
         }
 
         public Vector2 getOffset()
         {
             return new Vector2(4 + border_size + sprite_length / 2, 4 + border_size + sprite_height / 2);
         }
+
+        public void dock(Dictionary<string, ObjectToDrawBase> shapes)
+        {
+            foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes)
+            {
+                if (shape.Value.can_be_docked_to && this != shape.Value)//avoid self
+                {
+                    //todo check if its x and y is near anothers shapes x and y. (if so flip shit) position to put shape to move can be calculated using getOffset()
+                }
+            }
+        }
+        public void asignDocking(string left, string top, string right, string down)
+        {
+            dock_left = left;
+            dock_top = top;
+            dock_right = right;
+            dock_down = down;
+        }
+
     }
 }
