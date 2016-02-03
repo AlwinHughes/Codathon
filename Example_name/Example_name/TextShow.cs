@@ -27,6 +27,7 @@ namespace Example_name
             this.border = border;
             this.border_size = border_size;
             this.text_color = text_color;
+            this.text = text;
 
             Color[] data = new Color[width * height];
             Color[,] data_to_convert = new Color[width, height];
