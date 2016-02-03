@@ -18,7 +18,7 @@ namespace Example_name
         private int totalFrames;
 
         public AnimShape(Texture2D texture, int width, int height, Vector2 location)
-            :base(texture,(int)location.X,(int)location.Y,width,height)
+            :base(texture,location,width,height)
         {
             currentFrame = 0;
             totalFrames = this.width * this.height;

@@ -55,7 +55,7 @@ namespace Example_name
 
             r = new Random();
 
-            rect2 = new Shape(graphics.GraphicsDevice, r.Next(0, window_width), r.Next(0, window_height), 20, 80);
+            rect2 = new Shape(graphics.GraphicsDevice, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 20, 80);
 
             Color[] data = new Color[rect2.getWidth() * rect2.getHeight()];
             Color[,] dataTemp = new Color[20, 80];
@@ -95,7 +95,7 @@ namespace Example_name
             title_font = Content.Load<SpriteFont>("font/title");
 
             Texture2D rect1Image = Content.Load<Texture2D>("img/thing");
-            rect1 = new Shape(rect1Image, r.Next(0, window_width), r.Next(0, window_height), 80, 80);
+            rect1 = new Shape(rect1Image, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 80, 80);
 
             Texture2D coinImage = Content.Load<Texture2D>("img/images");
             coin = new AnimShape(coinImage, 1, 8, new Vector2(100, 100));

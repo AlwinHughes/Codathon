@@ -10,14 +10,14 @@ namespace Example_name
     {
         
 
-        public Shape(Texture2D texture, int x, int y, int width, int height)
-            :base(texture,x,y,width,height)
+        public Shape(Texture2D texture, Vector2 location, int width, int height)
+            :base(texture,location,width,height)
         {
             
         }
 
-        public Shape(GraphicsDevice d, int x, int y, int width, int height)
-            :base( d,  x, y, width, height)
+        public Shape(GraphicsDevice d, Vector2 location, int width, int height)
+            :base( d,  location, width, height)
         {
             
         }

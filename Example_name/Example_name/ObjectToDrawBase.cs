@@ -17,17 +17,17 @@ namespace Example_name
         public int width;
         public int height;
 
-        public ObjectToDrawBase(Texture2D texture, int x, int y, int width, int height)
+        public ObjectToDrawBase(Texture2D texture, Vector2 location, int width, int height)
         {
-            location = new Vector2(x, y);
+            this.location = location;
             this.texture = texture;
             this.width = width;
             this.height = height;
         }
 
-        public ObjectToDrawBase(GraphicsDevice d, int x, int y, int width, int height)
+        public ObjectToDrawBase(GraphicsDevice d, Vector2 location, int width, int height)
         {
-            location = new Vector2(x, y);
+            this.location = location;
             texture = new Texture2D(d, width, height);
             this.width = width;
             this.height = height;
