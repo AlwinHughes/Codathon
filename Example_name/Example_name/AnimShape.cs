@@ -14,6 +14,10 @@ namespace Example_name
     {
         private int currentFrame;
         private int totalFrames;
+        private int cutWidth;
+        private int cutHeight;
+        private int row;
+        private int column;
 
         public AnimShape(Texture2D texture, int width, int height, Vector2 location)
             :base(texture,location,width,height)
@@ -31,10 +35,10 @@ namespace Example_name
 
         override public void Draw()
         {
-            int cutWidth = texture.Width / height;
-            int cutHeight = texture.Height / width;
-            int row = currentFrame / height;
-            int column = currentFrame % height;
+            cutWidth = texture.Width / height;
+            cutHeight = texture.Height / width;
+            row = currentFrame / height;
+            column = currentFrame % height;
 
             Rectangle sourceRectangle = new Rectangle(cutWidth * column, cutHeight * row, cutWidth, cutHeight);
             Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, cutWidth, cutHeight);
@@ -44,7 +48,7 @@ namespace Example_name
 
         public bool checkEdgeCircle(float x, float y)
         {
-            if(Math.Pow(x-location.X,2) + Math.Pow(y-location.Y-height/2,2)< Math.Pow(texture.Width-location.X,2))
+            if (Math.Pow(x - location.X, 2) + Math.Pow(y - location.Y - height / 2, 2) < Math.Pow(cutWidth,2))
             {
                 Debug.WriteLine("collided");
                 return true;
