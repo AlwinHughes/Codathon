@@ -204,6 +204,6 @@ namespace Example_name
 
     public enum GameState
     {
-        TITLESCREEN, GAMEPLAY_VIEW, GAMEPLAY_CODE, LEVEL_SELECT //todo add more states here
+        TITLESCREEN, GAMEPLAY_VIEW, GAMEPLAY_CODE, LEVEL_SELECT
     }
 }
