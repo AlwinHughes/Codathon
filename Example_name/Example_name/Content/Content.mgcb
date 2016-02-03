@@ -47,3 +47,9 @@
 /processorParam:TextureFormat=Color
 /build:img/thing.png
 
+#begin font/subtitle.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:font/subtitle.spritefont
+

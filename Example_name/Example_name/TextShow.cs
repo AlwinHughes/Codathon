@@ -17,7 +17,8 @@ namespace Example_name
         Color inside;
         Color border;
         Color text_color;
-
+        int sprite_length;
+        int sprite_height;
 
         public TextShow(Vector2 location, int border_size, Color inside, Color border, SpriteFont font, string text, Color text_color)
             : base(location, (int)font.MeasureString(text).X + 8 + border_size, (int)font.MeasureString(text).Y + 8 + border_size)
@@ -28,6 +29,8 @@ namespace Example_name
             this.border_size = border_size;
             this.text_color = text_color;
             this.text = text;
+            sprite_height = (int)font.MeasureString(text).Y;
+            sprite_length = (int)font.MeasureString(text).X;
 
             Color[] data = new Color[width * height];
             Color[,] data_to_convert = new Color[width, height];
@@ -38,11 +41,11 @@ namespace Example_name
                 {
                     if (i < border_size || i > width - border_size || j < border_size || j > height - border_size)
                     {
-                        data_to_convert[i, j] = Color.White;
+                        data_to_convert[i, j] = border;
                     }
                     else
                     {
-                        data_to_convert[i, j] = Color.Blue;
+                        data_to_convert[i, j] = inside;
                     }
                 }
             }
@@ -65,7 +68,10 @@ namespace Example_name
         }
 
 
-
+        public Vector2 calculateOffset()
+        {
+            return new Vector2(4 + border_size + sprite_length / 2, 4 + border_size + sprite_height / 2);
+        }
 
     }
 }

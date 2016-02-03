@@ -18,6 +18,7 @@ namespace Example_name
 
         SpriteFont fps_font;
         SpriteFont title_font;
+        SpriteFont subtitle_font;
 
         public static GraphicsDeviceManager graphics;
 
@@ -82,7 +83,6 @@ namespace Example_name
                 }
             }
             shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].setData(data);
-
             base.Initialize();
         }
 
@@ -91,6 +91,8 @@ namespace Example_name
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             fps_font = Content.Load<SpriteFont>("font/arial-36");
+            subtitle_font = Content.Load<SpriteFont>("font/subtitle");
+            title_font = Content.Load<SpriteFont>("font/title");
 
             Texture2D rect1Image = Content.Load<Texture2D>("img/thing");
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("rect2", new Shape(rect1Image, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 80, 80));
@@ -98,7 +100,9 @@ namespace Example_name
             Texture2D coinImage = Content.Load<Texture2D>("img/images");
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("coin", new AnimShape(coinImage, 1, 8, new Vector2(400, 400)));
 
-            title_font = Content.Load<SpriteFont>("font/title");
+            
+            shapes[(int)GameState.TITLESCREEN].Add("subtitle", new TextShow(new Vector2((window_width / 2) , window_height / 2),0,Color.Transparent,Color.Transparent,subtitle_font,"Press Space",Color.Black));
+            shapes[(int)GameState.TITLESCREEN]["subtitle"].location = new Vector2(shapes[(int)GameState.TITLESCREEN]["subtitle"].location.X - ((TextShow)shapes[(int)GameState.TITLESCREEN]["subtitle"]).calculateOffset().X, shapes[(int)GameState.TITLESCREEN]["subtitle"].location.Y + ((TextShow)shapes[(int)GameState.TITLESCREEN]["subtitle"]).calculateOffset().Y+50);// please god someone find a way to center things that is less fucking terible
             shapes[(int)GameState.TITLESCREEN].Add("testimage", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "test", Color.Yellow));
         }
 
