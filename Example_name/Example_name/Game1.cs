@@ -24,8 +24,6 @@ namespace Example_name
         public static SpriteBatch spriteBatch;
         Random r;
 
-       // List<ObjectToDrawBase> shapes = new List<ObjectToDrawBase>(3);
-
         Dictionary<string, ObjectToDrawBase> shapes = new Dictionary<string, ObjectToDrawBase>();
 
         public static int window_height;
@@ -33,7 +31,6 @@ namespace Example_name
         bool color_fit = false;
         GameState state;
 
-        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -47,7 +44,7 @@ namespace Example_name
             window_width = graphics.GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = window_height;
             graphics.PreferredBackBufferWidth = window_width;
-            //graphics.IsFullScreen = true;
+            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
             r = new Random();
@@ -149,17 +146,16 @@ namespace Example_name
                 }
 
                 Random r = new Random();
-                /*
-                if (shapes[2].checkEdgeCircle(rect1.location.X, rect1.location.Y))
+                
+                if (((AnimShape)shapes["coin"]).checkEdgeCircle(shapes["rect1"].location.X, shapes["rect1"].location.Y))
                 {
-                    rect1.location = new Vector2(r.Next(0, window_width), r.Next(0, window_height));
+                    shapes["rect1"].location = new Vector2(r.Next(0, window_width), r.Next(0, window_height));
                 }
-                if (coin.checkEdgeCircle(rect2.location.X, rect2.location.Y))
+                if (((AnimShape)shapes["coin"]).checkEdgeCircle(shapes["rect2"].location.X, shapes["rect2"].location.Y))
                 {
-                    rect2.location = new Vector2(r.Next(0, window_width), r.Next(0, window_height));
+                    shapes["rect2"].location = new Vector2(r.Next(0, window_width), r.Next(0, window_height));
                 }
-                */
-                //todo use struture to group objects
+                
             }
             else
             {
