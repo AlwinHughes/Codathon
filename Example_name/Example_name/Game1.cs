@@ -106,7 +106,6 @@ namespace Example_name
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("coin", new AnimShape(coinImage, 1, 8, new Vector2(400, 400)));
 
             
-<<<<<<< HEAD
             shapes[(int)GameState.TITLESCREEN].Add("subtitle", new TextShow(new Vector2((window_width / 2) , window_height / 2),0,Color.Transparent,Color.Transparent,subtitle_font,"Press Space",Color.Black,false));
             shapes[(int)GameState.TITLESCREEN]["subtitle"].location = new Vector2(shapes[(int)GameState.TITLESCREEN]["subtitle"].location.X - ((TextShow)shapes[(int)GameState.TITLESCREEN]["subtitle"]).calculateOffset().X, shapes[(int)GameState.TITLESCREEN]["subtitle"].location.Y + ((TextShow)shapes[(int)GameState.TITLESCREEN]["subtitle"]).calculateOffset().Y+50);// please god someone find a way to center things that is less fucking terible
 
@@ -114,7 +113,7 @@ namespace Example_name
             shapes[(int)GameState.TITLESCREEN]["title"].location = new Vector2(shapes[(int)GameState.TITLESCREEN]["title"].location.X - ((TextShow)shapes[(int)GameState.TITLESCREEN]["title"]).calculateOffset().X, shapes[(int)GameState.TITLESCREEN]["title"].location.Y + ((TextShow)shapes[(int)GameState.TITLESCREEN]["title"]).calculateOffset().Y-50);// please god someone find a way to center things that is less fucking terible
 
             shapes[(int)GameState.TITLESCREEN].Add("testimage", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "test", Color.Yellow,false));
-=======
+
             shapes[(int)GameState.TITLESCREEN].Add("subtitle", new TextShow(new Vector2((window_width / 2) , window_height / 2),0,Color.Transparent,Color.Transparent,subtitle_font,"Press Space",Color.Black));
             shapes[(int)GameState.TITLESCREEN]["subtitle"].center(new Vector2(0, 30)); 
 
@@ -130,7 +129,6 @@ namespace Example_name
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("bad", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "Bad", Color.Yellow));
 
 
->>>>>>> 358bdf305b79ac3cda05813c8f38a7a82642c150
         }
 
         protected override void UnloadContent()
