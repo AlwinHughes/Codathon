@@ -109,7 +109,7 @@ namespace Example_name
             shapes[(int)GameState.TITLESCREEN]["title"].center(new Vector2(0, -30));
 
 
-            shapes[(int)GameState.TITLESCREEN].Add("testimage", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "test", Color.Yellow));
+            shapes[(int)GameState.TITLESCREEN].Add("testimage", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "Alwin is bad", Color.Yellow));
             
 
         }
