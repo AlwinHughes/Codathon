@@ -16,6 +16,8 @@ namespace Example_name
         public float rotation;
         public int width { get; private set; }
         public int height { get; private set; }
+        public bool can_be_draged = false;
+        
 
         public ObjectToDrawBase(Texture2D texture, Vector2 location, int width, int height)
         {
@@ -23,11 +25,12 @@ namespace Example_name
             this.texture = texture;
             this.width = width;
             this.height = height;
+            
         }
 
         public ObjectToDrawBase(GraphicsDevice d, Vector2 location, int width, int height)
         {
-            this.location = location;
+            this.location = location;   
             texture = new Texture2D(d, width, height);
             this.width = width;
             this.height = height;
@@ -38,6 +41,12 @@ namespace Example_name
             this.location = location;
             this.width = width;
             this.height = height;
+
+        }
+
+        public virtual Point[] getCorners()// only works if the shape has rotation 0
+        {
+            return new Point[] { new Point((int)location.X,(int)location.Y),new Point((int)location.X+width,(int)location.Y+height)};// contains top left and botom right
         }
 
         virtual public void Draw()
