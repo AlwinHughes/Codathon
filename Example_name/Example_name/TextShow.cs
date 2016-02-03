@@ -53,8 +53,8 @@ namespace Example_name
                     data[j * width + i] = data_to_convert[i, j];
                 }
             }
-            if (texture != null)
-                setData(data);
+            texture = new Texture2D(Game1.graphics.GraphicsDevice, width, height);
+            setData(data);
         }
 
         public override void Draw()

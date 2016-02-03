@@ -54,7 +54,7 @@ namespace Example_name
 
         virtual public void Update()
         {
-            
+
         }
 
         virtual public void checkEdge()
