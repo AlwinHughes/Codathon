@@ -24,7 +24,11 @@ namespace Example_name
         public static SpriteBatch spriteBatch;
         Random r;
 
-        Dictionary<string, ObjectToDrawBase> shapes = new Dictionary<string, ObjectToDrawBase>();
+        Dictionary<string, ObjectToDrawBase>[] shapes = new Dictionary<string, ObjectToDrawBase>[]
+        { new Dictionary<string, ObjectToDrawBase>(), //Titlescreen
+          new Dictionary<string, ObjectToDrawBase>(), //GamePlay_View
+          new Dictionary<string, ObjectToDrawBase>(), //GamePlay_Code
+          new Dictionary<string, ObjectToDrawBase>()}; //Level_Select
 
         public static int window_height;
         public static int window_width;
@@ -49,10 +53,14 @@ namespace Example_name
 
             r = new Random();
 
-            shapes.Add("rect1", new Shape(graphics.GraphicsDevice, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 20, 80));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("rect1", new Shape(graphics.GraphicsDevice, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 20, 80));
 
+<<<<<<< HEAD
 
             Color[] data = new Color[shapes["rect1"].width * shapes["rect1"].height];
+=======
+            Color[] data = new Color[shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].width * shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].height];
+>>>>>>> f8fbbd1862d8a7e0eb815c3b4589bf7f3948c4e3
             Color[,] dataTemp = new Color[20, 80];
 
             for (int i = 0; i < 20; i++)
@@ -70,14 +78,14 @@ namespace Example_name
                 }
             }
 
-            for (int i = 0; i < shapes["rect1"].width; i++)
+            for (int i = 0; i < shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].width; i++)
             {
-                for (int j = 0; j < shapes["rect1"].height; j++)
+                for (int j = 0; j < shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].height; j++)
                 {
-                    data[j * shapes["rect1"].width + i] = dataTemp[i, j];
+                    data[j * shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].width + i] = dataTemp[i, j];
                 }
             }
-            shapes["rect1"].setData(data);
+            shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].setData(data);
 
             base.Initialize();
         }
@@ -90,10 +98,10 @@ namespace Example_name
             title_font = Content.Load<SpriteFont>("font/title");
 
             Texture2D rect1Image = Content.Load<Texture2D>("img/thing");
-            shapes.Add("rect2",  new Shape(rect1Image, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 80, 80));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("rect2", new Shape(rect1Image, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 80, 80));
 
             Texture2D coinImage = Content.Load<Texture2D>("img/images");
-            shapes.Add("coin",  new AnimShape(coinImage, 1, 8, new Vector2(400,400)));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("coin", new AnimShape(coinImage, 1, 8, new Vector2(400, 400)));
         }
 
         protected override void UnloadContent()
@@ -111,52 +119,52 @@ namespace Example_name
             if (state == GameState.GAMEPLAY_VIEW)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.W))
-                    shapes["rect1"].location.Y -=5;
+                    shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].location.Y -= 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.S))
-                    shapes["rect1"].location.Y += 5;
+                    shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].location.Y += 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.A))
-                    shapes["rect1"].location.X-=5;
+                    shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].location.X -= 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.D))
-                    shapes["rect1"].location.X += 5;
+                    shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].location.X += 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.Q))
-                    shapes["rect1"].rotation += 0.1f;
+                    shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].rotation += 0.1f;
                 if (Keyboard.GetState().IsKeyDown(Keys.E))
-                    shapes["rect1"].rotation -= 0.1f;
+                    shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].rotation -= 0.1f;
 
                 if (Keyboard.GetState().IsKeyDown(Keys.I))
-                    shapes["rect2"].location.Y-=5;
+                    shapes[(int)GameState.GAMEPLAY_VIEW]["rect2"].location.Y -= 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.K))
-                    shapes["rect2"].location.Y += 5;
+                    shapes[(int)GameState.GAMEPLAY_VIEW]["rect2"].location.Y += 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.J))
-                    shapes["rect2"].location.X-=5;
+                    shapes[(int)GameState.GAMEPLAY_VIEW]["rect2"].location.X -= 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.L))
-                    shapes["rect2"].location.X += 5;
+                    shapes[(int)GameState.GAMEPLAY_VIEW]["rect2"].location.X += 5;
                 if (Keyboard.GetState().IsKeyDown(Keys.U))
-                    shapes["rect2"].rotation += 0.1f;
+                    shapes[(int)GameState.GAMEPLAY_VIEW]["rect2"].rotation += 0.1f;
                 if (Keyboard.GetState().IsKeyDown(Keys.O))
-                    shapes["rect2"].rotation -= 0.1f;
+                    shapes[(int)GameState.GAMEPLAY_VIEW]["rect2"].rotation -= 0.1f;
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 {
                     color_fit = true;
                 }
 
-                foreach (KeyValuePair<string,ObjectToDrawBase> shape in shapes)
+                foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes[(int)state])
                 {
                     shape.Value.checkEdge();
                 }
 
                 Random r = new Random();
-                
-                if (((AnimShape)shapes["coin"]).checkEdgeCircle(shapes["rect1"].location.X, shapes["rect1"].location.Y))
+
+                if (((AnimShape)shapes[(int)GameState.GAMEPLAY_VIEW]["coin"]).checkEdgeCircle(shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].location.X, shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].location.Y))
                 {
-                    shapes["rect1"].location = new Vector2(r.Next(0, window_width), r.Next(0, window_height));
+                    shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].location = new Vector2(r.Next(0, window_width), r.Next(0, window_height));
                 }
-                if (((AnimShape)shapes["coin"]).checkEdgeCircle(shapes["rect2"].location.X, shapes["rect2"].location.Y))
+                if (((AnimShape)shapes[(int)GameState.GAMEPLAY_VIEW]["coin"]).checkEdgeCircle(shapes[(int)GameState.GAMEPLAY_VIEW]["rect2"].location.X, shapes[(int)GameState.GAMEPLAY_VIEW]["rect2"].location.Y))
                 {
-                    shapes["rect2"].location = new Vector2(r.Next(0, window_width), r.Next(0, window_height));
+                    shapes[(int)GameState.GAMEPLAY_VIEW]["rect2"].location = new Vector2(r.Next(0, window_width), r.Next(0, window_height));
                 }
-                
+
             }
             else
             {
@@ -167,7 +175,7 @@ namespace Example_name
             }
 
             fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-            shapes["coin"].Update();
+            shapes[(int)GameState.GAMEPLAY_VIEW]["coin"].Update();
             base.Update(gameTime);
         }
 
@@ -183,7 +191,7 @@ namespace Example_name
                 spriteBatch.DrawString(fps_font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond), new Vector2(1, 1), Color.Black);
 
 
-                foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes)
+                foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes[(int)state])
                 {
                     shape.Value.Draw();
                 }
@@ -206,6 +214,6 @@ namespace Example_name
 
     public enum GameState
     {
-        TITLESCREEN, GAMEPLAY_VIEW, GAMEPLAY_CODE,LEVEL_SELECT//todo add more states here
+        TITLESCREEN, GAMEPLAY_VIEW, GAMEPLAY_CODE, LEVEL_SELECT //todo add more states here
     }
 }
