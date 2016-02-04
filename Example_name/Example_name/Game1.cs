@@ -107,8 +107,6 @@ namespace Example_name
             Texture2D coinImage = Content.Load<Texture2D>("img/images");
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("coin", new AnimShape(coinImage, 1, 8, new Vector2(400, 400)));
 
-            shapes[(int)GameState.TITLESCREEN].Add("testimage", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "test", Color.Yellow,false));
-
             shapes[(int)GameState.TITLESCREEN].Add("subtitle", new TextShow(new Vector2((window_width / 2) , window_height / 2),0,Color.Transparent,Color.Transparent,subtitle_font,"Press Space",Color.Black,false));
             shapes[(int)GameState.TITLESCREEN]["subtitle"].center(new Vector2(0, 30)); 
 
