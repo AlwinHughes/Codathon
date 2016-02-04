@@ -16,15 +16,10 @@ namespace Example_name
         public float rotation;
         public int width { get; private set; }
         public int height { get; private set; }
-        public bool can_be_draged = false;
-        public bool can_be_docked_to = false;
+        public bool canBeDocked;
+        public bool[] canBeDockedTo = new bool[4];
 
-        public string dock_top;// thing to control what each thing can dock to
-        public string dock_left;
-        public string dock_right;
-        public string dock_down;
-
-
+        public ObjectToDrawBase dock;
 
         public ObjectToDrawBase(Texture2D texture, Vector2 location, int width, int height)
         {
@@ -65,7 +60,10 @@ namespace Example_name
 
         virtual public void Update()
         {
-
+            if (dock != null)
+            {
+                location = dock.location + new Vector2(0,40);
+            }
         }
 
         virtual public void checkEdge()

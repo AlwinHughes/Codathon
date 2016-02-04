@@ -29,7 +29,7 @@ namespace Example_name
             this.border_size = border_size;
             this.text_color = text_color;
             this.text = text;
-            this.can_be_draged = can_be_draged;
+            this.canBeDocked = can_be_draged;
             sprite_height = (int)font.MeasureString(text).Y;
             sprite_length = (int)font.MeasureString(text).X;
 
@@ -77,18 +77,19 @@ namespace Example_name
         {
             foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes)
             {
-                if (shape.Value.can_be_docked_to && this != shape.Value)//avoid self
+                if (shape.Value.canBeDockedTo[2] && this != shape.Value)//avoid self only down dock temp
                 {
-                    //todo check if its x and y is near anothers shapes x and y. (if so flip shit) position to put shape to move can be calculated using getOffset()
+                    dock = shape.Value;//temp
+                    return;
                 }
             }
         }
-        public void asignDocking(string left, string top, string right, string down)
+        public void asignDocking(bool up,bool right,bool down,bool left)
         {
-            dock_left = left;
-            dock_top = top;
-            dock_right = right;
-            dock_down = down;
+            canBeDockedTo[0] = up;
+            canBeDockedTo[1] = right;
+            canBeDockedTo[2] = down;
+            canBeDockedTo[3] = left;
         }
 
     }

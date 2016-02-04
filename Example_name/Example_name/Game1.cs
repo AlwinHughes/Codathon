@@ -119,6 +119,10 @@ namespace Example_name
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("b", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "Fucking", Color.Yellow,true));
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("c", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "Wot", Color.Yellow,true));
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("d", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "M8", Color.Yellow,true));
+
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("dock", new TextShow(new Vector2(300, 400), 4, Color.White, Color.Black, title_font, "dock", Color.Yellow, false));
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["dock"]).asignDocking(false, false, true, false);
+
         }
 
         protected override void UnloadContent()
@@ -188,7 +192,7 @@ namespace Example_name
 
                 foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes[(int)state])
                 {
-                    shape.Value.checkEdge();
+                    shape.Value.Update();
                 }
 
                 Random r = new Random();

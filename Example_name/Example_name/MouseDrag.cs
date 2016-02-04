@@ -21,14 +21,15 @@ namespace Example_name
             foreach (KeyValuePair<string, ObjectToDrawBase> pair in shapes)
             {
                 ObjectToDrawBase shape = pair.Value;
-                if (shape.can_be_draged)
+                if (shape.canBeDocked)
                 {
                     if (Game1.current.X > shape.location.X && Game1.current.X < shape.location.X + shape.width && Game1.current.Y > shape.location.Y && Game1.current.Y < shape.location.Y + shape.height)
                     {
                         draggedObject = shape;
+                        draggedObject.dock = null;
                         offset = new Vector2(Game1.current.X - shape.location.X, Game1.current.Y - shape.location.Y);
-                        shapes.Remove(pair.Key);
-                        shapes.Add(pair.Key, pair.Value);
+                        //why alwin why shapes.Remove(pair.Key);
+                        //shapes.Add(pair.Key, pair.Value);
                         return;
                     }
                 }
