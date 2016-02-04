@@ -115,10 +115,10 @@ namespace Example_name
             shapes[(int)GameState.TITLESCREEN].Add("title", new TextShow(new Vector2((window_width / 2), window_height / 2), 0, Color.Transparent, Color.Transparent, title_font, "Title Screen", Color.Black,false));
             shapes[(int)GameState.TITLESCREEN]["title"].center(new Vector2(0, -30));
 
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("a", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "Alwin", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("b", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "Is", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("c", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "A", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("d", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "Turd", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("a", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "You", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("b", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "Fucking", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("c", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "Wot", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("d", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "M8", Color.Yellow,true));
         }
 
         protected override void UnloadContent()
