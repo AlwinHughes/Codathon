@@ -239,7 +239,7 @@ namespace Example_name
 
             if (state == GameState.GAMEPLAY_VIEW)
             {
-                spriteBatch.DrawString(fps_font, string.Format("FPS: {0}", (int)fps.AverageFramesPerSecond), new Vector2(1, 1), Color.Black);
+                spriteBatch.DrawString(fps_font, string.Format("FPS: {0}", Math.Ceiling(fps.AverageFramesPerSecond)), new Vector2(1, 1), Color.Black);
             }
             
             base.Draw(gameTime);
