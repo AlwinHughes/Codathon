@@ -21,6 +21,8 @@ namespace Example_name
         int sprite_height;
         Color[] data;
         Color[,] data_to_convert;
+        Color[] border_colors;
+        int[] border_widths;
 
         public TextShow(Vector2 location, int border_size, Color inside_color, Color border_color, SpriteFont font, string text, Color text_color, bool can_be_draged)
             : base(location, (int)font.MeasureString(text).X + 8 + border_size, (int)font.MeasureString(text).Y + 8 + border_size)
@@ -39,6 +41,25 @@ namespace Example_name
             data_to_convert = new Color[width, height];
 
             generateTexture(border_size, inside_color, border_color,text_color);
+
+        }
+        public TextShow(Vector2 location, int border_size, Color inside_color, Color[] border_colors,int[] border_widths,  SpriteFont font, string text, Color text_color, bool can_be_draged)
+            : base(location, (int)font.MeasureString(text).X + 8 + border_size, (int)font.MeasureString(text).Y + 8 + border_size)
+        {
+            this.font = font;
+            this.inside_color = inside_color;
+            this.border_colors = border_colors;
+            this.border_size = border_size;
+            this.text_color = text_color;
+            this.text = text;
+            this.canBeDocked = can_be_draged;
+            sprite_height = (int)font.MeasureString(text).Y;
+            sprite_length = (int)font.MeasureString(text).X;
+
+            data = new Color[width * height];
+            data_to_convert = new Color[width, height];
+
+            generateTexture(border_size, inside_color, border_color, text_color);
 
         }
 
