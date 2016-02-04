@@ -73,7 +73,7 @@ namespace Example_name
             return new Vector2(4 + border_size + sprite_length / 2, 4 + border_size + sprite_height / 2);
         }
 
-        public void dock(Dictionary<string, ObjectToDrawBase> shapes)
+        public void Dock(Dictionary<string, ObjectToDrawBase> shapes)
         {
             foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes)
             {

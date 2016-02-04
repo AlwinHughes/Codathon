@@ -96,11 +96,6 @@ namespace Example_name
         public void center(Vector2 offset)
         {
             location = new Vector2(Game1.window_width / 2 - width / 2 + offset.X, Game1.window_height / 2 - height / 2 + offset.Y);
-        }
-
-        public void Dock()
-        {
-            //used to make things snap together
-        }
+        }       
     }
 }

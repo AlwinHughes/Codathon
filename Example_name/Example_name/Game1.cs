@@ -141,7 +141,7 @@ namespace Example_name
             {
                 if (mouse.draggedObject != null)
                 {
-                    ((TextShow)mouse.draggedObject).dock(shapes[(int)GameState.GAMEPLAY_VIEW]);
+                    ((TextShow)mouse.draggedObject).Dock(shapes[(int)GameState.GAMEPLAY_VIEW]);
                     mouse.draggedObject = null;
                 }
             }
