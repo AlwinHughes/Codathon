@@ -14,18 +14,20 @@ namespace Example_name
         string text;
         SpriteFont font;
         int border_size;
-        Color inside;
-        Color border;
+        Color inside_color;
+        Color border_color;
         Color text_color;
         int sprite_length;
         int sprite_height;
+        Color[] data;
+        Color[,] data_to_convert;
 
-        public TextShow(Vector2 location, int border_size, Color inside, Color border, SpriteFont font, string text, Color text_color, bool can_be_draged)
+        public TextShow(Vector2 location, int border_size, Color inside_color, Color border_color, SpriteFont font, string text, Color text_color, bool can_be_draged)
             : base(location, (int)font.MeasureString(text).X + 8 + border_size, (int)font.MeasureString(text).Y + 8 + border_size)
         {
             this.font = font;
-            this.inside = inside;
-            this.border = border;
+            this.inside_color = inside_color;
+            this.border_color = border_color;
             this.border_size = border_size;
             this.text_color = text_color;
             this.text = text;
@@ -33,9 +35,15 @@ namespace Example_name
             sprite_height = (int)font.MeasureString(text).Y;
             sprite_length = (int)font.MeasureString(text).X;
 
-            Color[] data = new Color[width * height];
-            Color[,] data_to_convert = new Color[width, height];
+            data = new Color[width * height];
+            data_to_convert = new Color[width, height];
 
+            generateTexture(border_size, inside_color, border_color,text_color);
+
+        }
+
+        public void generateTexture(int border_size, Color inside, Color border, Color text_color)//only alows color change not size change 
+        {
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
