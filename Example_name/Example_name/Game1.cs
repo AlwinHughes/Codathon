@@ -115,10 +115,10 @@ namespace Example_name
             shapes[(int)GameState.TITLESCREEN].Add("title", new TextShow(new Vector2((window_width / 2), window_height / 2), 0, Color.Transparent, Color.Transparent, title_font, "Title Screen", Color.Black,false));
             shapes[(int)GameState.TITLESCREEN]["title"].center(new Vector2(0, -30));
 
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("a", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "Start", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("b", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "Reck", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("c", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "You", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("d", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "M8", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("a", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "Steve", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("b", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "is", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("c", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "Bae", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("d", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "Moo", Color.Yellow,true));
             
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("athing", new TextShow(new Vector2(300, 500),Color.Azure,new Color[] { Color.Yellow,Color.Black,Color.Turquoise,Color.Tomato},new int[] {1,4,5,2},subtitle_font, "complex TextShow",Color.Black,false));
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("dock", new TextShow(new Vector2(300, 400), 4, Color.White, Color.Black, title_font, "dock", Color.Yellow, false));
@@ -239,7 +239,8 @@ namespace Example_name
 
             if (state == GameState.GAMEPLAY_VIEW)
             {
-                spriteBatch.DrawString(fps_font, string.Format("FPS: {0}", Math.Ceiling(fps.AverageFramesPerSecond)), new Vector2(1, 1), Color.Black);
+                spriteBatch.DrawString(fps_font, string.Format("FPS: {0}", Math.Ceiling(fps.AverageFramesPerSecond) * new Random().Next(0,10000)), new Vector2(1, 1), Color.Black);
+                
             }
             
             base.Draw(gameTime);
