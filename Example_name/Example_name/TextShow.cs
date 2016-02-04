@@ -83,12 +83,17 @@ namespace Example_name
 
         public void Dock(Dictionary<string, ObjectToDrawBase> shapes)
         {
+            Vector2[] offsets = new Vector2[4] { new Vector2(0,-40), new Vector2(40,0), new Vector2(0,40), new Vector2(-40,0) };
             foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes)
             {
-                if (shape.Value.canBeDockedTo[2] && this != shape.Value)//avoid self only down dock temp
+                for (int i = 0; i < 4; i++)
                 {
-                    dock = shape.Value;//temp
-                    return;
+                    if (shape.Value.canBeDockedTo[i] && this != shape.Value)//avoid self only down dock temp
+                    {
+                        dock = shape.Value;
+                        dockOffset = offsets[i];
+                        return;
+                    }
                 }
             }
         }
