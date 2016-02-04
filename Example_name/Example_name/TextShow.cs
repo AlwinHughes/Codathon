@@ -150,8 +150,8 @@ namespace Example_name
         {
             foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes)
             {
-                Vector2[] offsets = new Vector2[4] { new Vector2(0, -height), new Vector2(width, 0), new Vector2(0, height), new Vector2(-width, 0) };
-                for (int i = 0; i < 4; i++)
+                Vector2[] offsets = new Vector2[2] {new Vector2(shape.Value.width, 0), new Vector2(0, height)};
+                for (int i = 0; i < 2; i++)
                 {
                     if (shape.Value.canBeDockedTo[i] && this != shape.Value && location.X - offsets[i].X > shape.Value.location.X && location.X - offsets[i].X < shape.Value.location.X + width && location.Y - offsets[i].Y > shape.Value.location.Y && location.Y - offsets[i].Y < shape.Value.location.Y + height)//avoid self dock temp
                     {
@@ -162,13 +162,10 @@ namespace Example_name
                 }
             }
         }
-        public void asignDocking(bool up, bool right, bool down, bool left)
+        public void asignDocking( bool right, bool down)
         {
-            canBeDockedTo[0] = up;
+            canBeDockedTo[0] = down;
             canBeDockedTo[1] = right;
-            canBeDockedTo[2] = down;
-            canBeDockedTo[3] = left;
         }
-
     }
 }

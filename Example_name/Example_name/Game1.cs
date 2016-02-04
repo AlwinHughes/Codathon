@@ -115,18 +115,22 @@ namespace Example_name
             shapes[(int)GameState.TITLESCREEN].Add("title", new TextShow(new Vector2((window_width / 2), window_height / 2), 0, Color.Transparent, Color.Transparent, title_font, "Title Screen", Color.Black,false));
             shapes[(int)GameState.TITLESCREEN]["title"].center(new Vector2(0, -30));
 
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("a", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "I ", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("b", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "HAVE", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("c", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "NO", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("d", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "NIPPLES!!!!", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("e", new TextShow(new Vector2(100, 600), 4, Color.White, Color.Black, title_font, "HELP", Color.Yellow, true));
+            //things
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("start", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "START", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("f1", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "FORWARD", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("f2", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "FORWARD", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("f3", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "FORWARD", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("if", new TextShow(new Vector2(100, 600), 4, Color.White, Color.Black, title_font, "IF", Color.Yellow, true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("end", new TextShow(new Vector2(300, 400), 4, Color.White, Color.Black, title_font, "END", Color.Yellow, true));
 
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("athing", new TextShow(new Vector2(300, 500),Color.Azure,new Color[] { Color.Yellow,Color.Black,Color.Turquoise,Color.Tomato},new int[] {1,4,5,2},subtitle_font, "complex TextShow",Color.Black,false));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("dock", new TextShow(new Vector2(300, 400), 4, Color.White, Color.Black, title_font, "dock", Color.Yellow, false));
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["dock"]).asignDocking(false, false, true, false);
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("athing", new TextShow(new Vector2(300, 500), Color.Azure, new Color[] { Color.Yellow, Color.Black, Color.Turquoise, Color.Tomato }, new int[] { 1, 4, 5, 2 }, subtitle_font, "complex TextShow", Color.Black, false));
 
-
-                       ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["dock"]).asignDocking(true, true, true, true);
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["start"]).asignDocking(true, false);
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["f1"]).asignDocking(true, false);
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["f2"]).asignDocking(true, false);
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["f3"]).asignDocking(true, false);
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["if"]).asignDocking(true, true);
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["end"]).asignDocking(true, false);
 
 
         }
@@ -240,7 +244,7 @@ namespace Example_name
 
             if (state == GameState.GAMEPLAY_VIEW)
             {
-                spriteBatch.DrawString(fps_font, string.Format("FPS: 420", Math.Ceiling(fps.AverageFramesPerSecond) * new Random().Next(0,10000)), new Vector2(1, 1), Color.Black);
+                spriteBatch.DrawString(fps_font, string.Format("FPS: ", Math.Ceiling(fps.AverageFramesPerSecond)), new Vector2(1, 1), Color.Black);
                 
             }
             
