@@ -45,8 +45,11 @@ namespace Example_name
             generateTexture(border_size, inside_color, border_color, text_color);
 
         }
+
+        //constructur used for complex creation
         public TextShow(Vector2 location, Color inside_color, Color[] border_colors, int[] border_widths, SpriteFont font, string text, Color text_color, bool can_be_draged)
-            : base(location, (int)font.MeasureString(text).X + 8 + border_widths[0]+border_widths[2], (int)font.MeasureString(text).Y + 8 + border_widths[1]+border_widths[3])
+            : base(location, (int)font.MeasureString(text).X + 8 + border_widths[0]+ border_widths[2], (int)font.MeasureString(text).Y + 8 + border_widths[1]+ border_widths[3])
+
         {
             complex = true;
             this.font = font;
@@ -152,14 +155,19 @@ namespace Example_name
         {
             foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes)
             {
-                if (shape.Value.canBeDockedTo[2] && this != shape.Value)//avoid self only down dock temp
+                Vector2[] offsets = new Vector2[4] { new Vector2(0, -height), new Vector2(width, 0), new Vector2(0, height), new Vector2(-width, 0) };
+                for (int i = 0; i < 4; i++)
                 {
-                    dock = shape.Value;//temp
-                    return;
+                    if (shape.Value.canBeDockedTo[i] && this != shape.Value && location.X - offsets[i].X > shape.Value.location.X && location.X - offsets[i].X < shape.Value.location.X + width && location.Y - offsets[i].Y > shape.Value.location.Y && location.Y - offsets[i].Y < shape.Value.location.Y + height)//avoid self dock temp
+                    {
+                        dock = shape.Value;
+                        dockOffset = offsets[i];
+                        return;
+                    }
                 }
             }
         }
-        public void asignDocking(bool up,bool right,bool down,bool left)
+        public void asignDocking(bool up, bool right, bool down, bool left)
         {
             canBeDockedTo[0] = up;
             canBeDockedTo[1] = right;

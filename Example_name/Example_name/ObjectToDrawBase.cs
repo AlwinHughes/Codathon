@@ -20,6 +20,7 @@ namespace Example_name
         public bool[] canBeDockedTo = new bool[4];
 
         public ObjectToDrawBase dock;
+        public Vector2 dockOffset;
 
         public ObjectToDrawBase(Texture2D texture, Vector2 location, int width, int height)
         {
@@ -62,7 +63,7 @@ namespace Example_name
         {
             if (dock != null)
             {
-                location = dock.location + new Vector2(0,40);
+                location = dock.location + dockOffset;
             }
         }
 
