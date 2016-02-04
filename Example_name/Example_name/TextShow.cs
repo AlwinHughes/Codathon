@@ -23,10 +23,12 @@ namespace Example_name
         Color[,] data_to_convert;
         Color[] border_colors;
         int[] border_widths;
+        bool complex;
 
         public TextShow(Vector2 location, int border_size, Color inside_color, Color border_color, SpriteFont font, string text, Color text_color, bool can_be_draged)
             : base(location, (int)font.MeasureString(text).X + 8 + border_size, (int)font.MeasureString(text).Y + 8 + border_size)
         {
+            complex = false;
             this.font = font;
             this.inside_color = inside_color;
             this.border_color = border_color;
@@ -40,29 +42,73 @@ namespace Example_name
             data = new Color[width * height];
             data_to_convert = new Color[width, height];
 
-            generateTexture(border_size, inside_color, border_color,text_color);
+            generateTexture(border_size, inside_color, border_color, text_color);
 
         }
-        public TextShow(Vector2 location, int border_size, Color inside_color, Color[] border_colors,int[] border_widths,  SpriteFont font, string text, Color text_color, bool can_be_draged)
-            : base(location, (int)font.MeasureString(text).X + 8 + border_size, (int)font.MeasureString(text).Y + 8 + border_size)
+        public TextShow(Vector2 location, Color inside_color, Color[] border_colors, int[] border_widths, SpriteFont font, string text, Color text_color, bool can_be_draged)
+            : base(location, (int)font.MeasureString(text).X + 8 + border_widths[0]+border_widths[2], (int)font.MeasureString(text).Y + 8 + border_widths[1]+border_widths[3])
         {
+            complex = true;
             this.font = font;
             this.inside_color = inside_color;
             this.border_colors = border_colors;
-            this.border_size = border_size;
             this.text_color = text_color;
             this.text = text;
             this.canBeDocked = can_be_draged;
+            this.border_widths = border_widths;
             sprite_height = (int)font.MeasureString(text).Y;
             sprite_length = (int)font.MeasureString(text).X;
 
             data = new Color[width * height];
             data_to_convert = new Color[width, height];
 
-            generateTexture(border_size, inside_color, border_color, text_color);
+            generateTextureComplex(border_widths, border_colors, inside_color);
+            
 
         }
 
+        public void generateTextureComplex(int[] boder_sizes, Color[] border_colors, Color inside)
+        {
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    if (j <= boder_sizes[1])
+                    {
+                        data_to_convert[i, j] = border_colors[1];
+                    }
+                    else if (i <= boder_sizes[1])
+                    {
+                        data_to_convert[i, j] = border_colors[0];
+                    }
+                    else if (i >= width - boder_sizes[2])
+                    {
+                        data_to_convert[i, j] = border_colors[2];
+                    }
+                    else if (j >= height - boder_sizes[3])
+                    {
+                        data_to_convert[i, j] = border_colors[3];
+                    }
+                    else
+                    {
+                        data_to_convert[i, j] = inside;
+                    }
+
+
+                }
+            }
+
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    data[j * width + i] = data_to_convert[i, j];
+                }
+            }
+            texture = new Texture2D(Game1.graphics.GraphicsDevice, width, height);
+            setData(data);
+
+        }
         public void generateTexture(int border_size, Color inside, Color border, Color text_color)//only alows color change not size change 
         {
             for (int i = 0; i < width; i++)

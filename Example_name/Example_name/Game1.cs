@@ -55,7 +55,7 @@ namespace Example_name
             window_width = graphics.GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = window_height;
             graphics.PreferredBackBufferWidth = window_width;
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             graphics.ApplyChanges();
             IsMouseVisible = true;
 
@@ -119,7 +119,7 @@ namespace Example_name
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("b", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "Reck", Color.Yellow,true));
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("c", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "You", Color.Yellow,true));
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("d", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "M8", Color.Yellow,true));
-
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("athing", new TextShow(new Vector2(300, 500),Color.Azure,new Color[] { Color.White,Color.White,Color.Turquoise,Color.Tomato},new int[] {1,4,5,2},subtitle_font, "complex TextShow",Color.Black,false));
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("dock", new TextShow(new Vector2(300, 400), 4, Color.White, Color.Black, title_font, "dock", Color.Yellow, false));
             ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["dock"]).asignDocking(false, false, true, false);
 
