@@ -25,6 +25,7 @@ namespace Example_name
         int[] border_widths;
         bool complex;
 
+        // simple creation
         public TextShow(Vector2 location, int border_size, Color inside_color, Color border_color, SpriteFont font, string text, Color text_color, bool can_be_draged)
             : base(location, (int)font.MeasureString(text).X + 8 + border_size, (int)font.MeasureString(text).Y + 8 + border_size)
         {
@@ -76,41 +77,30 @@ namespace Example_name
             {
                 for (int j = 0; j < height; j++)
                 {
-                    if (j <= boder_sizes[1])
-                    {
-                        data_to_convert[i, j] = border_colors[1];
-                    }
-                    else if (i <= boder_sizes[1])
+                    if (i <= boder_sizes[1])
                     {
                         data_to_convert[i, j] = border_colors[0];
                     }
-                    else if (i >= width - boder_sizes[2])
+                    else if (j <= boder_sizes[1])
                     {
-                        data_to_convert[i, j] = border_colors[2];
+                        data_to_convert[i, j] = border_colors[1];
                     }
                     else if (j >= height - boder_sizes[3])
                     {
                         data_to_convert[i, j] = border_colors[3];
                     }
+                    else if (i >= width - boder_sizes[2])
+                    {
+                        
+                        data_to_convert[i, j] = border_colors[2];
+                    }
                     else
                     {
                         data_to_convert[i, j] = inside;
                     }
-
-
                 }
             }
-
-            for (int i = 0; i < width; i++)
-            {
-                for (int j = 0; j < height; j++)
-                {
-                    data[j * width + i] = data_to_convert[i, j];
-                }
-            }
-            texture = new Texture2D(Game1.graphics.GraphicsDevice, width, height);
-            setData(data);
-
+            convertTo1DArray();
         }
         public void generateTexture(int border_size, Color inside, Color border, Color text_color)//only alows color change not size change 
         {
@@ -128,7 +118,12 @@ namespace Example_name
                     }
                 }
             }
+            convertTo1DArray();
+            
+        }
 
+        private void convertTo1DArray()
+        {
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
