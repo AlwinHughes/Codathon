@@ -116,12 +116,12 @@ namespace Example_name
             shapes[(int)GameState.TITLESCREEN]["title"].center(new Vector2(0, -30));
 
             //things
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("start", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, "START", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("start", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, " START ", Color.Yellow,true));
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("f1", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "FORWARD", Color.Yellow,true));
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("f2", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "FORWARD", Color.Yellow,true));
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("f3", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "FORWARD", Color.Yellow,true));
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("if", new TextShow(new Vector2(100, 600), 4, Color.White, Color.Black, title_font, "IF", Color.Yellow, true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("end", new TextShow(new Vector2(300, 400), 4, Color.White, Color.Black, title_font, "END", Color.Yellow, true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("end", new TextShow(new Vector2(300, 400), 4, Color.White, Color.Black, title_font, "  END  ", Color.Yellow, true));
 
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("athing", new TextShow(new Vector2(300, 500), Color.Azure, new Color[] { Color.Yellow, Color.Black, Color.Turquoise, Color.Tomato }, new int[] { 1, 4, 5, 2 }, subtitle_font, "complex TextShow", Color.Black, false));
 
@@ -130,7 +130,7 @@ namespace Example_name
             ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["f2"]).asignDocking(true, false);
             ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["f3"]).asignDocking(true, false);
             ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["if"]).asignDocking(true, true);
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["end"]).asignDocking(true, false);
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["end"]).asignDocking(false, false);
 
 
         }
