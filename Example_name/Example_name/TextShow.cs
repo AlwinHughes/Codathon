@@ -40,10 +40,10 @@ namespace Example_name
             data = new Color[width * height];
             data_to_convert = new Color[width, height];
 
-            generateTexture(border_size, inside_color, border_color,text_color);
+            generateTexture(border_size, inside_color, border_color, text_color);
 
         }
-        public TextShow(Vector2 location, int border_size, Color inside_color, Color[] border_colors,int[] border_widths,  SpriteFont font, string text, Color text_color, bool can_be_draged)
+        public TextShow(Vector2 location, int border_size, Color inside_color, Color[] border_colors, int[] border_widths, SpriteFont font, string text, Color text_color, bool can_be_draged)
             : base(location, (int)font.MeasureString(text).X + 8 + border_size, (int)font.MeasureString(text).Y + 8 + border_size)
         {
             this.font = font;
@@ -104,12 +104,12 @@ namespace Example_name
 
         public void Dock(Dictionary<string, ObjectToDrawBase> shapes)
         {
-            Vector2[] offsets = new Vector2[4] { new Vector2(0,-40), new Vector2(40,0), new Vector2(0,40), new Vector2(-40,0) };
             foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes)
             {
+                Vector2[] offsets = new Vector2[4] { new Vector2(0, -height), new Vector2(width, 0), new Vector2(0, height), new Vector2(-width, 0) };
                 for (int i = 0; i < 4; i++)
                 {
-                    if (shape.Value.canBeDockedTo[i] && this != shape.Value && location.X > shape.Value.location.X && location.X < shape.Value.location.X + width && location.Y > shape.Value.location.Y && location.Y < shape.Value.location.Y + height)//avoid self only down dock temp
+                    if (shape.Value.canBeDockedTo[i] && this != shape.Value && location.X - offsets[i].X > shape.Value.location.X && location.X - offsets[i].X < shape.Value.location.X + width && location.Y - offsets[i].Y > shape.Value.location.Y && location.Y - offsets[i].Y < shape.Value.location.Y + height)//avoid self dock temp
                     {
                         dock = shape.Value;
                         dockOffset = offsets[i];
@@ -118,7 +118,7 @@ namespace Example_name
                 }
             }
         }
-        public void asignDocking(bool up,bool right,bool down,bool left)
+        public void asignDocking(bool up, bool right, bool down, bool left)
         {
             canBeDockedTo[0] = up;
             canBeDockedTo[1] = right;
