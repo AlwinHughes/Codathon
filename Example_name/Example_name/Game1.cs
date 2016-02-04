@@ -55,7 +55,7 @@ namespace Example_name
             window_width = graphics.GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = window_height;
             graphics.PreferredBackBufferWidth = window_width;
-            graphics.IsFullScreen = false;
+            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             IsMouseVisible = true;
 
@@ -236,11 +236,35 @@ namespace Example_name
         {
             spriteBatch.Begin();
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            if (state == GameState.TITLESCREEN)
+            {
+                bool sub_title_down = true;
+                if (shapes[(int)GameState.TITLESCREEN]["subtitle"].location.Y <= 400)
+                {
+                    sub_title_down = false;
+                }else if(shapes[(int)GameState.TITLESCREEN]["subtitle"].location.Y >= 450)
+                {
+                    sub_title_down = true;
+                }
+                if(sub_title_down)
+                {
+                    shapes[(int)GameState.TITLESCREEN]["subtitle"].location.Y -= 1f;
+                }
+                else
+                {
+                    
+                    shapes[(int)GameState.TITLESCREEN]["subtitle"].location.Y += 1f;
+                }
+                
+
+
+            }
 
             foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes[(int)state].Reverse())
             {
                 shape.Value.Draw();
             }
+            
 
             if (state == GameState.GAMEPLAY_VIEW)
             {
