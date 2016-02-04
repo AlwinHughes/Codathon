@@ -109,7 +109,7 @@ namespace Example_name
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    if (shape.Value.canBeDockedTo[i] && this != shape.Value)//avoid self only down dock temp
+                    if (shape.Value.canBeDockedTo[i] && this != shape.Value && location.X > shape.Value.location.X && location.X < shape.Value.location.X + width && location.Y > shape.Value.location.Y && location.Y < shape.Value.location.Y + height)//avoid self only down dock temp
                     {
                         dock = shape.Value;
                         dockOffset = offsets[i];
