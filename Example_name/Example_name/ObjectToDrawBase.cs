@@ -17,7 +17,6 @@ namespace Example_name
         public int width { get; private set; }
         public int height { get; private set; }
         public bool canBeDocked;
-        public bool[] canBeDockedTo = new bool[2];
 
         public ObjectToDrawBase dock;
         public Vector2 dockOffset;
