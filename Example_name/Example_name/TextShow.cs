@@ -153,7 +153,7 @@ namespace Example_name
                 Vector2[] offsets = new Vector2[2] {new Vector2(shape.Value.width, 0), new Vector2(0, height)};
                 for (int i = 0; i < 2; i++)
                 {
-                    if (shape.Value.canBeDockedTo[i] && this != shape.Value && location.X - offsets[i].X > shape.Value.location.X && location.X - offsets[i].X < shape.Value.location.X + width && location.Y - offsets[i].Y > shape.Value.location.Y && location.Y - offsets[i].Y < shape.Value.location.Y + height)//avoid self dock temp
+                    if (shape.Value.canBeDockedTo[i] && this != shape.Value && Game1.current.X - offsets[i].X > shape.Value.location.X && Game1.current.X - offsets[i].X < shape.Value.location.X + width && Game1.current.Y - offsets[i].Y > shape.Value.location.Y && Game1.current.Y - offsets[i].Y < shape.Value.location.Y + height)
                     {
                         dock = shape.Value;
                         dockOffset = offsets[i];

@@ -118,21 +118,47 @@ namespace Example_name
             //things
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("start", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, " START ", Color.Yellow,true));
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("f1", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "FORWARD", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("f2", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "FORWARD", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("f3", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "FORWARD", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("if", new TextShow(new Vector2(100, 600), 4, Color.White, Color.Black, title_font, "IF", Color.Yellow, true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("end", new TextShow(new Vector2(300, 400), 4, Color.White, Color.Black, title_font, "  END  ", Color.Yellow, true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("f2", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "FORWARD", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("f3", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "FORWARD", Color.Yellow,true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("if1", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "IF", Color.Yellow, true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("if2", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "IF", Color.Yellow, true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("if3", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "IF", Color.Yellow, true));
 
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("athing", new TextShow(new Vector2(300, 500), Color.Azure, new Color[] { Color.Yellow, Color.Black, Color.Turquoise, Color.Tomato }, new int[] { 1, 4, 5, 2 }, subtitle_font, "complex TextShow", Color.Black, false));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("not1", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "NOT", Color.Yellow, true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("not2", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "NOT", Color.Yellow, true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("not3", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "NOT", Color.Yellow, true));
+
+
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("true1", new TextShow(new Vector2(100, 600), 4, Color.White, Color.Black, title_font, "TRUE", Color.Yellow, true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("true2", new TextShow(new Vector2(100, 600), 4, Color.White, Color.Black, title_font, "TRUE", Color.Yellow, true));
+
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("end1", new TextShow(new Vector2(100, 700), 4, Color.White, Color.Black, title_font, "  END  ", Color.Yellow, true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("end2", new TextShow(new Vector2(100, 700), 4, Color.White, Color.Black, title_font, "  END  ", Color.Yellow, true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("end3", new TextShow(new Vector2(100, 700), 4, Color.White, Color.Black, title_font, "  END  ", Color.Yellow, true));
+
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("stop", new TextShow(new Vector2(300, 600), 4, Color.White, Color.Black, title_font, "STOP", Color.Yellow, true));
+
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("athing", new TextShow(new Vector2(300, 800), Color.Azure, new Color[] { Color.Yellow, Color.Black, Color.Turquoise, Color.Tomato }, new int[] { 1, 4, 5, 2 }, subtitle_font, "complex TextShow", Color.Black, false));
 
             ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["start"]).asignDocking(true, false);
             ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["f1"]).asignDocking(true, false);
             ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["f2"]).asignDocking(true, false);
             ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["f3"]).asignDocking(true, false);
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["if"]).asignDocking(true, true);
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["end"]).asignDocking(false, false);
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["if1"]).asignDocking(true, true);
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["if2"]).asignDocking(true, true);
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["if3"]).asignDocking(true, true);
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["not1"]).asignDocking(false, true);
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["not2"]).asignDocking(false, true);
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["not3"]).asignDocking(false, true);
 
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["true1"]).asignDocking(false, false);
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["true2"]).asignDocking(false, false);
 
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["end1"]).asignDocking(true, false);
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["end2"]).asignDocking(true, false);
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["end3"]).asignDocking(true, false);
+
+            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["stop"]).asignDocking(false, false);
         }
 
         protected override void UnloadContent()
