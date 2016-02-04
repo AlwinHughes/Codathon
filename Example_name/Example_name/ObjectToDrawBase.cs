@@ -72,7 +72,7 @@ namespace Example_name
         {
             if (location.X + width > Game1.window_width)
             {
-                location.X = Game1.window_width;
+                location.X = Game1.window_width - width;
             }
             if (location.X < 0)
             {
