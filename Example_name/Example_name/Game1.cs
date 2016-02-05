@@ -7,6 +7,10 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using System.Diagnostics;
 using System.Linq;
+using System.IO.IsolatedStorage;
+using System.IO;
+using System.Xml.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Example_name
 {
@@ -24,10 +28,17 @@ namespace Example_name
         SpriteFont fps_font;
         public static SpriteFont title_font;
         SpriteFont subtitle_font;
+        
 
         public static GraphicsDeviceManager graphics;
 
         public static SpriteBatch spriteBatch;
+
+        StorageDevice storageDevice;
+        IAsyncResult asyncResult;
+        PlayerIndex playerIndex = PlayerIndex.One;
+        StorageContainer storageContainer;
+        string filename = "savegame.sav";
 
         Random r;
 
@@ -46,16 +57,20 @@ namespace Example_name
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+           
         }
 
         protected override void Initialize()
         {
+
+            
+
             state = GameState.TITLESCREEN;
             window_height = graphics.GraphicsDevice.DisplayMode.Height;
             window_width = graphics.GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = window_height;
             graphics.PreferredBackBufferWidth = window_width;
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             graphics.ApplyChanges();
             IsMouseVisible = true;
 
@@ -92,7 +107,7 @@ namespace Example_name
             shapes[(int)GameState.GAMEPLAY_VIEW]["rect1"].setData(data);
             base.Initialize();
         }
-
+        public static Dictionary<string, SpriteFont> fonts = new Dictionary<string, SpriteFont>();
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -100,6 +115,9 @@ namespace Example_name
             fps_font = Content.Load<SpriteFont>("font/arial-36");
             subtitle_font = Content.Load<SpriteFont>("font/subtitle");
             title_font = Content.Load<SpriteFont>("font/title");
+            //fonts.Add("fps_font",fps_font);
+            //fonts.Add("subtitle_font", subtitle_font);
+            //fonts.Add("title_font", title_font);
 
             Texture2D rect1Image = Content.Load<Texture2D>("img/thing");
             shapes[(int)GameState.GAMEPLAY_VIEW].Add("rect2", new Shape(rect1Image, new Vector2(r.Next(0, window_width), r.Next(0, window_height)), 80, 80));
@@ -202,6 +220,9 @@ namespace Example_name
                 if (Keyboard.GetState().IsKeyDown(Keys.O))
                     shapes[(int)GameState.GAMEPLAY_VIEW]["rect2"].rotation -= 0.1f;
 
+                if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
+                    saveGame();
+
                 if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 {
                     color_fit = true;
@@ -235,6 +256,36 @@ namespace Example_name
             fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             shapes[(int)GameState.GAMEPLAY_VIEW]["coin"].Update();
             base.Update(gameTime);
+        }
+
+        public void saveGame()
+        {
+            SaveClass thing = new SaveClass();
+            Dictionary<string, ObjectToDrawBase> temp = new Dictionary<string, ObjectToDrawBase>();
+            foreach (KeyValuePair<string,ObjectToDrawBase> shape in shapes[(int)GameState.GAMEPLAY_VIEW])
+            {
+                if (shape.Value.is_text_show)
+                {
+                    temp.Add(shape.Key, shape.Value);
+                }
+            }
+
+            foreach (KeyValuePair<string, ObjectToDrawBase> bob in temp)
+            {
+                Debug.WriteLine(bob.Key);
+                thing.keys.Add(bob.Key);
+                thing.values.Add(bob.Value);
+            }
+
+            
+                using (Stream stream = File.Open("Save_data.bin", FileMode.Create))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    bin.Serialize(stream, thing);
+                }
+            
+            
+
         }
 
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
@@ -286,5 +337,16 @@ namespace Example_name
     public enum GameState
     {
         TITLESCREEN, GAMEPLAY_VIEW, GAMEPLAY_CODE, LEVEL_SELECT
+    }
+
+    [Serializable()]
+    public class SaveClass
+    {
+        //public Dictionary<string, ObjectToDrawBase> data = new Dictionary<string, ObjectToDrawBase>();
+        public List<string> keys = new List<string>();
+        public List<ObjectToDrawBase> values = new List<ObjectToDrawBase>();
+
+        public SaveClass() { }
+
     }
 }
