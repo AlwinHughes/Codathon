@@ -115,7 +115,7 @@ namespace Example_name
             {
                 for (int j = 0; j < height; j++)
                 {
-                    if (i <= boder_sizes[1])
+                    if (i <= boder_sizes[0])
                     {
                         data_to_convert[i, j] = border_colors[0];
                     }
@@ -123,14 +123,13 @@ namespace Example_name
                     {
                         data_to_convert[i, j] = border_colors[1];
                     }
+                    else if (i >= width - boder_sizes[2])
+                    {
+                        data_to_convert[i, j] = border_colors[2];
+                    }
                     else if (j >= height - boder_sizes[3])
                     {
                         data_to_convert[i, j] = border_colors[3];
-                    }
-                    else if (i >= width - boder_sizes[2])
-                    {
-
-                        data_to_convert[i, j] = border_colors[2];
                     }
                     else
                     {
@@ -157,7 +156,6 @@ namespace Example_name
                 }
             }
             convertTo1DArray();
-
         }
 
         private void convertTo1DArray()
