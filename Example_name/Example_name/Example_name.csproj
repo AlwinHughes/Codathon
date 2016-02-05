@@ -58,6 +58,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AnimShape.cs" />
+    <Compile Include="BlockData.cs" />
     <Compile Include="FrameCounter.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="MouseDrag.cs" />

@@ -14,21 +14,30 @@ namespace Example_name
     {
         string text;
         SpriteFont font;
+
         int border_size;
         Color inside_color;
         Color border_color;
         Color text_color;
+
         int sprite_length;
         int sprite_height;
+
         Color[] data;
         Color[,] data_to_convert;
+
         Color[] border_colors;
         int[] border_widths;
+
         bool complex;
 
 
+
         
         
+
+        public BlockData blockData;
+
 
         // simple creation
         public TextShow(Vector2 location, int border_size, Color inside_color, Color border_color, SpriteFont font, string text, Color text_color, bool can_be_draged)
@@ -55,7 +64,7 @@ namespace Example_name
 
         //constructur used for complex creation
         public TextShow(Vector2 location, Color inside_color, Color[] border_colors, int[] border_widths, SpriteFont font, string text, Color text_color, bool can_be_draged)
-            : base(location, (int)font.MeasureString(text).X + 8 + border_widths[0]+ border_widths[2], (int)font.MeasureString(text).Y + 8 + border_widths[1]+ border_widths[3])
+            : base(location, (int)font.MeasureString(text).X + 8 + border_widths[0] + border_widths[2], (int)font.MeasureString(text).Y + 8 + border_widths[1] + border_widths[3])
 
         {
             is_text_show = true;
@@ -74,7 +83,7 @@ namespace Example_name
             data_to_convert = new Color[width, height];
 
             generateTextureComplex(border_widths, border_colors, inside_color);
-            
+
 
         }
 
@@ -98,7 +107,7 @@ namespace Example_name
                     }
                     else if (i >= width - boder_sizes[2])
                     {
-                        
+
                         data_to_convert[i, j] = border_colors[2];
                     }
                     else
@@ -126,7 +135,7 @@ namespace Example_name
                 }
             }
             convertTo1DArray();
-            
+
         }
 
         private void convertTo1DArray()
@@ -157,22 +166,22 @@ namespace Example_name
         {
             foreach (KeyValuePair<string, ObjectToDrawBase> shape in shapes)
             {
-                Vector2[] offsets = new Vector2[2] {new Vector2(shape.Value.width, 0), new Vector2(0, height)};
-                for (int i = 0; i < 2; i++)
+                if (shape.Value is TextShow && ((TextShow)shape.Value).blockData != null)
                 {
-                    if (shape.Value.canBeDockedTo[i] && this != shape.Value && Game1.current.X - offsets[i].X > shape.Value.location.X && Game1.current.X - offsets[i].X < shape.Value.location.X + width && Game1.current.Y - offsets[i].Y > shape.Value.location.Y && Game1.current.Y - offsets[i].Y < shape.Value.location.Y + height)
+                    for (int i = 0; i < 2; i++)
                     {
-                        dock = shape.Value;
-                        dockOffset = offsets[i];
-                        return;
+                        TextShow s = (TextShow)shape.Value;
+                        Vector2[] offsets = new Vector2[2] {new Vector2(0, s.height), new Vector2(s.width, 0)};
+
+                        if (s.blockData.canBeDockedTo[i] && this != s && Game1.current.X - offsets[i].X > s.location.X && Game1.current.X - offsets[i].X < s.location.X + width && Game1.current.Y - offsets[i].Y > s.location.Y && Game1.current.Y - offsets[i].Y < s.location.Y + height)
+                        {
+                            dock = shape.Value;
+                            dockOffset = offsets[i];
+                            return;
+                        }
                     }
                 }
             }
-        }
-        public void asignDocking( bool right, bool down)
-        {
-            canBeDockedTo[0] = down;
-            canBeDockedTo[1] = right;
         }
     }
 }
