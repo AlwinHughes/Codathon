@@ -43,7 +43,7 @@ namespace Example_name
             this.border_size = border_size;
             this.text_color = text_color;
             this.text = text;
-            this.canBeDocked = can_be_draged;
+            this.canBeDraged = can_be_draged;
             sprite_height = (int)font.MeasureString(text).Y;
             sprite_length = (int)font.MeasureString(text).X;
 
@@ -55,7 +55,7 @@ namespace Example_name
         }
 
         //constructur used for complex creation
-        public TextShow(Vector2 location, Color inside_color, Color[] border_colors, int[] border_widths, SpriteFont font, string text, Color text_color, bool can_be_draged)
+        public TextShow(Vector2 location, Color inside_color, Color[] border_colors, int[] border_widths, SpriteFont font, string text, Color text_color, bool canBeDraged)
             : base(location, (int)font.MeasureString(text).X + 8 + border_widths[0] + border_widths[2], (int)font.MeasureString(text).Y + 8 + border_widths[1] + border_widths[3])
 
         {
@@ -65,17 +65,39 @@ namespace Example_name
             this.border_colors = border_colors;
             this.text_color = text_color;
             this.text = text;
-            this.canBeDocked = can_be_draged;
+            this.canBeDraged = canBeDraged;
             this.border_widths = border_widths;
+            sprite_height = (int)font.MeasureString(text).Y;
+            sprite_length = (int)font.MeasureString(text).X;
+
+            border_size = border_widths[0];
+
+            data = new Color[width * height];
+            data_to_convert = new Color[width, height];
+
+            generateTextureComplex(border_widths, border_colors, inside_color);
+        }
+
+        public TextShow(Vector2 location, blockType type)
+            : base(location, (int)Game1.title_font.MeasureString(BlockData.getName(type)).X + 8 + 4 + 4, (int)Game1.title_font.MeasureString(BlockData.getName(type)).Y + 8 + 4 + 4)
+        {
+            blockData = new BlockData(type);
+
+            font = Game1.title_font;
+            inside_color = blockData.insideColour;
+            border_colors = blockData.borderColours;
+            text_color = blockData.textColour;
+            text = blockData.name;
+            canBeDraged = true;
             sprite_height = (int)font.MeasureString(text).Y;
             sprite_length = (int)font.MeasureString(text).X;
 
             data = new Color[width * height];
             data_to_convert = new Color[width, height];
 
-            generateTextureComplex(border_widths, border_colors, inside_color);
+            border_size = 8;
 
-
+            generateTextureComplex(new int[4] { 4, 4, 4, 4 }, border_colors, inside_color);
         }
 
         public void generateTextureComplex(int[] boder_sizes, Color[] border_colors, Color inside)
@@ -162,7 +184,7 @@ namespace Example_name
                     for (int i = 0; i < 2; i++)
                     {
                         TextShow s = (TextShow)shape.Value;
-                        Vector2[] offsets = new Vector2[2] {new Vector2(0, s.height), new Vector2(s.width, 0)};
+                        Vector2[] offsets = new Vector2[2] { new Vector2(0, s.height), new Vector2(s.width, 0) };
 
                         if (s.blockData.canBeDockedTo[i] && this != s && Game1.current.X - offsets[i].X > s.location.X && Game1.current.X - offsets[i].X < s.location.X + width && Game1.current.Y - offsets[i].Y > s.location.Y && Game1.current.Y - offsets[i].Y < s.location.Y + height)
                         {

@@ -22,7 +22,7 @@ namespace Example_name
         MouseState previous;
 
         SpriteFont fps_font;
-        SpriteFont title_font;
+        public static SpriteFont title_font;
         SpriteFont subtitle_font;
 
         public static GraphicsDeviceManager graphics;
@@ -114,53 +114,31 @@ namespace Example_name
             shapes[(int)GameState.TITLESCREEN]["title"].center(new Vector2(0, -30));
 
             //things
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("start", new TextShow(new Vector2(100, 200), 4, Color.White, Color.Black, title_font, " START ", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("f1", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "FORWARD", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("f2", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "FORWARD", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("f3", new TextShow(new Vector2(100, 300), 4, Color.White, Color.Black, title_font, "FORWARD", Color.Yellow,true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("if1", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "IF", Color.Yellow, true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("if2", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "IF", Color.Yellow, true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("if3", new TextShow(new Vector2(100, 400), 4, Color.White, Color.Black, title_font, "IF", Color.Yellow, true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("start1", new TextShow(new Vector2(100, 200), blockType.START));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("stop1", new TextShow(new Vector2(200, 200), blockType.STOP));
 
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("not1", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "NOT", Color.Yellow, true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("not2", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "NOT", Color.Yellow, true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("not3", new TextShow(new Vector2(100, 500), 4, Color.White, Color.Black, title_font, "NOT", Color.Yellow, true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("f1", new TextShow(new Vector2(100, 300), blockType.MOVEFORWARD));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("f2", new TextShow(new Vector2(100, 300), blockType.MOVEFORWARD));
 
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("if1", new TextShow(new Vector2(100, 400), blockType.IF));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("if2", new TextShow(new Vector2(100, 400), blockType.IF));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("if3", new TextShow(new Vector2(100, 400), blockType.IF));
 
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("true1", new TextShow(new Vector2(100, 600), 4, Color.White, Color.Black, title_font, "TRUE", Color.Yellow, true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("true2", new TextShow(new Vector2(100, 600), 4, Color.White, Color.Black, title_font, "TRUE", Color.Yellow, true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("end1", new TextShow(new Vector2(100, 500), blockType.END));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("end2", new TextShow(new Vector2(100, 500), blockType.END));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("end3", new TextShow(new Vector2(100, 500), blockType.END));
 
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("false1", new TextShow(new Vector2(100, 600), 4, Color.White, Color.Black, title_font, "FALSE", Color.Yellow, true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("for1", new TextShow(new Vector2(200, 400), blockType.FOR));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("end4", new TextShow(new Vector2(100, 500), blockType.END));
 
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("end1", new TextShow(new Vector2(100, 700), 4, Color.White, Color.Black, title_font, "  END  ", Color.Yellow, true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("end2", new TextShow(new Vector2(100, 700), 4, Color.White, Color.Black, title_font, "  END  ", Color.Yellow, true));
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("end3", new TextShow(new Vector2(100, 700), 4, Color.White, Color.Black, title_font, "  END  ", Color.Yellow, true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("true1", new TextShow(new Vector2(100, 300), blockType.TRUE));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("true2", new TextShow(new Vector2(100, 300), blockType.TRUE));
 
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("stop", new TextShow(new Vector2(300, 600), 4, Color.White, Color.Black, title_font, "STOP", Color.Yellow, true));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("false1", new TextShow(new Vector2(300, 400), blockType.FALSE));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("false2", new TextShow(new Vector2(300, 400), blockType.FALSE));
 
-            shapes[(int)GameState.GAMEPLAY_VIEW].Add("athing", new TextShow(new Vector2(300, 800), Color.Azure, new Color[] { Color.Yellow, Color.Black, Color.Turquoise, Color.Tomato }, new int[] { 1, 4, 5, 2 }, subtitle_font, "complex TextShow", Color.Black, false));
-
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["start"]).blockData = new BlockData(blockType.START);
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["f1"]).blockData = new BlockData(blockType.MOVEFORWARD);
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["f2"]).blockData = new BlockData(blockType.MOVEFORWARD);
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["f3"]).blockData = new BlockData(blockType.MOVEFORWARD);
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["if1"]).blockData = new BlockData(blockType.IF);
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["if2"]).blockData = new BlockData(blockType.IF);
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["if3"]).blockData = new BlockData(blockType.IF);
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["not1"]).blockData = new BlockData(blockType.NOT);
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["not2"]).blockData = new BlockData(blockType.NOT);
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["not3"]).blockData = new BlockData(blockType.NOT);
-
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["true1"]).blockData = new BlockData(blockType.TRUE);
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["true2"]).blockData = new BlockData(blockType.TRUE);
-
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["false1"]).blockData = new BlockData(blockType.FALSE);
-
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["end1"]).blockData = new BlockData(blockType.END);
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["end2"]).blockData = new BlockData(blockType.END);
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["end3"]).blockData = new BlockData(blockType.END);
-
-            ((TextShow)shapes[(int)GameState.GAMEPLAY_VIEW]["stop"]).blockData = new BlockData(blockType.STOP);
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("not1", new TextShow(new Vector2(400, 400), blockType.NOT));
+            shapes[(int)GameState.GAMEPLAY_VIEW].Add("not2", new TextShow(new Vector2(400, 400), blockType.NOT));
         }
 
         protected override void UnloadContent()

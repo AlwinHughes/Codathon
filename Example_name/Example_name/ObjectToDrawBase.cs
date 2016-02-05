@@ -16,7 +16,7 @@ namespace Example_name
         public float rotation;
         public int width { get; private set; }
         public int height { get; private set; }
-        public bool canBeDocked;
+        public bool canBeDraged;
 
         public ObjectToDrawBase dock;
         public Vector2 dockOffset;

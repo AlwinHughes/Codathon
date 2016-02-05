@@ -21,7 +21,7 @@ namespace Example_name
             foreach (KeyValuePair<string, ObjectToDrawBase> pair in shapes)
             {
                 ObjectToDrawBase shape = pair.Value;
-                if (shape.canBeDocked)
+                if (shape.canBeDraged)
                 {
                     if (Game1.current.X > shape.location.X && Game1.current.X < shape.location.X + shape.width && Game1.current.Y > shape.location.Y && Game1.current.Y < shape.location.Y + shape.height)
                     {
