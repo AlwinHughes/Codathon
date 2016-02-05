@@ -93,7 +93,7 @@ namespace Example_name
             blockData = new BlockData(type);
 
             font = Game1.title_font;
-            inside_color = blockData.insideColour;
+            inside_color = Color.Yellow;
             border_colors = blockData.borderColours;
             text_color = blockData.textColour;
             text = blockData.name;
@@ -106,10 +106,10 @@ namespace Example_name
 
             border_size = 8;
 
-            generateTextureComplex(new int[4] { 4, 4, 4, 4 }, border_colors, inside_color);
+            generateTextureComplex(new int[4] { 4, 4, 4,4  }, border_colors, inside_color);
         }
 
-        public void generateTextureComplex(int[] boder_sizes, Color[] border_colors, Color inside)
+        public void generateTextureComplex(int[] boder_sizes, Color[] border_colors, Color inside_color)
         {
             for (int i = 0; i < width; i++)
             {
@@ -117,9 +117,9 @@ namespace Example_name
                 {
                     if (i <= boder_sizes[0])
                     {
-                        if (j < height / 4 || j > height - height / 4)
+                        if (j <= 6 || j >= height - 6)
                         {
-                            data_to_convert[i, j] = inside;
+                            data_to_convert[i, j] = inside_color;
                         }
                         else
                         {
@@ -128,9 +128,9 @@ namespace Example_name
                     }
                     else if (j <= boder_sizes[1])
                     {
-                        if (i < width / 4 || i > width - width / 4)
+                        if (i <= 6 || i >= width - 6)
                         {
-                            data_to_convert[i, j] = inside;
+                            data_to_convert[i, j] = inside_color;
                         }
                         else
                         {
@@ -139,9 +139,9 @@ namespace Example_name
                     }
                     else if (i >= width - boder_sizes[2])
                     {
-                        if (j < height / 4 || j > height - height / 4)
+                        if (j <= 6 || j >= height - 6)
                         {
-                            data_to_convert[i, j] = inside;
+                            data_to_convert[i, j] = inside_color;
                         }
                         else
                         {
@@ -150,9 +150,9 @@ namespace Example_name
                     }
                     else if (j >= height - boder_sizes[3])
                     {
-                        if (i < width / 4 || i > width - width / 4)
+                        if (i <= 6 || i >= width - 6)
                         {
-                            data_to_convert[i, j] = inside;
+                            data_to_convert[i, j] = inside_color;
                         }
                         else
                         {
@@ -161,7 +161,7 @@ namespace Example_name
                     }
                     else
                     {
-                        data_to_convert[i, j] = inside;
+                        data_to_convert[i, j] = inside_color;
                     }
                 }
             }
