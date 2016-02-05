@@ -9,7 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 namespace Example_name
 {
-    abstract class ObjectToDrawBase
+    [Serializable]
+    public abstract class ObjectToDrawBase
     {
         public Texture2D texture;
         public Vector2 location;
@@ -21,6 +22,7 @@ namespace Example_name
 
         public ObjectToDrawBase dock;
         public Vector2 dockOffset;
+        public bool is_text_show = false;
 
         public ObjectToDrawBase(Texture2D texture, Vector2 location, int width, int height)
         {

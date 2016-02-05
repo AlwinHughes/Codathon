@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace Example_name
 {
+    [Serializable]
     class TextShow : ObjectToDrawBase
     {
         string text;
@@ -25,10 +26,15 @@ namespace Example_name
         int[] border_widths;
         bool complex;
 
+
+        
+        
+
         // simple creation
         public TextShow(Vector2 location, int border_size, Color inside_color, Color border_color, SpriteFont font, string text, Color text_color, bool can_be_draged)
             : base(location, (int)font.MeasureString(text).X + 8 + border_size, (int)font.MeasureString(text).Y + 8 + border_size)
         {
+            is_text_show = true;
             complex = false;
             this.font = font;
             this.inside_color = inside_color;
@@ -52,6 +58,7 @@ namespace Example_name
             : base(location, (int)font.MeasureString(text).X + 8 + border_widths[0]+ border_widths[2], (int)font.MeasureString(text).Y + 8 + border_widths[1]+ border_widths[3])
 
         {
+            is_text_show = true;
             complex = true;
             this.font = font;
             this.inside_color = inside_color;
