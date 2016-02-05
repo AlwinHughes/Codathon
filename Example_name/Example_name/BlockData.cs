@@ -37,70 +37,70 @@ namespace Example_name
                     name = "START";
                     canBeDockedTo = new bool[2] { true, false };
                     insideColour = Color.Plum;
-                    borderColours = new Color[4] { Color.BurlyWood, Color.DarkCyan, Color.DeepPink, Color.Green };
+                    borderColours = new Color[4] { Color.BlanchedAlmond, Color.DarkCyan, Color.DeepPink, Color.Green };
                     textColour = Color.CadetBlue;
                     break;
                 case blockType.STOP:
                     name = "STOP";
                     canBeDockedTo = new bool[2] { false, false };
                     insideColour = Color.Plum;
-                    borderColours = new Color[4] { Color.BurlyWood, Color.DarkCyan, Color.DeepPink, Color.Green };
+                    borderColours = new Color[4] { Color.BlanchedAlmond, Color.DarkCyan, Color.DeepPink, Color.Green };
                     textColour = Color.CadetBlue;
                     break;
                 case blockType.IF:
                     name = "IF";
                     canBeDockedTo = new bool[2] { true, true };
                     insideColour = Color.Plum;
-                    borderColours = new Color[4] { Color.BurlyWood, Color.DarkCyan, Color.DeepPink, Color.Green };
+                    borderColours = new Color[4] { Color.BlanchedAlmond, Color.DarkCyan, Color.DeepPink, Color.Green };
                     textColour = Color.CadetBlue;
                     break;
                 case blockType.FOR:
                     name = "FOR";
                     canBeDockedTo = new bool[2] { true, true };
                     insideColour = Color.Plum;
-                    borderColours = new Color[4] { Color.BurlyWood, Color.DarkCyan, Color.DeepPink, Color.Green }
+                    borderColours = new Color[4] { Color.BlanchedAlmond, Color.DarkCyan, Color.DeepPink, Color.Green }
 ;                    textColour = Color.CadetBlue;
                     break;
                 case blockType.WHILE:
                     name = "WHILE";
                     canBeDockedTo = new bool[2] { true, true };
                     insideColour = Color.Plum;
-                    borderColours = new Color[4] { Color.BurlyWood, Color.DarkCyan, Color.DeepPink, Color.Green };
+                    borderColours = new Color[4] { Color.BlanchedAlmond, Color.DarkCyan, Color.DeepPink, Color.Green };
                     textColour = Color.CadetBlue;
                     break;
                 case blockType.END:
                     name = "END";
                     canBeDockedTo = new bool[2] { true, false };
                     insideColour = Color.Plum;
-                    borderColours = new Color[4] { Color.BurlyWood, Color.DarkCyan, Color.DeepPink, Color.Green };
+                    borderColours = new Color[4] { Color.BlanchedAlmond, Color.DarkCyan, Color.DeepPink, Color.Green };
                     textColour = Color.CadetBlue;
                     break;
                 case blockType.NOT:
                     name = "NOT";
                     canBeDockedTo = new bool[2] { false, true };
                     insideColour = Color.Plum;
-                    borderColours = new Color[4] { Color.BurlyWood, Color.DarkCyan, Color.DeepPink, Color.Green };
+                    borderColours = new Color[4] { Color.BlanchedAlmond, Color.DarkCyan, Color.DeepPink, Color.Green };
                     textColour = Color.CadetBlue;
                     break;
                 case blockType.TRUE:
                     name = "True";
                     canBeDockedTo = new bool[2] { false, true };
                     insideColour = Color.Plum;
-                    borderColours = new Color[4] { Color.BurlyWood, Color.DarkCyan, Color.DeepPink, Color.Green };
+                    borderColours = new Color[4] { Color.BlanchedAlmond, Color.DarkCyan, Color.DeepPink, Color.Green };
                     textColour = Color.CadetBlue;
                     break;
                 case blockType.FALSE:
                     name = "False";
                     canBeDockedTo = new bool[2] { false, true };
                     insideColour = Color.Plum;
-                    borderColours = new Color[4] { Color.BurlyWood, Color.DarkCyan, Color.DeepPink, Color.Green };
+                    borderColours = new Color[4] { Color.BlanchedAlmond, Color.DarkCyan, Color.DeepPink, Color.Green };
                     textColour = Color.CadetBlue;
                     break;
                 case blockType.MOVEFORWARD:
                     name = "moveForward";
                     canBeDockedTo = new bool[2] { true, false };
                     insideColour = Color.Plum;
-                    borderColours = new Color[4] { Color.BurlyWood, Color.DarkCyan, Color.DeepPink, Color.Green };
+                    borderColours = new Color[4] { Color.BlanchedAlmond, Color.DarkCyan, Color.DeepPink, Color.Green };
                     textColour = Color.CadetBlue;
                     break;
             }

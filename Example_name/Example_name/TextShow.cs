@@ -33,8 +33,8 @@ namespace Example_name
 
 
 
-        
-        
+
+
 
         public BlockData blockData;
 
@@ -117,19 +117,47 @@ namespace Example_name
                 {
                     if (i <= boder_sizes[0])
                     {
-                        data_to_convert[i, j] = border_colors[0];
+                        if (j < height / 4 || j > height - height / 4)
+                        {
+                            data_to_convert[i, j] = inside;
+                        }
+                        else
+                        {
+                            data_to_convert[i, j] = border_colors[0];
+                        }
                     }
                     else if (j <= boder_sizes[1])
                     {
-                        data_to_convert[i, j] = border_colors[1];
+                        if (i < width / 4 || i > width - width / 4)
+                        {
+                            data_to_convert[i, j] = inside;
+                        }
+                        else
+                        {
+                            data_to_convert[i, j] = border_colors[1];
+                        }
                     }
                     else if (i >= width - boder_sizes[2])
                     {
-                        data_to_convert[i, j] = border_colors[2];
+                        if (j < height / 4 || j > height - height / 4)
+                        {
+                            data_to_convert[i, j] = inside;
+                        }
+                        else
+                        {
+                            data_to_convert[i, j] = border_colors[2];
+                        }
                     }
                     else if (j >= height - boder_sizes[3])
                     {
-                        data_to_convert[i, j] = border_colors[3];
+                        if (i < width / 4 || i > width - width / 4)
+                        {
+                            data_to_convert[i, j] = inside;
+                        }
+                        else
+                        {
+                            data_to_convert[i, j] = border_colors[3];
+                        }
                     }
                     else
                     {
